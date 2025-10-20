@@ -3,7 +3,12 @@
 
 @plugin "@tailwindcss/typography";
 
-@theme static {
+@theme {
     --font-sans: 'Open Sans', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
+}
+
+:root {
+    --ui-primary: #7ca6d8;
+    --ui-secondary: #fff34e;
 }
