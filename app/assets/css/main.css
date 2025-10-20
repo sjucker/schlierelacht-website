@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
+@plugin "@tailwindcss/typography";
+
 @theme static {
     --font-sans: 'Open Sans', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
