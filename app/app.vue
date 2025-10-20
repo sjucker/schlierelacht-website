@@ -7,7 +7,10 @@
       </div>
       <div class="flex-3">
         <h2>Herzlich willkommen am Schlierefäscht vom<br>3. bis 12. September 2027</h2>
-        <NuxtImg src="/front.jpg" alt="Foto: Daniel Santschi, Schlieren" desc densities="x1 x2" class="w-full rounded-lg"/>
+        <figure>
+          <NuxtImg src="/front.jpg" alt="Foto: Daniel Santschi, Schlieren" desc densities="x1 x2" class="w-full rounded-lg prose:mb-0"/>
+          <figcaption class="prose-sm">Foto: Daniel Santschi</figcaption>
+        </figure>
 
         <USeparator color="primary"/>
 
@@ -39,13 +42,22 @@
 
         <h3>Downloads</h3>
         <h4>Logos</h4>
+        <div class="flex flex-col md:flex-row md:gap-4">
+          <UButton to="/downloads/logo/logo-sf2027.eps" target="_blank" icon="i-lucide-file" size="md" color="primary" variant="subtle">Festlogo (EPS)</UButton>
+          <UButton to="/downloads/logo/logo-sf2027.jpg" target="_blank" icon="i-lucide-file" size="md" color="primary" variant="subtle">Festlogo (JPG)</UButton>
+          <UButton to="/downloads/logo/logo-sf2027.pdf" target="_blank" icon="i-lucide-file" size="md" color="primary" variant="subtle">Festlogo (PDF)</UButton>
+          <UButton to="/downloads/logo/logo-sf2027.png" target="_blank" icon="i-lucide-file" size="md" color="primary" variant="subtle">Festlogo (PNG)</UButton>
+        </div>
         <h4>Sponsoring</h4>
-        <h4>Gastro</h4>
+        <div class="flex flex-col md:flex-row md:gap-4">
+          <UButton to="/downloads/sponsoring/formular.pdf" target="_blank" icon="i-lucide-file" size="md" color="primary" variant="subtle">Anmeldeformular (PDF)</UButton>
+          <UButton to="/downloads/sponsoring/prospekt.pdf" target="_blank" icon="i-lucide-file" size="md" color="primary" variant="subtle">Sponsorenprospekt (PDF)</UButton>
+        </div>
       </div>
     </div>
 
     <UFooter>
-      <div>Test</div>
+      <!-- TODO social media -->
     </UFooter>
   </UApp>
 </template>
