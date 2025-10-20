@@ -10,5 +10,16 @@ export default defineNuxtConfig({
     },
     image: {
 
+    },
+    app: {
+        head: {
+            title: 'Schliere lacht: 3. bis 12. September 2027',
+            htmlAttrs: {
+                lang: 'de',
+            },
+            link: [
+                { rel: 'icon', type: 'image/png', href: '/favicon.png' },
+            ],
+        }
     }
 })
