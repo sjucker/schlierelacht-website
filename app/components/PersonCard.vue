@@ -7,7 +7,7 @@
         </div>
         <div class="flex-3 prose-sm">
           <strong>{{ props.name }}</strong><br>
-          {{ props.role }}<br><br>
+          {{ props.ressort }}<br><br>
           <a v-if="props.mail" :href="'mailto:' + props.mail">{{ props.mail }}</a><br>
           <a v-if="props.phone" :href="'tel:+41 ' + props.phone.substring(1)">{{ props.phone }}</a>
         </div>
@@ -19,7 +19,7 @@
 const props = defineProps({
   imageSrc: {type: String, required: true},
   name: {type: String, required: true},
-  role: {type: String, required: true},
+  ressort: {type: String, required: true},
   mail: {type: String, required: true},
   phone: {type: String, required: true},
 })

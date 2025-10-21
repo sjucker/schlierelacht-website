@@ -25,17 +25,17 @@
         </UCard>
         <h4>Organisations-Komitee</h4>
         <div class="grid lg:grid-cols-2 gap-2 pb-12">
-          <PersonCard image-src="manuela-stiefel.jpg" name="Manuela Stiefel" role="Co-Präsidentin/Kommunikation" mail="manuela.stiefel@bluewin.ch" phone="079 377 57 67"/>
-          <PersonCard image-src="rolf-wild.jpg" name="Rolf Wild" role="Co-Präsidentin/Kommunikation" mail="rowisc@bluewin.ch" phone="079 417 74 51"/>
-          <PersonCard image-src="markus-baertschiger.jpg" name="Markus Bärtschiger" role="Stadt Schlieren/Stadtpräsident" mail="markus.baertschiger@schlieren.ch" phone="077 438 26 29"/>
-          <PersonCard image-src="albert-schweizer.jpg" name="Albert Schweizer" role="Sponsoring" mail="albert.schweizer@schlieren.ch" phone="079 414 39 23"/>
-          <PersonCard image-src="sabrina-berri.jpg" name="Sabrina Berri" role="Finanzen" mail="sabrinaberri@gmx.ch" phone="079 390 64 54"/>
-          <PersonCard image-src="marco-lucchinetti.jpg" name="Marco Lucchinetti" role="Projekte" mail="marco.lucchinetti@notariate.zh.ch" phone="079 287 63 48"/>
-          <PersonCard image-src="fabian-flueckiger.jpg" name="Fabian Flückiger" role="Bau" mail="f.flueckiger@effekte.ch" phone="079 665 91 92"/>
-          <PersonCard image-src="barbara-gysling.jpg" name="Barbara Gysling" role="Aktivitäten/Programm" mail="cngschlieren@gmail.com" phone="079 344 44 89"/>
-          <PersonCard image-src="jan-reiss.jpg" name="Jan Reiss" role="Gastronomie" mail="j.reiss@arbeitskette.ch" phone="079 136 30 86"/>
-          <PersonCard image-src="daniel-gysling.jpg" name="Daniel Gysling" role="Sicherheit" mail="daniel.gysling@schlieren.ch" phone="079 779 66 41"/>
-          <PersonCard image-src="flavio-impusino.jpg" name="Flavio Impusino" role="Sicherheit" mail="flavio.impusino@brogliag.ch" phone="079 434 06 29"/>
+          <PersonCard image-src="manuela-stiefel.jpg" name="Manuela Stiefel" ressort="Co-Präsidentin/Kommunikation" mail="manuela.stiefel@bluewin.ch" phone="079 377 57 67"/>
+          <PersonCard image-src="rolf-wild.jpg" name="Rolf Wild" ressort="Co-Präsidentin/Kommunikation" mail="rowisc@bluewin.ch" phone="079 417 74 51"/>
+          <PersonCard image-src="markus-baertschiger.jpg" name="Markus Bärtschiger" ressort="Stadt Schlieren/Stadtpräsident" mail="markus.baertschiger@schlieren.ch" phone="077 438 26 29"/>
+          <PersonCard image-src="albert-schweizer.jpg" name="Albert Schweizer" ressort="Sponsoring" mail="albert.schweizer@schlieren.ch" phone="079 414 39 23"/>
+          <PersonCard image-src="sabrina-berri.jpg" name="Sabrina Berri" ressort="Finanzen" mail="sabrinaberri@gmx.ch" phone="079 390 64 54"/>
+          <PersonCard image-src="marco-lucchinetti.jpg" name="Marco Lucchinetti" ressort="Projekte" mail="marco.lucchinetti@notariate.zh.ch" phone="079 287 63 48"/>
+          <PersonCard image-src="fabian-flueckiger.jpg" name="Fabian Flückiger" ressort="Bau" mail="f.flueckiger@effekte.ch" phone="079 665 91 92"/>
+          <PersonCard image-src="barbara-gysling.jpg" name="Barbara Gysling" ressort="Aktivitäten/Programm" mail="cngschlieren@gmail.com" phone="079 344 44 89"/>
+          <PersonCard image-src="jan-reiss.jpg" name="Jan Reiss" ressort="Gastronomie" mail="j.reiss@arbeitskette.ch" phone="079 136 30 86"/>
+          <PersonCard image-src="daniel-gysling.jpg" name="Daniel Gysling" ressort="Sicherheit" mail="daniel.gysling@schlieren.ch" phone="079 779 66 41"/>
+          <PersonCard image-src="flavio-impusino.jpg" name="Flavio Impusino" ressort="Sicherheit" mail="flavio.impusino@brogliag.ch" phone="079 434 06 29"/>
         </div>
 
         <USeparator color="primary"/>
@@ -57,7 +57,27 @@
     </div>
 
     <UFooter>
-      <!-- TODO social media -->
+      <template #left>
+        <p class="text-sm">© {{ new Date().getFullYear() }} Schliere lacht</p>
+      </template>
+      <template #right>
+        <UButton
+            size="xl"
+            icon="i-simple-icons-facebook"
+            color="primary"
+            variant="link"
+            to="https://www.facebook.com/schlierelacht"
+            target="_blank"
+            aria-label="Facebook"/>
+        <UButton
+            size="xl"
+            icon="i-simple-icons-instagram"
+            color="primary"
+            variant="link"
+            to="https://www.instagram.com/schlierelacht/"
+            target="_blank"
+            aria-label="Instagram"/>
+      </template>
     </UFooter>
   </UApp>
 </template>
