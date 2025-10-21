@@ -1,7 +1,7 @@
 <template>
   <UApp>
 
-    <div class="container flex flex-col items-center md:flex-row md:items-stretch md:gap-12 m-auto prose md:prose-lg max-w-7xl">
+    <div class="container flex flex-col md:flex-row items-center md:items-stretch md:gap-12 p-4 m-auto prose md:prose-lg max-w-7xl">
       <div class="flex-1 relative">
         <NuxtImg src="/logo.svg" alt="Schlierefäscht Logo" densities="x1 x2" class="md:sticky md:top-12 md:left-0"/>
       </div>
@@ -42,14 +42,14 @@
 
         <h3>Downloads</h3>
         <h4>Logos</h4>
-        <div class="flex flex-col md:flex-row md:gap-4">
+        <div class="flex flex-col md:flex-row gap-2 md:gap-4">
           <UButton to="/downloads/logo/logo-sf2027.eps" target="_blank" icon="i-lucide-file" size="md" color="primary" variant="subtle">Festlogo (EPS)</UButton>
           <UButton to="/downloads/logo/logo-sf2027.jpg" target="_blank" icon="i-lucide-file" size="md" color="primary" variant="subtle">Festlogo (JPG)</UButton>
           <UButton to="/downloads/logo/logo-sf2027.pdf" target="_blank" icon="i-lucide-file" size="md" color="primary" variant="subtle">Festlogo (PDF)</UButton>
           <UButton to="/downloads/logo/logo-sf2027.png" target="_blank" icon="i-lucide-file" size="md" color="primary" variant="subtle">Festlogo (PNG)</UButton>
         </div>
         <h4>Sponsoring</h4>
-        <div class="flex flex-col md:flex-row md:gap-4">
+        <div class="flex flex-col md:flex-row gap-2 md:gap-4">
           <UButton to="/downloads/sponsoring/formular.pdf" target="_blank" icon="i-lucide-file" size="md" color="primary" variant="subtle">Anmeldeformular (PDF)</UButton>
           <UButton to="/downloads/sponsoring/prospekt.pdf" target="_blank" icon="i-lucide-file" size="md" color="primary" variant="subtle">Sponsorenprospekt (PDF)</UButton>
         </div>
