@@ -26,7 +26,7 @@
         <h4>Organisations-Komitee</h4>
         <div class="grid lg:grid-cols-2 gap-2 pb-12">
           <PersonCard image-src="manuela-stiefel.jpg" name="Manuela Stiefel" ressort="Co-Präsidentin/Kommunikation" mail="manuela.stiefel@bluewin.ch" phone="079 377 57 67"/>
-          <PersonCard image-src="rolf-wild.jpg" name="Rolf Wild" ressort="Co-Präsidentin/Kommunikation" mail="rowisc@bluewin.ch" phone="079 417 74 51"/>
+          <PersonCard image-src="rolf-wild.jpg" name="Rolf Wild" ressort="Co-Präsident/Kommunikation" mail="rowisc@bluewin.ch" phone="079 417 74 51"/>
           <PersonCard image-src="markus-baertschiger.jpg" name="Markus Bärtschiger" ressort="Stadt Schlieren/Stadtpräsident" mail="markus.baertschiger@schlieren.ch" phone="077 438 26 29"/>
           <PersonCard image-src="albert-schweizer.jpg" name="Albert Schweizer" ressort="Sponsoring" mail="albert.schweizer@schlieren.ch" phone="079 414 39 23"/>
           <PersonCard image-src="sabrina-berri.jpg" name="Sabrina Berri" ressort="Finanzen" mail="sabrinaberri@gmx.ch" phone="079 390 64 54"/>
@@ -49,10 +49,38 @@
           <UButton to="/downloads/logo/logo-sf2027.png" target="_blank" icon="i-lucide-file" size="md" color="primary" variant="subtle">Festlogo (PNG)</UButton>
         </div>
         <h4>Sponsoring</h4>
-        <div class="flex flex-col md:flex-row gap-2 md:gap-4">
+        <div class="flex flex-col md:flex-row gap-2 md:gap-4 pb-12">
           <UButton to="/downloads/sponsoring/formular.pdf" target="_blank" icon="i-lucide-file" size="md" color="primary" variant="subtle">Anmeldeformular (PDF)</UButton>
           <UButton to="/downloads/sponsoring/prospekt.pdf" target="_blank" icon="i-lucide-file" size="md" color="primary" variant="subtle">Sponsorenprospekt (PDF)</UButton>
         </div>
+
+        <USeparator color="primary"/>
+
+        <h3>Impressionen</h3>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 not-prose">
+          <div class="flex flex-col justify-between gap-4">
+            <NuxtImg loading="lazy" src="/impressionen/1.jpg" alt="Impression: Schliere lacht 2023" densities="x1 x2" class="h-auto max-w-full rounded-lg"/>
+            <NuxtImg loading="lazy" src="/impressionen/2.jpg" alt="Impression: Schliere lacht 2023" densities="x1 x2" class="h-auto max-w-full rounded-lg"/>
+            <NuxtImg loading="lazy" src="/impressionen/3.jpg" alt="Impression: Schliere lacht 2023" densities="x1 x2" class="h-auto max-w-full rounded-lg"/>
+          </div>
+          <div class="flex flex-col justify-between gap-4">
+            <NuxtImg loading="lazy" src="/impressionen/4.jpg" alt="Impression: Schliere lacht 2023" densities="x1 x2" class="h-auto max-w-full rounded-lg"/>
+            <NuxtImg loading="lazy" src="/impressionen/6.jpg" alt="Impression: Schliere lacht 2023" densities="x1 x2" class="h-auto max-w-full rounded-lg"/>
+            <NuxtImg loading="lazy" src="/impressionen/5.jpg" alt="Impression: Schliere lacht 2023" densities="x1 x2" class="h-auto max-w-full rounded-lg"/>
+          </div>
+          <div class="flex flex-col justify-between gap-4">
+            <NuxtImg loading="lazy" src="/impressionen/8.jpg" alt="Impression: Schliere lacht 2023" densities="x1 x2" class="h-auto max-w-full rounded-lg"/>
+            <NuxtImg loading="lazy" src="/impressionen/9.jpg" alt="Impression: Schliere lacht 2023" densities="x1 x2" class="h-auto max-w-full rounded-lg"/>
+            <NuxtImg loading="lazy" src="/impressionen/7.jpg" alt="Impression: Schliere lacht 2023" densities="x1 x2" class="h-auto max-w-full rounded-lg"/>
+          </div>
+          <div class="flex flex-col justify-between gap-4">
+            <NuxtImg loading="lazy" src="/impressionen/10.jpg" alt="Impression: Schliere lacht 2023" densities="x1 x2" class="h-auto max-w-full rounded-lg"/>
+            <NuxtImg loading="lazy" src="/impressionen/12.jpg" alt="Impression: Schliere lacht 2023" densities="x1 x2" class="h-auto max-w-full rounded-lg"/>
+            <NuxtImg loading="lazy" src="/impressionen/11.jpg" alt="Impression: Schliere lacht 2023" densities="x1 x2" class="h-auto max-w-full rounded-lg"/>
+          </div>
+        </div>
+
       </div>
     </div>
 
