@@ -32,7 +32,7 @@
           <PersonCard image-src="sabrina-berri.jpg" name="Sabrina Berri" ressort="Finanzen" mail="sabrinaberri@gmx.ch" phone="079 390 64 54"/>
           <PersonCard image-src="marco-lucchinetti.jpg" name="Marco Lucchinetti" ressort="Projekte" mail="marco.lucchinetti@notariate.zh.ch" phone="079 287 63 48"/>
           <PersonCard image-src="fabian-flueckiger.jpg" name="Fabian Flückiger" ressort="Bau" mail="f.flueckiger@effekte.ch" phone="079 665 91 92"/>
-          <PersonCard image-src="barbara-gysling.jpg" name="Barbara Gysling" ressort="Aktivitäten/Programm" mail="cngschlieren@gmail.com" phone="079 344 44 89"/>
+          <PersonCard image-src="barbara-gysling.jpg" name="Barbara Gysling" ressort="Aktivitäten/Programm" mail="event@schlierelacht.ch" phone="079 344 44 89"/>
           <PersonCard image-src="jan-reiss.jpg" name="Jan Reiss" ressort="Gastronomie" mail="j.reiss@arbeitskette.ch" phone="079 136 30 86"/>
           <PersonCard image-src="daniel-gysling.jpg" name="Daniel Gysling" ressort="Sicherheit" mail="daniel.gysling@schlieren.ch" phone="079 779 66 41"/>
           <PersonCard image-src="flavio-impusino.jpg" name="Flavio Impusino" ressort="Sicherheit" mail="flavio.impusino@brogliag.ch" phone="079 434 06 29"/>
