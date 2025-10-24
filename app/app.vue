@@ -6,11 +6,10 @@
         <NuxtImg src="/logo.svg" alt="Schlierefäscht Logo" densities="x1 x2" class="md:sticky md:top-12 md:left-0"/>
       </div>
       <div class="flex-3">
-        <h2>Herzlich willkommen am Schlierefäscht vom<br>3. bis 12. September 2027</h2>
-        <figure>
-          <NuxtImg src="/front.jpg" alt="Foto: Daniel Santschi, Schlieren" desc densities="x1 x2" class="w-full rounded-lg prose:mb-0"/>
-          <figcaption class="prose-sm">Foto: Daniel Santschi</figcaption>
-        </figure>
+        <h2>Willkommen am Schlierefäscht 2027</h2>
+
+        <NuxtImg src="/front.jpg" alt="Foto: Daniel Santschi, Schlieren" desc densities="x1 x2" class="w-full rounded-lg prose:mb-0"/>
+        <p>Hier wird am 3. September 2026 die detaillierte Webseite schlierelacht.ch aufgeschaltet. Nachstehend Kontakte und Downloads für Interessierte.<br>Foto: Daniel Santschi</p>
 
         <USeparator color="primary"/>
 
@@ -49,9 +48,13 @@
           <UButton to="/downloads/logo/logo-sf2027.png" target="_blank" icon="i-lucide-file" size="md" color="primary" variant="subtle">Festlogo (PNG)</UButton>
         </div>
         <h4>Sponsoring</h4>
-        <div class="flex flex-col md:flex-row gap-2 md:gap-4 pb-12">
+        <div class="flex flex-col md:flex-row gap-2 md:gap-4">
           <UButton to="/downloads/sponsoring/formular.pdf" target="_blank" icon="i-lucide-file" size="md" color="primary" variant="subtle">Anmeldeformular (PDF)</UButton>
           <UButton to="/downloads/sponsoring/prospekt.pdf" target="_blank" icon="i-lucide-file" size="md" color="primary" variant="subtle">Sponsorenprospekt (PDF)</UButton>
+        </div>
+        <h4>Gastronomie</h4>
+        <div class="flex flex-col md:flex-row gap-2 md:gap-4 pb-12">
+          <UButton to="/downloads/gastronomie/absichtserklaerung.pdf" target="_blank" icon="i-lucide-file" size="md" color="primary" variant="subtle">Absichtserklärung (PDF)</UButton>
         </div>
 
         <USeparator color="primary"/>
