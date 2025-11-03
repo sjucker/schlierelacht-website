@@ -9,7 +9,6 @@
           <strong>{{ props.name }}</strong><br>
           {{ props.ressort }}<br><br>
           <a v-if="props.mail" :href="'mailto:' + props.mail">{{ props.mail }}</a><br>
-          <a v-if="props.phone" :href="'tel:+41 ' + props.phone.substring(1)">{{ props.phone }}</a>
         </div>
       </div>
     </template>
@@ -21,6 +20,5 @@ const props = defineProps({
   name: {type: String, required: true},
   ressort: {type: String, required: true},
   mail: {type: String, required: true},
-  phone: {type: String, required: true},
 })
 </script>
