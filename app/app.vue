@@ -21,7 +21,6 @@
             Kampstrasse 6, 8952 Schlieren<br>
             <a href="mailto:info@schlierelacht.ch">info@schlierelacht.ch</a>
             , <a href="mailto:erika.mettier@schlierelacht.ch">erika.mettier@schlierelacht.ch</a>
-            , <a href="mailto:charly.mettier@schlierelacht.ch">charly.mettier@schlierelacht.ch</a>
           </template>
         </UCard>
         <h4>Organisations-Komitee</h4>
