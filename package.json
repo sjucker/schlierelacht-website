@@ -9,7 +9,9 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "upgrade-nuxt": "npx nuxt upgrade",
+    "upgrade-interactive": "ncu -i"
   },
   "dependencies": {
     "@nuxt/eslint": "1.10.0",

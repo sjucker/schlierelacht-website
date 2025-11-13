@@ -18,7 +18,7 @@
 
 ## Updating
 
-* `npx nuxt upgrade`
-* `ncu -i`
+* `npm run upgrade-nuxt`
+* `npm run upgrade-interactive`
 * `npm run build`
 * `npm run lint`
