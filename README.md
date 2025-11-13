@@ -15,3 +15,10 @@
 * [https://schlierelacht-staging.netlify.app](https://schlierelacht-staging.netlify.app)
 * [https://app.netlify.com/projects/schlierelacht-staging/overview](https://app.netlify.com/projects/schlierelacht-staging/overview)
 * [![Netlify Status](https://api.netlify.com/api/v1/badges/a4fb37c1-8dbd-49cd-bb25-78c80baf841f/deploy-status)](https://app.netlify.com/projects/schlierelacht-staging/deploys)
+
+## Updating
+
+* `npx nuxt upgrade`
+* `ncu -i`
+* `npm run build`
+* `npm run lint`
