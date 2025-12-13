@@ -111,7 +111,7 @@
             icon="i-simple-icons-instagram"
             color="primary"
             variant="link"
-            to="https://www.instagram.com/schlierelacht/"
+            to="https://www.instagram.com/schlierelacht"
             target="_blank"
             aria-label="Instagram"/>
       </template>
