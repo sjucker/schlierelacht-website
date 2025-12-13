@@ -58,6 +58,10 @@
         <div class="flex flex-col md:flex-row gap-2 md:gap-4 pb-12">
           <UButton to="/downloads/gastronomie/absichtserklaerung.pdf" target="_blank" icon="i-lucide-file" size="md" color="primary" variant="subtle">Absichtserklärung (PDF)</UButton>
         </div>
+        <h4>Programm</h4>
+        <div class="flex flex-col md:flex-row gap-2 md:gap-4 pb-12">
+          <UButton to="/downloads/programm/absichtserklaerung.pdf" target="_blank" icon="i-lucide-file" size="md" color="primary" variant="subtle">Absichtserklärung (PDF)</UButton>
+        </div>
 
         <USeparator color="primary"/>
 
