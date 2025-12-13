@@ -55,7 +55,7 @@
           <UButton to="/downloads/sponsoring/sponsorenbrief.pdf" target="_blank" icon="i-lucide-file" size="md" color="primary" variant="subtle">Sponsorenbrief (PDF)</UButton>
         </div>
         <h4>Gastronomie</h4>
-        <div class="flex flex-col md:flex-row gap-2 md:gap-4 pb-12">
+        <div class="flex flex-col md:flex-row gap-2 md:gap-4">
           <UButton to="/downloads/gastronomie/absichtserklaerung.pdf" target="_blank" icon="i-lucide-file" size="md" color="primary" variant="subtle">Absichtserklärung (PDF)</UButton>
         </div>
         <h4>Programm</h4>
