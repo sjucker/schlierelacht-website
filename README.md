@@ -1,5 +1,7 @@
 # Schliere Lacht Website
 
+[![CI Build](https://github.com/sjucker/schlierelacht-website/actions/workflows/workflow.yml/badge.svg?branch=main)](https://github.com/sjucker/schlierelacht-website/actions/workflows/workflow.yml)
+
 ## Netlify
 
 ### Prod
