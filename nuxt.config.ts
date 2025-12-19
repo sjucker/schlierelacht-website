@@ -1,3 +1,5 @@
+import pkg from './package.json'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     compatibilityDate: '2025-07-15',
@@ -22,6 +24,11 @@ export default defineNuxtConfig({
                 {rel: 'apple-touch-icon', href: '/apple-touch-icon.png', sizes: '180x180'},
                 {rel: 'manifest', href: '/site.webmanifest'},
             ],
+        }
+    },
+    runtimeConfig: {
+        public: {
+            version: pkg.version
         }
     }
 })

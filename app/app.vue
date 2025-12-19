@@ -95,7 +95,7 @@
 
     <UFooter>
       <template #left>
-        <p class="text-sm">© {{ new Date().getFullYear() }} Schliere lacht</p>
+        <p class="text-sm">© {{ new Date().getFullYear() }} Schliere lacht · <span class="text-xs">v{{ $config.public.version }}</span></p>
       </template>
       <template #right>
         <UButton

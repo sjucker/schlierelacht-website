@@ -2,6 +2,7 @@
   "name": "schlierelacht-website",
   "type": "module",
   "private": true,
+  "version": "0.0.1",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -11,7 +12,8 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "upgrade-nuxt": "npx nuxt upgrade",
-    "upgrade-interactive": "ncu -i"
+    "upgrade-interactive": "ncu -i",
+    "release": "release-it"
   },
   "dependencies": {
     "@nuxt/eslint": "1.12.1",
@@ -24,6 +26,7 @@
     "vue-router": "4.6.4"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "0.5.19"
+    "@tailwindcss/typography": "0.5.19",
+    "release-it": "19.1.0"
   }
 }
