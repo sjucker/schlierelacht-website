@@ -10,11 +10,12 @@
     <div v-if="pending" class="text-sm text-gray-500">Lade Details…</div>
     <div v-else-if="error" class="text-sm text-red-600">Fehler beim Laden der Details.</div>
     <div v-else-if="artist" class="flex flex-col gap-6">
-      <div v-if="mainImage" class="not-prose grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div v-if="mainImage" class="not-prose">
         <NuxtImg
             provider="cloudflare"
             loading="lazy"
-            :src="cloudflareUrl(mainImage.cloudflareId)"/>
+            :src="cloudflareUrl(mainImage.cloudflareId)"
+            class="w-full h-[250px] object-cover rounded-lg"/>
       </div>
 
       <UCard variant="outline">
