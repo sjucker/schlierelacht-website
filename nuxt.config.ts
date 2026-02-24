@@ -11,10 +11,10 @@ export default defineNuxtConfig({
         colorMode: false
     },
     image: {
-        provider: 'cloudflare',
-        cloudflare: {
-            baseURL: 'https://imagedelivery.net/08WjJu0y_NwzY_GFS74XCw',
-        },
+        // provider: 'cloudflare',
+        // cloudflare: {
+        //     baseURL: 'https://imagedelivery.net/08WjJu0y_NwzY_GFS74XCw',
+        // },
     },
     mdc: {
         components: {

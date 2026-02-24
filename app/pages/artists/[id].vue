@@ -12,7 +12,6 @@
     <div v-else-if="artist" class="flex flex-col gap-6">
       <div v-if="mainImage" class="not-prose">
         <NuxtImg
-            provider="cloudflare"
             loading="lazy"
             :src="cloudflareUrl(mainImage.cloudflareId)"
             class="w-full h-[250px] object-cover rounded-lg"/>
@@ -52,10 +51,9 @@
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
               <div>
                 <strong class="text-primary">{{ entry.location.name }}</strong>
-                <div class="text-xs text-gray-500">{{ entry.location.type }}</div>
               </div>
               <div class="text-sm font-medium">
-                {{ entry.fromDate }} <span v-if="entry.fromTime">ab {{ entry.fromTime }}</span>
+                {{ formatDate(entry.fromDate) }} <span v-if="entry.fromTime">ab {{ formatTime(entry.fromTime) }}</span>
               </div>
             </div>
           </UCard>
@@ -68,6 +66,8 @@
 <script setup lang="ts">
 import {type ArtistDTO, ImageType} from "~/../shared/types/rest";
 import cloudflareUrl from "~/utils/cloudflare-url";
+import formatDate from "~/utils/format-date";
+import formatTime from "~/utils/format-time";
 
 const route = useRoute()
 const externalId = route.params.id as string
