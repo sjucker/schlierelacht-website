@@ -37,7 +37,6 @@
 
 <script setup lang="ts">
 import type {ArtistDTO} from "#shared/types/rest";
-import cloudflareUrl from "~/utils/cloudflare-url";
 import getArtistDescription from "~/utils/get-artist-description";
 
 const search = ref('')
