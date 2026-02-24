@@ -1,0 +1,72 @@
+<template>
+  <div class="flex-3">
+    <div class="flex items-center justify-between mb-4">
+      <div class="flex items-center gap-2">
+        <UButton to="/artists" icon="i-lucide-chevron-left" variant="ghost" color="neutral" />
+        <h2>{{ artist?.name || 'Artist Details' }}</h2>
+      </div>
+      <UButton to="/" icon="i-lucide-home" variant="subtle">Home</UButton>
+    </div>
+
+    <div v-if="pending" class="text-sm text-gray-500">Lade Details…</div>
+    <div v-else-if="error" class="text-sm text-red-600">Fehler beim Laden der Details.</div>
+    <div v-else-if="artist" class="flex flex-col gap-6">
+      <div v-if="artist.images?.length" class="not-prose grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Images from DTO (cloudflareId) -->
+        <!-- Note: We don't have the Cloudflare base URL, but we can display the DTO structure if needed. -->
+      </div>
+
+      <UCard variant="outline">
+        <template #header>
+          <div class="flex items-center justify-between">
+            <h3 class="m-0">{{ artist.name }}</h3>
+            <div class="flex gap-2 not-prose">
+              <UButton v-if="artist.website" :to="artist.website" target="_blank" size="sm" color="primary" variant="ghost" icon="i-lucide-globe" aria-label="Website"/>
+              <UButton v-if="artist.instagram" :to="artist.instagram" target="_blank" size="sm" color="primary" variant="ghost" icon="i-simple-icons-instagram" aria-label="Instagram"/>
+              <UButton v-if="artist.facebook" :to="artist.facebook" target="_blank" size="sm" color="primary" variant="ghost" icon="i-simple-icons-facebook" aria-label="Facebook"/>
+              <UButton v-if="artist.youtube" :to="artist.youtube" target="_blank" size="sm" color="primary" variant="ghost" icon="i-simple-icons-youtube" aria-label="YouTube"/>
+            </div>
+          </div>
+        </template>
+        <template #default>
+          <p class="whitespace-pre-line">{{ artist.description }}</p>
+        </template>
+      </UCard>
+
+      <div v-if="artist.programm?.length" class="prose max-w-none">
+        <h4>Programm</h4>
+        <div class="grid gap-2">
+          <UCard v-for="(entry, index) in artist.programm" :key="index" variant="subtle" size="sm">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div>
+                <strong class="text-primary">{{ entry.location.name }}</strong>
+                <div class="text-xs text-gray-500">{{ entry.location.type }}</div>
+              </div>
+              <div class="text-sm font-medium">
+                {{ entry.fromDate }} <span v-if="entry.fromTime">ab {{ entry.fromTime }}</span>
+              </div>
+            </div>
+          </UCard>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import type { ArtistDTO } from "~/../shared/types/rest";
+
+const route = useRoute()
+const externalId = route.params.id as string
+console.log(externalId)
+
+const { data: artist, pending, error } = await useFetch<ArtistDTO>(
+  `https://api.schlierelacht.ch/api/artist/${externalId}`,
+  { server: false }
+)
+
+useSeoMeta({
+  title: () => artist.value ? `${artist.value.name} – Schliere lacht` : 'Artist Details – Schliere lacht',
+  description: () => artist.value?.description || 'Künstlerdetails am Schlierefäscht.',
+})
+</script>

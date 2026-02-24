@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="flex-3">
     <h2>Willkommen am Schlierefäscht 2027</h2>
 
     <NuxtImg src="/front.jpg" alt="Foto: Daniel Santschi, Schlieren" desc densities="x1 x2" class="w-full rounded-lg prose:mb-0"/>
@@ -13,7 +13,8 @@
       <template #default>
         Erika und Charly Mettier, <a href="tel:+41 79 456 79 69">079 456 79 69</a><br>
         Kampstrasse 6, 8952 Schlieren<br>
-        <a href="mailto:info@schlierelacht.ch">info@schlierelacht.ch</a>, <a href="mailto:erika.mettier@schlierelacht.ch">erika.mettier@schlierelacht.ch</a>
+        <a href="mailto:info@schlierelacht.ch">info@schlierelacht.ch</a>
+        , <a href="mailto:erika.mettier@schlierelacht.ch">erika.mettier@schlierelacht.ch</a>
       </template>
     </UCard>
     <h4>Organisations-Komitee</h4>
@@ -83,14 +84,6 @@
       </div>
     </div>
 
-    <div class="flex flex-row justify-center pt-4">
-      <iframe
-          src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Fschlierelacht%2Fvideos%2F3538727499751138%2F&show_text=false&width=267&t=0"
-          width="347"
-          height="619"
-          style="border:none;overflow:hidden;max-width: 100%;" scrolling="no" frameborder="0" allowfullscreen="true"
-          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"/>
-    </div>
   </div>
 </template>
 <script setup lang="ts">
