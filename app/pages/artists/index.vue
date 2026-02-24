@@ -7,8 +7,14 @@
 
     <USeparator color="primary" class="mb-4"/>
 
+    <div class="mb-4">
+      <UInput v-model="search" placeholder="Künstler suchen…" icon="i-lucide-search" block/>
+    </div>
+
     <div v-if="pending" class="text-sm text-gray-500">Lade Künstler…</div>
     <div v-else-if="error" class="text-sm text-red-600">Fehler beim Laden der Künstler.</div>
+
+    <div v-else-if="artists.length === 0" class="text-sm text-gray-500">Keine Künstler gefunden.</div>
 
     <div v-else class="grid md:grid-cols-2 gap-4">
       <UPageList divide>
@@ -35,12 +41,21 @@ import type {ArtistDTO} from "#shared/types/rest";
 import cloudflareUrl from "~/utils/cloudflare-url";
 import getArtistDescription from "~/utils/get-artist-description";
 
+const search = ref('')
+
 const {data, pending, error} = await useFetch<ArtistDTO[]>(
     'https://api.schlierelacht.ch/api/artist',
     {server: false}
 )
 
-const artists = computed(() => data.value ?? [])
+const artists = computed(() => {
+  const allArtists = data.value ?? []
+  if (!search.value) return allArtists
+
+  return allArtists.filter(artist =>
+      artist.name.toLowerCase().includes(search.value.toLowerCase())
+  )
+})
 
 useSeoMeta({
   title: 'Artists – Schliere lacht',
