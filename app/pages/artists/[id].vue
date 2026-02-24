@@ -1,25 +1,26 @@
 <template>
   <div class="flex-3">
     <div class="flex items-center justify-between mb-4">
-      <div class="flex items-center gap-2">
-        <UButton to="/artists" icon="i-lucide-chevron-left" variant="ghost" color="neutral" />
-        <h2>{{ artist?.name || 'Artist Details' }}</h2>
+      <div class="flex items-center align-middle gap-2">
+        <UButton to="/artists" icon="i-lucide-chevron-left" variant="ghost" color="neutral"/>
+        <div class="text-sm">zurück</div>
       </div>
-      <UButton to="/" icon="i-lucide-home" variant="subtle">Home</UButton>
     </div>
 
     <div v-if="pending" class="text-sm text-gray-500">Lade Details…</div>
     <div v-else-if="error" class="text-sm text-red-600">Fehler beim Laden der Details.</div>
     <div v-else-if="artist" class="flex flex-col gap-6">
-      <div v-if="artist.images?.length" class="not-prose grid grid-cols-1 md:grid-cols-2 gap-4">
-        <!-- Images from DTO (cloudflareId) -->
-        <!-- Note: We don't have the Cloudflare base URL, but we can display the DTO structure if needed. -->
+      <div v-if="mainImage" class="not-prose grid grid-cols-1 md:grid-cols-2 gap-4">
+        <NuxtImg
+            provider="cloudflare"
+            loading="lazy"
+            :src="cloudflareUrl(mainImage.cloudflareId)"/>
       </div>
 
       <UCard variant="outline">
         <template #header>
           <div class="flex items-center justify-between">
-            <h3 class="m-0">{{ artist.name }}</h3>
+            <div class="font-bold">{{ artist.name }}</div>
             <div class="flex gap-2 not-prose">
               <UButton v-if="artist.website" :to="artist.website" target="_blank" size="sm" color="primary" variant="ghost" icon="i-lucide-globe" aria-label="Website"/>
               <UButton v-if="artist.instagram" :to="artist.instagram" target="_blank" size="sm" color="primary" variant="ghost" icon="i-simple-icons-instagram" aria-label="Instagram"/>
@@ -29,7 +30,9 @@
           </div>
         </template>
         <template #default>
-          <p class="whitespace-pre-line">{{ artist.description }}</p>
+          <div class="prose max-w-none">
+          <MDC :value="artist.description"/>
+          </div>
         </template>
       </UCard>
 
@@ -54,16 +57,18 @@
 </template>
 
 <script setup lang="ts">
-import type { ArtistDTO } from "~/../shared/types/rest";
+import {type ArtistDTO, ImageType} from "~/../shared/types/rest";
+import cloudflareUrl from "~/utils/cloudflare-url";
 
 const route = useRoute()
 const externalId = route.params.id as string
-console.log(externalId)
 
-const { data: artist, pending, error } = await useFetch<ArtistDTO>(
-  `https://api.schlierelacht.ch/api/artist/${externalId}`,
-  { server: false }
+const {data: artist, pending, error} = await useFetch<ArtistDTO>(
+    `https://api.schlierelacht.ch/api/artist/${externalId}`,
+    {server: false}
 )
+
+const mainImage = computed(() => artist.value?.images?.find(i => i.type === ImageType.MAIN))
 
 useSeoMeta({
   title: () => artist.value ? `${artist.value.name} – Schliere lacht` : 'Artist Details – Schliere lacht',

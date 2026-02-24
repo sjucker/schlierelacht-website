@@ -4,13 +4,23 @@ import pkg from './package.json'
 export default defineNuxtConfig({
     compatibilityDate: '2025-07-15',
     devtools: {enabled: true},
-    modules: ['@nuxt/eslint', '@nuxt/image', '@nuxt/ui'],
+    modules: ['@nuxt/eslint', '@nuxt/image', '@nuxt/ui', '@nuxtjs/mdc'],
     css: ['~/assets/css/main.css'],
     ui: {
         // disable automatic switch between light and dark mode
         colorMode: false
     },
-    image: {},
+    image: {
+        provider: 'cloudflare',
+        cloudflare: {
+            baseURL: 'https://imagedelivery.net/08WjJu0y_NwzY_GFS74XCw',
+        },
+    },
+    mdc: {
+        components: {
+            prose: false, // Disable predefined prose components
+        }
+    },
     app: {
         head: {
             title: 'Schliere lacht: 3. bis 12. September 2027',
