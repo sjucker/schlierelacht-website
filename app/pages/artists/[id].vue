@@ -32,7 +32,15 @@
         </template>
         <template #default>
           <div class="prose max-w-none">
-          <MDC :value="artist.description"/>
+            <MDC :value="artist.description"/>
+          </div>
+        </template>
+
+        <template #footer v-if="artist.tags?.length">
+          <div class="mb-2 not-prose">
+            <div class="flex flex-wrap gap-2">
+              <UBadge v-for="tag in artist.tags" :key="tag.id" size="lg" color="primary" variant="outline">{{ tag.name }}</UBadge>
+            </div>
           </div>
         </template>
       </UCard>

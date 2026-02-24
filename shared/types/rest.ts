@@ -9,6 +9,7 @@ export interface ArtistDTO {
     facebook?: string;
     youtube?: string;
     images: ImageDTO[];
+    tags: TagDTO[];
     programm: ProgrammEntryDTO[];
 }
 
@@ -35,6 +36,11 @@ export interface ProgrammEntryDTO {
     fromTime?: DateAsString;
     toDate?: DateAsString;
     toTime?: DateAsString;
+}
+
+export interface TagDTO {
+    id: number;
+    name: string;
 }
 
 export type DateAsString = string;
