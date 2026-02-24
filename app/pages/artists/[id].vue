@@ -12,6 +12,7 @@
     <div v-else-if="artist" class="flex flex-col gap-6">
       <div v-if="mainImage" class="not-prose">
         <NuxtImg
+            provider="cloudflare"
             loading="lazy"
             :src="cloudflareUrl(mainImage.cloudflareId)"
             class="w-full h-[250px] object-cover rounded-lg"/>

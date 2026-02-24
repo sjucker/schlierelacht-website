@@ -26,7 +26,6 @@
           <template #body>
             <UUser
                 :name="artist.name"
-                :avatar="{ src: cloudflareUrl(artist.images[0]!.cloudflareId), alt: artist.name }"
                 :description="getArtistDescription(artist)"
                 size="xl"/>
           </template>
