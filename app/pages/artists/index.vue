@@ -7,7 +7,7 @@
 
     <USeparator color="primary" class="mb-4"/>
 
-    <div class="mb-4 flex flex-col sm:flex-row gap-4">
+    <div class="mb-4 flex flex-col sm:flex-row gap-4 items-end">
       <UInput v-model="search" placeholder="Künstler suchen…" icon="i-lucide-search" class="flex-1"/>
       <USelect
           v-model="selectedTag"
@@ -17,6 +17,20 @@
           placeholder="Filter nach Stil"
           class="w-full sm:w-48"
       />
+      <USelect
+          v-model="selectedDate"
+          value-key="id"
+          label-key="name"
+          :items="dateOptions"
+          placeholder="Filter nach Datum"
+          class="w-full sm:w-48"
+      />
+      <UButton
+          v-if="search || selectedTag || selectedDate"
+          variant="ghost"
+          icon="i-lucide-x"
+          @click="resetFilters">
+      </UButton>
     </div>
 
     <div v-if="pending" class="text-sm text-gray-500">Lade Künstler…</div>
@@ -46,9 +60,17 @@
 <script setup lang="ts">
 import type {ArtistDTO, TagDTO} from "~/../shared/types/rest";
 import getArtistDescription from "~/utils/get-artist-description";
+import formatDate from "~/utils/format-date";
 
-const search = ref('')
-const selectedTag = ref<number>(0)
+const search = ref<string | undefined>(undefined)
+const selectedTag = ref<number | undefined>(undefined)
+const selectedDate = ref<string | undefined>(undefined)
+
+const resetFilters = () => {
+  search.value = undefined
+  selectedTag.value = undefined
+  selectedDate.value = undefined
+}
 
 const config = useRuntimeConfig()
 
@@ -64,7 +86,25 @@ const {data: tags} = await useFetch<TagDTO[]>(
 )
 
 const tagOptions = computed(() => {
-  return [{id: 0, name: 'Stil filtern...'}, ...tags.value ?? []]
+  return [...tags.value ?? []]
+})
+
+const dateOptions = computed(() => {
+  const dates = new Set<string>()
+  data.value?.forEach(artist => {
+    artist.programm?.forEach(p => {
+      if (p.fromDate) {
+        dates.add(p.fromDate)
+      }
+    })
+  })
+
+  const sortedDates = Array.from(dates).sort()
+
+  return sortedDates.map(date => ({
+    id: date,
+    name: formatDate(date)
+  }))
 })
 
 const artists = computed(() => {
@@ -80,6 +120,12 @@ const artists = computed(() => {
   if (selectedTag.value) {
     filteredArtists = filteredArtists.filter(artist =>
         artist.tags?.some(tag => tag.id === selectedTag.value)
+    )
+  }
+
+  if (selectedDate.value) {
+    filteredArtists = filteredArtists.filter(artist =>
+        artist.programm?.some(p => p.fromDate === selectedDate.value)
     )
   }
 
