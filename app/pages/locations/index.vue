@@ -40,8 +40,10 @@ import type {LocationDTO} from "~/../shared/types/rest";
 
 const search = ref('')
 
+const config = useRuntimeConfig()
+
 const {data, pending, error} = await useFetch<LocationDTO[]>(
-    'https://api.schlierelacht.ch/api/location',
+    `${config.public.apiBaseUrl}/api/location`,
     {server: false}
 )
 

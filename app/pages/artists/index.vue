@@ -50,14 +50,16 @@ import getArtistDescription from "~/utils/get-artist-description";
 const search = ref('')
 const selectedTag = ref<number>(0)
 
+const config = useRuntimeConfig()
+
 const {data, pending, error} = await useFetch<ArtistDTO[]>(
-    'https://api.schlierelacht.ch/api/artist',
+    `${config.public.apiBaseUrl}/api/artist`,
     {server: false}
 )
 
 const {data: tags} = await useFetch<TagDTO[]>(
     // TODO replace with enum
-    'https://api.schlierelacht.ch/api/tag/ARTIST',
+    `${config.public.apiBaseUrl}/api/tag/ARTIST`,
     {server: false}
 )
 

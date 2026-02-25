@@ -44,8 +44,10 @@ import cloudflareUrl from "~/utils/cloudflare-url";
 const route = useRoute()
 const externalId = route.params.id as string
 
+const config = useRuntimeConfig()
+
 const {data: location, pending, error} = await useFetch<LocationDTO>(
-    `https://api.schlierelacht.ch/api/location/${externalId}`,
+    `${config.public.apiBaseUrl}/api/location/${externalId}`,
     {server: false}
 )
 

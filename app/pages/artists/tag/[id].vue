@@ -40,8 +40,10 @@ import getArtistDescription from "~/utils/get-artist-description";
 const route = useRoute()
 const tagId = Number.parseInt(route.params.id as string)
 
+const config = useRuntimeConfig()
+
 const {data: artists, pending, error} = await useFetch<ArtistDTO[]>(
-    `https://api.schlierelacht.ch/api/artist/tag/${tagId}`,
+    `${config.public.apiBaseUrl}/api/artist/tag/${tagId}`,
     {server: false}
 )
 

@@ -80,8 +80,10 @@ import formatTime from "~/utils/format-time";
 const route = useRoute()
 const externalId = route.params.id as string
 
+const config = useRuntimeConfig()
+
 const {data: artist, pending, error} = await useFetch<ArtistDTO>(
-    `https://api.schlierelacht.ch/api/artist/${externalId}`,
+    `${config.public.apiBaseUrl}/api/artist/${externalId}`,
     {server: false}
 )
 
