@@ -7,8 +7,16 @@
 
     <USeparator color="primary" class="mb-4"/>
 
-    <div class="mb-4">
-      <UInput v-model="search" placeholder="Künstler suchen…" icon="i-lucide-search" block/>
+    <div class="mb-4 flex flex-col sm:flex-row gap-4">
+      <UInput v-model="search" placeholder="Künstler suchen…" icon="i-lucide-search" class="flex-1"/>
+      <USelect
+          v-model="selectedTag"
+          value-key="id"
+          label-key="name"
+          :items="tagOptions"
+          placeholder="Filter nach Stil"
+          class="w-full sm:w-48"
+      />
     </div>
 
     <div v-if="pending" class="text-sm text-gray-500">Lade Künstler…</div>
@@ -36,23 +44,44 @@
 </template>
 
 <script setup lang="ts">
-import type {ArtistDTO} from "~/../shared/types/rest";
+import type {ArtistDTO, TagDTO} from "~/../shared/types/rest";
 import getArtistDescription from "~/utils/get-artist-description";
 
 const search = ref('')
+const selectedTag = ref<number>(0)
 
 const {data, pending, error} = await useFetch<ArtistDTO[]>(
     'https://api.schlierelacht.ch/api/artist',
     {server: false}
 )
 
-const artists = computed(() => {
-  const allArtists = data.value ?? []
-  if (!search.value) return allArtists
+const {data: tags} = await useFetch<TagDTO[]>(
+    // TODO replace with enum
+    'https://api.schlierelacht.ch/api/tag/ARTIST',
+    {server: false}
+)
 
-  return allArtists.filter(artist =>
-      artist.name.toLowerCase().includes(search.value.toLowerCase())
-  )
+const tagOptions = computed(() => {
+  return [{id: 0, name: 'Stil filtern...'}, ...tags.value ?? []]
+})
+
+const artists = computed(() => {
+  let filteredArtists = data.value ?? []
+
+  if (search.value) {
+    const searchTerm = search.value.toLowerCase()
+    filteredArtists = filteredArtists.filter(artist =>
+        artist.name.toLowerCase().includes(searchTerm)
+    )
+  }
+
+  if (selectedTag.value) {
+    filteredArtists = filteredArtists.filter(artist =>
+        artist.tags?.some(tag => tag.id === selectedTag.value)
+    )
+  }
+
+  return filteredArtists
 })
 
 useSeoMeta({
