@@ -40,7 +40,7 @@
           <div class="mb-2 not-prose">
             <div class="flex flex-wrap gap-2">
               <UBadge v-for="tag in artist.tags" :key="tag.id" size="lg" color="primary" variant="outline">
-                <NuxtLink :to="`/artists/tag/${tag.id}`">{{  tag.name }}</NuxtLink>
+                <NuxtLink :to="`/artists/tag/${tag.id}`">{{ tag.name }}</NuxtLink>
               </UBadge>
             </div>
           </div>
@@ -53,7 +53,12 @@
           <UCard v-for="(entry, index) in artist.programm" :key="index" variant="subtle" size="sm">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
               <div>
-                <strong class="text-primary">{{ entry.location.name }}</strong>
+                <UButton
+                    :to="`/locations/${entry.location.externalId}`"
+                    variant="link"
+                    class="p-0 font-bold text-primary">
+                  {{ entry.location.name }}
+                </UButton>
               </div>
               <div class="text-sm font-medium">
                 {{ formatDate(entry.fromDate) }} <span v-if="entry.fromTime">ab {{ formatTime(entry.fromTime) }}</span>
