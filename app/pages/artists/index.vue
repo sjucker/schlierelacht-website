@@ -36,7 +36,7 @@
 </template>
 
 <script setup lang="ts">
-import type {ArtistDTO} from "#shared/types/rest";
+import type {ArtistDTO} from "~/../shared/types/rest";
 import getArtistDescription from "~/utils/get-artist-description";
 
 const search = ref('')

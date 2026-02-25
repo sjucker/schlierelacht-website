@@ -1,4 +1,4 @@
-import type {ArtistDTO} from "#shared/types/rest";
+import type {ArtistDTO} from "~/../shared/types/rest";
 import formatDate from "~/utils/format-date";
 import formatTime from "~/utils/format-time";
 
