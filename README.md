@@ -16,6 +16,15 @@
 * [https://app.netlify.com/projects/schlierelacht-staging/overview](https://app.netlify.com/projects/schlierelacht-staging/overview)
 * [![Netlify Status](https://api.netlify.com/api/v1/badges/a4fb37c1-8dbd-49cd-bb25-78c80baf841f/deploy-status)](https://app.netlify.com/projects/schlierelacht-staging/deploys)
 
+### Environment Variables
+
+The project requires environment variables for local development and deployment. Copy `.env.example` to `.env` and fill in the values:
+
+### Netlify Deployment
+
+* [Prod](https://app.netlify.com/projects/schlierelacht/configuration/env#environment-variables)
+* [Staging](https://app.netlify.com/projects/schlierelacht-staging/configuration/env#environment-variables)
+
 ## Updating
 
 * `npm run upgrade-nuxt`

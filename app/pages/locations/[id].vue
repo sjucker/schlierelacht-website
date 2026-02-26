@@ -28,9 +28,38 @@
           </div>
         </template>
         <template #default>
-          <div class="prose max-w-none">
-            <p v-if="location.mapId"><strong>Map ID:</strong> {{ location.mapId }}</p>
-          </div>
+          <MapboxMap
+              map-id="map"
+              style="width: 100%; height: 500px;"
+              :options="{
+                style: 'mapbox://styles/mapbox/standard',
+              center: center,
+              zoom: 18
+              }">
+
+            <MapboxSource
+                source-id="source"
+                :source="{
+          type: 'geojson',
+          data: geojson
+        }"
+            />
+            <MapboxLayer
+                :layer="{
+          source: 'source',
+          id: 'geojson-layer',
+          type: 'circle',
+          paint: {
+            'circle-radius': 14,
+            'circle-color': '#ff0000',
+            'circle-stroke-width': 2,
+            'circle-stroke-color': '#ffffff'
+          }
+            }"
+            />
+
+            <MapboxGeolocateControl position="top-left"/>
+          </MapboxMap>
         </template>
       </UCard>
     </div>
@@ -50,6 +79,32 @@ const {data: location, pending, error} = await useFetch<LocationDTO>(
     `${config.public.apiBaseUrl}/api/location/${externalId}`,
     {server: false}
 )
+
+const center = computed(() => {
+  return [location.value?.longitude ?? 0, location.value?.latitude ?? 0]
+})
+
+const geojson = computed(() => {
+  const json = {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {
+          "marker-color": "#ff0000",
+          "marker-size": "medium",
+          "marker-symbol": "circle-stroked"
+        },
+        "geometry": {
+          "coordinates": center.value,
+          "type": "Point"
+        },
+        "id": 0
+      }
+    ]
+  }
+  return json
+})
 
 useSeoMeta({
   title: () => location.value ? `${location.value.name} – Schliere lacht` : 'Ort Details – Schliere lacht',

@@ -4,7 +4,7 @@ import pkg from './package.json'
 export default defineNuxtConfig({
     compatibilityDate: '2025-07-15',
     devtools: {enabled: true},
-    modules: ['@nuxt/eslint', '@nuxt/image', '@nuxt/ui', '@nuxtjs/mdc'],
+    modules: ['@nuxt/eslint', '@nuxt/image', '@nuxt/ui', '@nuxtjs/mdc', 'nuxt-mapbox'],
     css: ['~/assets/css/main.css'],
     ui: {
         // disable automatic switch between light and dark mode
@@ -49,5 +49,8 @@ export default defineNuxtConfig({
                 '@vue/devtools-kit',
             ]
         }
+    },
+    mapbox: {
+        accessToken: process.env.NUXT_PUBLIC_MAPBOX_ACCESS_TOKEN || ''
     }
 })
