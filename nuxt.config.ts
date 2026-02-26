@@ -51,6 +51,6 @@ export default defineNuxtConfig({
         }
     },
     mapbox: {
-        accessToken: process.env.NUXT_PUBLIC_MAPBOX_ACCESS_TOKEN || ''
+        accessToken: process.env.MAPBOX_API_TOKEN || ''
     }
 })
