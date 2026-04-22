@@ -10,9 +10,9 @@
     <section>
       <h3>Inhaltliche Verantwortung</h3>
       <p>
-        OK Schlierefäscht 2027 „Schliere lacht“<br/>
-        Geschäftsstelle, Charly Mettier, 079 456 79 69<br/>
-        Kampstrasse 6, 8952 Schlieren<br/>
+        OK Schlierefäscht 2027 „Schliere lacht“<br>
+        Geschäftsstelle, Charly Mettier, 079 456 79 69<br>
+        Kampstrasse 6, 8952 Schlieren<br>
         E-Mail: <a href="mailto:info@schlierelacht.ch">info@schlierelacht.ch</a>
       </p>
     </section>

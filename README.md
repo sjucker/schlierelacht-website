@@ -22,3 +22,4 @@
 * `npm run upgrade-interactive`
 * `npm run build`
 * `npm run lint`
+* `npm run lint:fix`
