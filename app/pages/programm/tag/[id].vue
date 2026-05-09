@@ -2,7 +2,7 @@
   <div class="p-4 md:p-6">
     <div class="flex items-center justify-between mb-4">
       <div class="flex items-center align-middle gap-2">
-        <UButton to="/artists" icon="i-lucide-chevron-left" variant="ghost" color="neutral"/>
+        <UButton to="/programm" icon="i-lucide-chevron-left" variant="ghost" color="neutral"/>
         <div class="text-sm">Alle Künstler</div>
       </div>
     </div>
@@ -20,7 +20,7 @@
             v-for="(artist, index) in artists"
             :key="index"
             variant="ghost"
-            :to="`/artists/${artist.externalId}`">
+            :to="`/programm/${artist.externalId}`">
           <template #body>
             <UUser
                 :name="artist.name"

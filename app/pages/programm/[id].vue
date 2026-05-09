@@ -2,7 +2,7 @@
   <div class="p-4 md:p-6">
     <div class="flex items-center justify-between mb-4">
       <div class="flex items-center align-middle gap-2">
-        <UButton to="/artists" icon="i-lucide-chevron-left" variant="ghost" color="neutral"/>
+        <UButton to="/programm" icon="i-lucide-chevron-left" variant="ghost" color="neutral"/>
         <div class="text-sm">zurück</div>
       </div>
     </div>
@@ -40,7 +40,7 @@
           <div class="mb-2 not-prose">
             <div class="flex flex-wrap gap-2">
               <UBadge v-for="tag in artist.tags" :key="tag.id" size="lg" color="primary" variant="outline">
-                <NuxtLink :to="`/artists/tag/${tag.id}`">{{ tag.name }}</NuxtLink>
+                <NuxtLink :to="`/programm/tag/${tag.id}`">{{ tag.name }}</NuxtLink>
               </UBadge>
             </div>
           </div>

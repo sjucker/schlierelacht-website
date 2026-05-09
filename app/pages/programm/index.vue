@@ -39,7 +39,7 @@
             v-for="artist in filtered"
             :key="artist.externalId"
             variant="ghost"
-            :to="`/artists/${artist.externalId}`"
+            :to="`/programm/${artist.externalId}`"
         >
           <template #body>
             <div class="font-semibold text-fest-blue">{{ artist.name }}</div>

@@ -149,7 +149,7 @@
 <script setup lang="ts">
 const navItems = [
   { label: 'News', to: '/news' },
-  { label: 'Programm', to: '/artists' },
+  { label: 'Programm', to: '/programm' },
   { label: 'Jahrgangstreffen', to: '/jahrgangstreffen' },
   { label: 'Festplan', to: '/festplan' },
   { label: 'Gastro', to: '/gastro' },
