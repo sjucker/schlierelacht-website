@@ -38,31 +38,72 @@
 
       <!-- FOOTER -->
       <footer class="flex-shrink-0 border-t border-neutral-200 dark:border-neutral-800
-                     bg-neutral-50 dark:bg-neutral-900">
-        <!-- Sponsor logos row -->
-        <div class="flex flex-wrap items-center justify-center gap-4 px-4 py-3">
-          <img src="/sponsoren/bauhaus.png" alt="Bauhaus" class="h-8 object-contain" />
-          <img src="/sponsoren/brem-schwarz.png" alt="Brem Schwarz" class="h-8 object-contain" />
-          <img src="/sponsoren/event-schlieren.png" alt="Event Schlieren" class="h-8 object-contain" />
-          <img src="/sponsoren/geistlich.png" alt="Geistlich" class="h-8 object-contain" />
-          <img src="/sponsoren/jost.png" alt="Jost" class="h-8 object-contain" />
-          <img src="/sponsoren/liz.png" alt="Liz" class="h-8 object-contain" />
-          <img src="/sponsoren/merbag.png" alt="Merbag" class="h-8 object-contain" />
-          <img src="/sponsoren/radio-zuerisee.png" alt="Radio Zürisee" class="h-8 object-contain" />
-          <img src="/sponsoren/stadt-schlieren.png" alt="Stadt Schlieren" class="h-8 object-contain" />
-          <img src="/sponsoren/strabag.png" alt="Strabag" class="h-8 object-contain" />
-          <img src="/sponsoren/zkb.png" alt="ZKB" class="h-8 object-contain" />
-        </div>
-        <!-- Copyright + social row -->
-        <div class="flex justify-between items-center text-xs text-neutral-400 px-4 pb-2">
-          <p class="m-0">© {{ new Date().getFullYear() }} Schliere lacht · <span>v{{ $config.public.version }}</span></p>
-          <div class="flex">
-            <UButton size="sm" icon="i-simple-icons-facebook" color="primary" variant="link"
-                     to="https://www.facebook.com/schlierelacht" target="_blank" aria-label="Facebook" />
-            <UButton size="sm" icon="i-simple-icons-instagram" color="primary" variant="link"
-                     to="https://www.instagram.com/schlierelacht" target="_blank" aria-label="Instagram" />
+                     bg-white dark:bg-neutral-900 px-6 py-4">
+
+        <!-- Sponsor groups: horizontal on desktop, stacked on mobile -->
+        <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 md:gap-6">
+
+          <!-- Veranstalter -->
+          <div class="flex flex-col gap-1.5">
+            <p class="m-0 text-[10px] font-semibold uppercase tracking-widest text-neutral-400">Veranstalter</p>
+            <div class="flex items-center gap-5">
+              <img src="/sponsoren/stadt-schlieren.png" alt="Stadt Schlieren" class="h-8 object-contain" />
+              <img src="/sponsoren/event-schlieren.png" alt="Event Schlieren" class="h-8 object-contain" />
+            </div>
           </div>
+
+          <!-- Hauptsponsoren -->
+          <div class="flex flex-col gap-1.5 md:flex-1">
+            <p class="m-0 text-[10px] font-semibold uppercase tracking-widest text-neutral-400">Hauptsponsoren</p>
+            <div class="flex flex-wrap items-center gap-5">
+              <img src="/sponsoren/jost.png" alt="Jost" class="h-8 object-contain" />
+              <img src="/sponsoren/geistlich.png" alt="Geistlich" class="h-8 object-contain" />
+              <img src="/sponsoren/brem-schwarz.png" alt="Brem Schwarz" class="h-8 object-contain" />
+              <img src="/sponsoren/strabag.png" alt="Strabag" class="h-8 object-contain" />
+              <img src="/sponsoren/merbag.png" alt="Merbag" class="h-8 object-contain" />
+              <img src="/sponsoren/bauhaus.png" alt="Bauhaus" class="h-8 object-contain" />
+              <img src="/sponsoren/zkb.png" alt="ZKB" class="h-8 object-contain" />
+            </div>
+          </div>
+
+          <!-- Medienpartner -->
+          <div class="flex flex-col gap-1.5">
+            <p class="m-0 text-[10px] font-semibold uppercase tracking-widest text-neutral-400">Medienpartner</p>
+            <div class="flex items-center gap-5">
+              <img src="/sponsoren/liz.png" alt="Liz" class="h-8 object-contain" />
+              <img src="/sponsoren/radio-zuerisee.png" alt="Radio Zürisee" class="h-8 object-contain" />
+            </div>
+          </div>
+
+          <!-- Social Media -->
+          <div class="flex flex-col gap-1.5">
+            <p class="m-0 text-[10px] font-semibold uppercase tracking-widest text-neutral-400">Social Media</p>
+            <div class="flex items-center gap-2">
+              <UButton
+                size="xl"
+                icon="i-simple-icons-facebook"
+                color="primary"
+                variant="solid"
+                to="https://www.facebook.com/schlierelacht"
+                target="_blank"
+                aria-label="Facebook"
+                class="rounded"
+              />
+              <UButton
+                size="xl"
+                icon="i-simple-icons-instagram"
+                color="primary"
+                variant="solid"
+                to="https://www.instagram.com/schlierelacht"
+                target="_blank"
+                aria-label="Instagram"
+                class="rounded"
+              />
+            </div>
+          </div>
+
         </div>
+
       </footer>
 
     </div>
