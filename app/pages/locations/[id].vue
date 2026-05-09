@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-3">
+  <div class="p-4 md:p-6">
     <div class="flex items-center justify-between mb-4">
       <div class="flex items-center align-middle gap-2">
         <UButton to="/locations" icon="i-lucide-chevron-left" variant="ghost" color="neutral"/>

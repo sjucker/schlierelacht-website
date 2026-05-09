@@ -22,3 +22,6 @@ logs
 .env
 .env.*
 !.env.example
+
+# Claude Code — local-only files (settings.json is shared and should be committed)
+.claude/settings.local.json

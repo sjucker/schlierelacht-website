@@ -6,6 +6,7 @@
 @theme {
     --font-sans: 'Open Sans', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
+    --color-fest-yellow: #fff03f;
 }
 
 :root {

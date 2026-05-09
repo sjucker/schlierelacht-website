@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-3">
+  <div class="p-4 md:p-6">
     <div class="flex items-center justify-between">
       <h2>Artists</h2>
       <UButton to="/" icon="i-lucide-home" variant="subtle">Home</UButton>

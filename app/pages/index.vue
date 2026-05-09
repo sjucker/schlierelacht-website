@@ -1,93 +1,116 @@
 <template>
-  <div class="flex-3">
-    <h2>Willkommen am Schlierefäscht 2027</h2>
+  <div class="h-[100dvh] md:h-full relative overflow-hidden">
 
-    <NuxtImg src="/front.jpg" alt="Foto: Daniel Santschi, Schlieren" desc densities="x1 x2" class="w-full rounded-lg prose:mb-0"/>
-    <p>Hier wird am 3. September 2026 die detaillierte Webseite schlierelacht.ch aufgeschaltet. Nachstehend Kontakte und Downloads für Interessierte.<br>Foto: Daniel Santschi</p>
+    <!-- Background image (opacity-60 per design) -->
+    <div
+      class="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-60"
+      style="background-image: url('/background.jpg')"
+    />
 
-    <USeparator color="primary"/>
-
-    <h3>Kontakt</h3>
-    <h4>Geschäftsstelle/Sekretariat</h4>
-    <UCard variant="outline" class="prose-md">
-      <template #default>
-        Erika und Charly Mettier, <a href="tel:+41 79 456 79 69">079 456 79 69</a><br>
-        Kampstrasse 6, 8952 Schlieren<br>
-        <a href="mailto:info@schlierelacht.ch">info@schlierelacht.ch</a>
-        , <a href="mailto:erika.mettier@schlierelacht.ch">erika.mettier@schlierelacht.ch</a>
-      </template>
-    </UCard>
-    <h4>Organisations-Komitee</h4>
-    <div class="grid lg:grid-cols-2 gap-2 pb-12">
-      <PersonCard image-src="manuela-stiefel.jpg" name="Manuela Stiefel" ressort="Co-Präsidentin/Kommunikation" mail="manuela.stiefel@schlierelacht.ch"/>
-      <PersonCard image-src="rolf-wild.jpg" name="Rolf Wild" ressort="Co-Präsident/Kommunikation" mail="rolf.wild@schlierelacht.ch"/>
-      <PersonCard image-src="markus-baertschiger.jpg" name="Markus Bärtschiger" ressort="Stadt Schlieren/Stadtpräsident" mail="markus.baertschiger@schlierelacht.ch"/>
-      <PersonCard image-src="albert-schweizer.jpg" name="Albert Schweizer" ressort="Sponsoring" mail="albert.schweizer@schlierelacht.ch"/>
-      <PersonCard image-src="sabrina-berri.jpg" name="Sabrina Berri" ressort="Finanzen" mail="sabrina.berri@schlierelacht.ch"/>
-      <PersonCard image-src="marco-lucchinetti.jpg" name="Marco Lucchinetti" ressort="Projekte" mail="marco.lucchinetti@schlierelacht.ch"/>
-      <PersonCard image-src="fabian-flueckiger.jpg" name="Fabian Flückiger" ressort="Bau" mail="fabian.flueckiger@schlierelacht.ch"/>
-      <PersonCard image-src="barbara-gysling.jpg" name="Barbara Gysling" ressort="Aktivitäten/Programm" mail="event@schlierelacht.ch"/>
-      <PersonCard image-src="jan-reiss.jpg" name="Jan Reiss" ressort="Gastronomie" mail="jan.reiss@schlierelacht.ch"/>
-      <PersonCard image-src="daniel-gysling.jpg" name="Daniel Gysling" ressort="Sicherheit" mail="daniel.gysling@schlierelacht.ch"/>
-      <PersonCard image-src="flavio-impusino.jpg" name="Flavio Impusino" ressort="Sicherheit" mail="flavio.impusino@schlierelacht.ch"/>
+    <!-- Mobile: logo centered -->
+    <div class="md:hidden absolute inset-0 flex items-center justify-center p-8 pointer-events-none">
+      <img src="/logo.svg" alt="Schlierefäscht Logo" class="w-2/3 max-w-xs" />
     </div>
 
-    <USeparator color="primary"/>
-
-    <h3>Downloads</h3>
-    <h4>Logos</h4>
-    <div class="flex flex-col md:flex-row gap-2 md:gap-4">
-      <UButton to="/downloads/logo/logo-sf2027.eps" target="_blank" icon="i-lucide-file" size="md" color="primary" variant="subtle">Festlogo (EPS)</UButton>
-      <UButton to="/downloads/logo/logo-sf2027.jpg" target="_blank" icon="i-lucide-file" size="md" color="primary" variant="subtle">Festlogo (JPG)</UButton>
-      <UButton to="/downloads/logo/logo-sf2027.pdf" target="_blank" icon="i-lucide-file" size="md" color="primary" variant="subtle">Festlogo (PDF)</UButton>
-      <UButton to="/downloads/logo/logo-sf2027.png" target="_blank" icon="i-lucide-file" size="md" color="primary" variant="subtle">Festlogo (PNG)</UButton>
-    </div>
-    <h4>Sponsoring</h4>
-    <div class="flex flex-col md:flex-row gap-2 md:gap-4">
-      <UButton to="/downloads/sponsoring/formular.pdf" target="_blank" icon="i-lucide-file" size="md" color="primary" variant="subtle">Anmeldeformular (PDF)</UButton>
-      <UButton to="/downloads/sponsoring/prospekt.pdf" target="_blank" icon="i-lucide-file" size="md" color="primary" variant="subtle">Sponsorenprospekt (PDF)</UButton>
-      <UButton to="/downloads/sponsoring/sponsorenbrief.pdf" target="_blank" icon="i-lucide-file" size="md" color="primary" variant="subtle">Sponsorenbrief (PDF)</UButton>
-    </div>
-    <h4>Gastronomie</h4>
-    <div class="flex flex-col md:flex-row gap-2 md:gap-4">
-      <UButton to="/downloads/gastronomie/absichtserklaerung.pdf" target="_blank" icon="i-lucide-file" size="md" color="primary" variant="subtle">Absichtserklärung (PDF)</UButton>
-    </div>
-    <h4>Programm</h4>
-    <div class="flex flex-col md:flex-row gap-2 md:gap-4 pb-12">
-      <UButton to="/downloads/programm/absichtserklaerung.pdf" target="_blank" icon="i-lucide-file" size="md" color="primary" variant="subtle">Absichtserklärung (PDF)</UButton>
+    <!-- Title: bottom-left -->
+    <div class="absolute bottom-16 left-4 md:left-8 text-white leading-none select-none pointer-events-none">
+      <p class="text-xl md:text-3xl italic font-semibold m-0
+                [text-shadow:1px_1px_4px_rgba(0,0,0,1)]">
+        s'fröhliche
+      </p>
+      <p class="text-4xl md:text-7xl font-black italic m-0
+                [text-shadow:2px_2px_0_#000,-2px_2px_0_#000,2px_-2px_0_#000,-2px_-2px_0_#000,0_2px_0_#000,0_-2px_0_#000,2px_0_0_#000,-2px_0_0_#000]">
+        Mega-Fäscht
+      </p>
+      <p class="text-xl md:text-3xl italic font-semibold m-0
+                [text-shadow:1px_1px_4px_rgba(0,0,0,1)]">
+        im zürcherische
+      </p>
+      <p class="text-4xl md:text-7xl font-black italic m-0
+                [text-shadow:2px_2px_0_#000,-2px_2px_0_#000,2px_-2px_0_#000,-2px_-2px_0_#000,0_2px_0_#000,0_-2px_0_#000,2px_0_0_#000,-2px_0_0_#000]">
+        Limmattal
+      </p>
     </div>
 
-    <USeparator color="primary"/>
-
-    <h3>Impressionen</h3>
-
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 not-prose">
-      <div class="flex flex-col justify-between gap-4">
-        <NuxtImg loading="lazy" src="/impressionen/1.jpg" alt="Impression: Schliere lacht 2023" densities="x1 x2" class="h-auto max-w-full rounded-lg"/>
-        <NuxtImg loading="lazy" src="/impressionen/2.jpg" alt="Impression: Schliere lacht 2023" densities="x1 x2" class="h-auto max-w-full rounded-lg"/>
-        <NuxtImg loading="lazy" src="/impressionen/3.jpg" alt="Impression: Schliere lacht 2023" densities="x1 x2" class="h-auto max-w-full rounded-lg"/>
+    <!-- Countdown: top center -->
+    <div class="absolute top-4 left-1/2 -translate-x-1/2 z-10">
+      <div class="bg-fest-yellow/75 text-black rounded px-4 md:px-6 py-2 text-center">
+        <p class="text-[10px] md:text-xs font-medium m-0 mb-1.5 hidden md:block">
+          10 unvergessliche Tage in Schlieren. Es dauert nur noch:
+        </p>
+        <p class="text-[10px] font-medium m-0 mb-1 md:hidden">Es dauert noch:</p>
+        <div class="flex gap-2 md:gap-5 justify-center items-end">
+          <div class="text-center">
+            <Transition
+              enter-active-class="transition-all duration-500"
+              enter-from-class="opacity-0 scale-150"
+              enter-to-class="opacity-100 scale-100"
+              mode="out-in"
+            >
+              <div :key="countdown.days" class="text-2xl md:text-4xl font-bold leading-none tabular-nums">
+                {{ countdown.days }}
+              </div>
+            </Transition>
+            <div class="text-[9px] md:text-xs uppercase tracking-wide">Tage</div>
+          </div>
+          <div class="text-xl md:text-3xl font-bold pb-4">:</div>
+          <div class="text-center">
+            <Transition
+              enter-active-class="transition-all duration-500"
+              enter-from-class="opacity-0 scale-150"
+              enter-to-class="opacity-100 scale-100"
+              mode="out-in"
+            >
+              <div :key="countdown.hours" class="text-2xl md:text-4xl font-bold leading-none tabular-nums">
+                {{ String(countdown.hours).padStart(2, '0') }}
+              </div>
+            </Transition>
+            <div class="text-[9px] md:text-xs uppercase tracking-wide">Std</div>
+          </div>
+          <div class="text-xl md:text-3xl font-bold pb-4">:</div>
+          <div class="text-center">
+            <Transition
+              enter-active-class="transition-all duration-500"
+              enter-from-class="opacity-0 scale-150"
+              enter-to-class="opacity-100 scale-100"
+              mode="out-in"
+            >
+              <div :key="countdown.minutes" class="text-2xl md:text-4xl font-bold leading-none tabular-nums">
+                {{ String(countdown.minutes).padStart(2, '0') }}
+              </div>
+            </Transition>
+            <div class="text-[9px] md:text-xs uppercase tracking-wide">Min</div>
+          </div>
+        </div>
       </div>
-      <div class="flex flex-col justify-between gap-4">
-        <NuxtImg loading="lazy" src="/impressionen/4.jpg" alt="Impression: Schliere lacht 2023" densities="x1 x2" class="h-auto max-w-full rounded-lg"/>
-        <NuxtImg loading="lazy" src="/impressionen/6.jpg" alt="Impression: Schliere lacht 2023" densities="x1 x2" class="h-auto max-w-full rounded-lg"/>
-        <NuxtImg loading="lazy" src="/impressionen/5.jpg" alt="Impression: Schliere lacht 2023" densities="x1 x2" class="h-auto max-w-full rounded-lg"/>
-      </div>
-      <div class="flex flex-col justify-between gap-4">
-        <NuxtImg loading="lazy" src="/impressionen/8.jpg" alt="Impression: Schliere lacht 2023" densities="x1 x2" class="h-auto max-w-full rounded-lg"/>
-        <NuxtImg loading="lazy" src="/impressionen/9.jpg" alt="Impression: Schliere lacht 2023" densities="x1 x2" class="h-auto max-w-full rounded-lg"/>
-        <NuxtImg loading="lazy" src="/impressionen/7.jpg" alt="Impression: Schliere lacht 2023" densities="x1 x2" class="h-auto max-w-full rounded-lg"/>
-      </div>
-      <div class="flex flex-col justify-between gap-4">
-        <NuxtImg loading="lazy" src="/impressionen/10.jpg" alt="Impression: Schliere lacht 2023" densities="x1 x2" class="h-auto max-w-full rounded-lg"/>
-        <NuxtImg loading="lazy" src="/impressionen/12.jpg" alt="Impression: Schliere lacht 2023" densities="x1 x2" class="h-auto max-w-full rounded-lg"/>
-        <NuxtImg loading="lazy" src="/impressionen/11.jpg" alt="Impression: Schliere lacht 2023" densities="x1 x2" class="h-auto max-w-full rounded-lg"/>
-      </div>
+    </div>
+
+    <!-- Ribbon: top-right corner (~30°) -->
+    <div class="absolute top-5 -right-14 bg-fest-yellow text-black font-bold text-[10px] md:text-xs
+                px-20 py-2 rotate-[30deg] text-center leading-tight tracking-wide z-10">
+      Freier Eintritt<br>zu allen Konzerten
     </div>
 
   </div>
 </template>
+
 <script setup lang="ts">
-import PersonCard from "~/components/PersonCard.vue";
+const TARGET = new Date('2027-09-03T17:00:00')
+const now = ref(new Date())
+
+const countdown = computed(() => {
+  const diff = TARGET.getTime() - now.value.getTime()
+  if (diff <= 0) return { days: 0, hours: 0, minutes: 0 }
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24))
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
+  return { days, hours, minutes }
+})
+
+onMounted(() => {
+  const interval = setInterval(() => { now.value = new Date() }, 1000)
+  onUnmounted(() => clearInterval(interval))
+})
 
 useSeoMeta({
   description: 'Das nächste Schlierefäscht findet vom 3. bis 12. September 2027 statt.',
