@@ -23,25 +23,25 @@
     </button>
 
     <!-- Title: bottom-left (desktop only) -->
-    <div class="hidden md:block absolute bottom-16 left-4 md:left-8 text-white leading-none select-none pointer-events-none">
+    <div class="hidden md:block absolute bottom-28 left-4 md:left-24 text-white leading-none select-none pointer-events-none">
       <p
-          class="text-xl md:text-3xl italic font-semibold m-0
+          class="text-xl md:text-4xl italic font-semibold m-0
                 [text-shadow:1px_1px_4px_rgba(0,0,0,1)]">
         s'fröhliche
       </p>
       <p
-          class="text-4xl md:text-7xl font-black italic m-0
-                [text-shadow:2px_2px_0_#000,-2px_2px_0_#000,2px_-2px_0_#000,-2px_-2px_0_#000,0_2px_0_#000,0_-2px_0_#000,2px_0_0_#000,-2px_0_0_#000]">
+          class="text-4xl md:text-8xl font-black italic m-0
+                [text-shadow:3px_3px_0_#000,-3px_3px_0_#000,3px_-3px_0_#000,-3px_-3px_0_#000,0_3px_0_#000,0_-3px_0_#000,3px_0_0_#000,-3px_0_0_#000]">
         Mega-Fäscht
       </p>
       <p
-          class="text-xl md:text-3xl italic font-semibold m-0
+          class="text-xl md:text-4xl italic font-semibold m-0 mt-3 ml-8 md:ml-16
                 [text-shadow:1px_1px_4px_rgba(0,0,0,1)]">
         im zürcherische
       </p>
       <p
-          class="text-4xl md:text-7xl font-black italic m-0
-                [text-shadow:2px_2px_0_#000,-2px_2px_0_#000,2px_-2px_0_#000,-2px_-2px_0_#000,0_2px_0_#000,0_-2px_0_#000,2px_0_0_#000,-2px_0_0_#000]">
+          class="text-4xl md:text-8xl font-black italic m-0 ml-8 md:ml-16
+                [text-shadow:3px_3px_0_#000,-3px_3px_0_#000,3px_-3px_0_#000,-3px_-3px_0_#000,0_3px_0_#000,0_-3px_0_#000,3px_0_0_#000,-3px_0_0_#000]">
         Limmattal
       </p>
     </div>
