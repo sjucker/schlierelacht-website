@@ -3,7 +3,7 @@
 
     <!-- Background image (opacity-60 per design) -->
     <div
-        class="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30 md:opacity-60"
+        class="absolute inset-0 bg-cover bg-top bg-no-repeat opacity-30 md:opacity-60"
         style="background-image: url('/background.jpg')"
     />
 
