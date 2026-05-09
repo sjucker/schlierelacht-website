@@ -1,4 +1,4 @@
-
+/* eslint-disable */
 
 export interface AttractionDTO {
     externalId: string;
@@ -68,6 +68,8 @@ export enum LocationType {
     BAR = "BAR",
     TENT = "TENT",
     ATTRACTION = "ATTRACTION",
+    SANITARY = "SANITARY",
+    INFO = "INFO",
 }
 
 export enum SponsoringType {

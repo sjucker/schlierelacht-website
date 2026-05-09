@@ -85,7 +85,7 @@ const center = computed(() => {
 })
 
 const geojson = computed(() => {
-  const json = {
+  return {
     "type": "FeatureCollection",
     "features": [
       {
@@ -103,7 +103,6 @@ const geojson = computed(() => {
       }
     ]
   }
-  return json
 })
 
 useSeoMeta({
