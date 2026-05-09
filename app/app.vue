@@ -99,6 +99,7 @@
               <a href="https://www.merbag.ch/" target="_blank" rel="noopener noreferrer"><img src="/sponsoren/merbag.png" alt="Merbag" class="h-8 object-contain"></a>
               <a href="https://www.bauhaus.ch/" target="_blank" rel="noopener noreferrer"><img src="/sponsoren/bauhaus.png" alt="Bauhaus" class="h-8 object-contain"></a>
               <a href="https://www.zkb.ch/" target="_blank" rel="noopener noreferrer"><img src="/sponsoren/zkb.png" alt="ZKB" class="h-8 object-contain"></a>
+              <a href="https://www.eichhof.ch//" target="_blank" rel="noopener noreferrer"><img src="/sponsoren/eichhof.png" alt="Eichhof" class="h-8 object-contain"></a>
             </div>
           </div>
 
@@ -148,15 +149,15 @@
 
 <script setup lang="ts">
 const navItems = [
-  { label: 'News', to: '/news' },
-  { label: 'Programm', to: '/programm' },
-  { label: 'Jahrgangstreffen', to: '/jahrgangstreffen' },
-  { label: 'Festplan', to: '/festplan' },
-  { label: 'Gastro', to: '/gastro' },
-  { label: 'Wirtschaft & Gewerbe', to: '/wirtschaft' },
-  { label: 'Sponsoren', to: '/sponsoren' },
-  { label: 'Galerien', to: '/galerien' },
-  { label: 'Über uns', to: '/info' },
+  {label: 'News', to: '/news'},
+  {label: 'Programm', to: '/programm'},
+  {label: 'Jahrgangstreffen', to: '/jahrgangstreffen'},
+  {label: 'Festplan', to: '/festplan'},
+  {label: 'Gastro', to: '/gastro'},
+  {label: 'Wirtschaft & Gewerbe', to: '/wirtschaft'},
+  {label: 'Sponsoren', to: '/sponsoren'},
+  {label: 'Galerien', to: '/galerien'},
+  {label: 'Über uns', to: '/info'},
 ]
 
 const route = useRoute()
