@@ -28,35 +28,8 @@
         >
           <nav v-if="mobileNavOpen" class="px-4 pb-4 not-prose border-t border-neutral-100 dark:border-neutral-800">
             <ul class="list-none p-0 m-0 flex flex-col gap-1 pt-2">
-              <li>
-                <UButton to="/news" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">News</UButton>
-              </li>
-              <li>
-                <UButton to="/programm" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">Programm</UButton>
-              </li>
-              <li>
-                <UButton to="/jahrgangstreffen" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">Jahrgangstreffen</UButton>
-              </li>
-              <li>
-                <UButton to="/festplan" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">Festplan</UButton>
-              </li>
-              <li>
-                <UButton to="/gastro" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">Gastro</UButton>
-              </li>
-              <li>
-                <UButton to="/wirtschaft" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">Wirtschaft & Gewerbe</UButton>
-              </li>
-              <li>
-                <UButton to="/sponsoren" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">Sponsoren</UButton>
-              </li>
-              <li>
-                <UButton to="/artists" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">Künstler</UButton>
-              </li>
-              <li>
-                <UButton to="/galerien" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">Galerien</UButton>
-              </li>
-              <li>
-                <UButton to="/info" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">Über uns</UButton>
+              <li v-for="item in navItems" :key="item.to">
+                <UButton :to="item.to" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">{{ item.label }}</UButton>
               </li>
             </ul>
           </nav>
@@ -75,32 +48,8 @@
           </NuxtLink>
           <nav class="flex-1 px-3 py-2 not-prose">
             <ul class="list-none p-0 m-0 flex flex-col gap-1">
-              <li>
-                <UButton to="/news" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">News</UButton>
-              </li>
-              <li>
-                <UButton to="/artists" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">Programm</UButton>
-              </li>
-              <li>
-                <UButton to="/jahrgangstreffen" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">Jahrgangstreffen</UButton>
-              </li>
-              <li>
-                <UButton to="/festplan" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">Festplan</UButton>
-              </li>
-              <li>
-                <UButton to="/gastro" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">Gastro</UButton>
-              </li>
-              <li>
-                <UButton to="/wirtschaft" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">Wirtschaft & Gewerbe</UButton>
-              </li>
-              <li>
-                <UButton to="/sponsoren" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">Sponsoren</UButton>
-              </li>
-              <li>
-                <UButton to="/galerien" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">Galerien</UButton>
-              </li>
-              <li>
-                <UButton to="/info" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">Über uns</UButton>
+              <li v-for="item in navItems" :key="item.to">
+                <UButton :to="item.to" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">{{ item.label }}</UButton>
               </li>
             </ul>
           </nav>
@@ -116,35 +65,8 @@
       <!-- MOBILE BOTTOM NAV (home page only, after hero) -->
       <nav v-if="isHome" class="md:hidden border-t border-neutral-200 dark:border-neutral-800 p-4 not-prose">
         <ul class="list-none p-0 m-0 flex flex-col gap-1">
-          <li>
-            <UButton to="/news" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">News</UButton>
-          </li>
-          <li>
-            <UButton to="/programm" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">Programm</UButton>
-          </li>
-          <li>
-            <UButton to="/jahrgangstreffen" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">Jahrgangstreffen</UButton>
-          </li>
-          <li>
-            <UButton to="/festplan" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">Festplan</UButton>
-          </li>
-          <li>
-            <UButton to="/gastro" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">Gastro</UButton>
-          </li>
-          <li>
-            <UButton to="/wirtschaft" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">Wirtschaft & Gewerbe</UButton>
-          </li>
-          <li>
-            <UButton to="/sponsoren" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">Sponsoren</UButton>
-          </li>
-          <li>
-            <UButton to="/artists" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">Künstler</UButton>
-          </li>
-          <li>
-            <UButton to="/galerien" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">Galerien</UButton>
-          </li>
-          <li>
-            <UButton to="/info" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">Über uns</UButton>
+          <li v-for="item in navItems" :key="item.to">
+            <UButton :to="item.to" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">{{ item.label }}</UButton>
           </li>
         </ul>
       </nav>
@@ -225,6 +147,18 @@
 </template>
 
 <script setup lang="ts">
+const navItems = [
+  { label: 'News', to: '/news' },
+  { label: 'Programm', to: '/artists' },
+  { label: 'Jahrgangstreffen', to: '/jahrgangstreffen' },
+  { label: 'Festplan', to: '/festplan' },
+  { label: 'Gastro', to: '/gastro' },
+  { label: 'Wirtschaft & Gewerbe', to: '/wirtschaft' },
+  { label: 'Sponsoren', to: '/sponsoren' },
+  { label: 'Galerien', to: '/galerien' },
+  { label: 'Über uns', to: '/info' },
+]
+
 const route = useRoute()
 const isHome = computed(() => route.path === '/')
 const mobileNavOpen = ref(false)
