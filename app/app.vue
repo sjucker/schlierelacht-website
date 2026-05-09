@@ -97,7 +97,7 @@
                      bg-white dark:bg-neutral-900 px-6 py-4">
 
         <!-- Sponsor groups: horizontal on desktop, stacked on mobile -->
-        <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 md:gap-6">
+        <div class="flex flex-col md:flex-row md:items-start md:justify-start gap-4 md:gap-16">
 
           <!-- Veranstalter -->
           <div class="flex flex-col gap-1.5">
@@ -109,7 +109,7 @@
           </div>
 
           <!-- Hauptsponsoren -->
-          <div class="flex flex-col gap-1.5 md:flex-1">
+          <div class="flex flex-col gap-1.5">
             <p class="m-0 text-xs font-semibold uppercase tracking-widest text-fest-blue">Hauptsponsoren</p>
             <div class="flex flex-wrap items-center gap-5">
               <img src="/sponsoren/jost.png" alt="Jost" class="h-8 object-contain">
