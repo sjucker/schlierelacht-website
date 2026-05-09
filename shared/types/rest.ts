@@ -50,6 +50,12 @@ export interface SponsoringTypeDTO {
     description: string;
 }
 
+export interface MeetupEntryDTO {
+    firstname: string;
+    lastname: string;
+    yearOfBirth: number;
+}
+
 export interface TagDTO {
     id: number;
     name: string;
