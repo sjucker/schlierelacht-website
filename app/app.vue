@@ -103,8 +103,8 @@
           <div class="flex flex-col gap-1.5">
             <p class="m-0 text-xs font-semibold uppercase tracking-widest text-fest-blue">Veranstalter</p>
             <div class="flex items-center gap-5">
-              <img src="/sponsoren/stadt-schlieren.png" alt="Stadt Schlieren" class="h-8 object-contain">
-              <img src="/sponsoren/event-schlieren.png" alt="Event Schlieren" class="h-8 object-contain">
+              <a href="https://www.schlieren.ch/" target="_blank" rel="noopener noreferrer"><img src="/sponsoren/stadt-schlieren.png" alt="Stadt Schlieren" class="h-8 object-contain"></a>
+              <a href="https://eventschlieren.ch/" target="_blank" rel="noopener noreferrer"><img src="/sponsoren/event-schlieren.png" alt="Event Schlieren" class="h-8 object-contain"></a>
             </div>
           </div>
 
@@ -112,13 +112,13 @@
           <div class="flex flex-col gap-1.5">
             <p class="m-0 text-xs font-semibold uppercase tracking-widest text-fest-blue">Hauptsponsoren</p>
             <div class="flex flex-wrap items-center gap-5">
-              <img src="/sponsoren/jost.png" alt="Jost" class="h-8 object-contain">
-              <img src="/sponsoren/geistlich.png" alt="Geistlich" class="h-8 object-contain">
-              <img src="/sponsoren/brem-schwarz.png" alt="Brem Schwarz" class="h-8 object-contain">
-              <img src="/sponsoren/strabag.png" alt="Strabag" class="h-8 object-contain">
-              <img src="/sponsoren/merbag.png" alt="Merbag" class="h-8 object-contain">
-              <img src="/sponsoren/bauhaus.png" alt="Bauhaus" class="h-8 object-contain">
-              <img src="/sponsoren/zkb.png" alt="ZKB" class="h-8 object-contain">
+              <a href="https://www.jost-transport.ch/" target="_blank" rel="noopener noreferrer"><img src="/sponsoren/jost.png" alt="Jost" class="h-8 object-contain"></a>
+              <a href="https://www.geistlich.com/de-ch/" target="_blank" rel="noopener noreferrer"><img src="/sponsoren/geistlich.png" alt="Geistlich" class="h-8 object-contain"></a>
+              <a href="https://brem-schwarz.ch/" target="_blank" rel="noopener noreferrer"><img src="/sponsoren/brem-schwarz.png" alt="Brem Schwarz" class="h-8 object-contain"></a>
+              <a href="https://www.strabag.ch/" target="_blank" rel="noopener noreferrer"><img src="/sponsoren/strabag.png" alt="Strabag" class="h-8 object-contain"></a>
+              <a href="https://www.merbag.ch/" target="_blank" rel="noopener noreferrer"><img src="/sponsoren/merbag.png" alt="Merbag" class="h-8 object-contain"></a>
+              <a href="https://www.bauhaus.ch/" target="_blank" rel="noopener noreferrer"><img src="/sponsoren/bauhaus.png" alt="Bauhaus" class="h-8 object-contain"></a>
+              <a href="https://www.zkb.ch/" target="_blank" rel="noopener noreferrer"><img src="/sponsoren/zkb.png" alt="ZKB" class="h-8 object-contain"></a>
             </div>
           </div>
 
@@ -126,8 +126,8 @@
           <div class="flex flex-col gap-1.5">
             <p class="m-0 text-xs font-semibold uppercase tracking-widest text-fest-blue">Medienpartner</p>
             <div class="flex items-center gap-5">
-              <img src="/sponsoren/liz.png" alt="Liz" class="h-8 object-contain">
-              <img src="/sponsoren/radio-zuerisee.png" alt="Radio Zürisee" class="h-8 object-contain">
+              <a href="https://www.limmattalerzeitung.ch/" target="_blank" rel="noopener noreferrer"><img src="/sponsoren/liz.png" alt="Limmattaler Zeitung" class="h-8 object-contain"></a>
+              <a href="https://www.radiozuerisee.ch/" target="_blank" rel="noopener noreferrer"><img src="/sponsoren/radio-zuerisee.png" alt="Radio Zürisee" class="h-8 object-contain"></a>
             </div>
           </div>
 
