@@ -73,6 +73,7 @@
 </template>
 
 <script setup lang="ts">
+import mapboxgl from 'mapbox-gl'
 import type {LocationDTO} from '~~/shared/types/rest'
 
 const TYPE_COLORS: Record<LocationType, string> = {
@@ -116,6 +117,7 @@ const geojson = computed(() => ({
     properties: {
       type: loc.type,
       name: loc.name,
+      googleMapsUrl: loc.googleMapsUrl,
     },
     geometry: {
       type: 'Point' as const,
@@ -129,6 +131,27 @@ const colorExpression = [
   ...Object.entries(TYPE_COLORS).flat(),
   '#6b7280',
 ]
+
+useMapbox('festplan', (map) => {
+  const popup = new mapboxgl.Popup({closeButton: true, maxWidth: '240px'})
+
+  map.on('click', 'location-circles', (e) => {
+    const feature = e.features?.[0]
+    if (!feature) return
+    const {name, googleMapsUrl} = feature.properties as {name: string; googleMapsUrl?: string}
+    const html = googleMapsUrl
+        ? `<strong>${name}</strong><br><a href="${googleMapsUrl}" target="_blank" rel="noopener noreferrer" style="font-size:12px">Google Maps öffnen</a>`
+        : `<strong>${name}</strong>`
+    popup.setLngLat(e.lngLat).setHTML(html).addTo(map)
+  })
+
+  map.on('mouseenter', 'location-circles', () => {
+    map.getCanvas().style.cursor = 'pointer'
+  })
+  map.on('mouseleave', 'location-circles', () => {
+    map.getCanvas().style.cursor = ''
+  })
+})
 
 useSeoMeta({
   title: 'Festplan · Schliere lacht',
