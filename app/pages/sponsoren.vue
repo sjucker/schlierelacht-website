@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <div class="p-4 md:p-6 max-w-6xl">
     <h2 class="text-2xl font-bold text-fest-blue mb-1">Sponsoren</h2>
     <USeparator color="primary" class="mb-6"/>
@@ -50,11 +50,11 @@ import type {SponsoringDTO, SponsoringType, SponsoringTypeDTO} from '~~/shared/t
 import cloudflareUrl from "~/utils/cloudflare-url";
 
 const config = useRuntimeConfig()
-const {data: sponsors, pending} = await useFetch<SponsoringDTO[]>(
+const {data: sponsors, pending} = useFetch<SponsoringDTO[]>(
     `${config.public.apiBaseUrl}/api/sponsoring`,
     {server: false}
 )
-const {data: sponsorTypes} = await useFetch<SponsoringTypeDTO[]>(
+const {data: sponsorTypes} = useFetch<SponsoringTypeDTO[]>(
     `${config.public.apiBaseUrl}/api/sponsoring/type`,
     {server: false}
 )

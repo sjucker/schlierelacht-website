@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <div class="p-4 md:p-6">
     <div class="flex items-center justify-between">
       <h2>Locations</h2>
@@ -42,7 +42,7 @@ const search = ref('')
 
 const config = useRuntimeConfig()
 
-const {data, pending, error} = await useFetch<LocationDTO[]>(
+const {data, pending, error} = useFetch<LocationDTO[]>(
     `${config.public.apiBaseUrl}/api/location`,
     {server: false}
 )

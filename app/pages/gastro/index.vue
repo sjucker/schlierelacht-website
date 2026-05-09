@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <div class="p-4 md:p-6">
     <h2 class="text-2xl font-bold text-fest-blue mb-1">Gastro</h2>
     <USeparator color="primary" class="mb-4"/>
@@ -54,7 +54,7 @@
 import type {AttractionDTO} from '~~/shared/types/rest'
 
 const config = useRuntimeConfig()
-const {data, pending, error} = await useFetch<AttractionDTO[]>(
+const {data, pending, error} = useFetch<AttractionDTO[]>(
     `${config.public.apiBaseUrl}/api/gastro`,
     {server: false}
 )

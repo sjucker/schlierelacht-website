@@ -75,7 +75,7 @@ const externalId = route.params.id as string
 
 const config = useRuntimeConfig()
 
-const {data: location, pending, error} = await useFetch<LocationDTO>(
+const {data: location, pending, error} = useFetch<LocationDTO>(
     `${config.public.apiBaseUrl}/api/location/${externalId}`,
     {server: false}
 )

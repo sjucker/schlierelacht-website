@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <div class="p-4 md:p-6">
     <div class="flex items-center justify-between">
       <h2>Artists</h2>
@@ -73,12 +73,12 @@ const resetFilters = () => {
 
 const config = useRuntimeConfig()
 
-const {data, pending, error} = await useFetch<AttractionDTO[]>(
+const {data, pending, error} = useFetch<AttractionDTO[]>(
     `${config.public.apiBaseUrl}/api/artist`,
     {server: false}
 )
 
-const {data: tags} = await useFetch<TagDTO[]>(
+const {data: tags} = useFetch<TagDTO[]>(
     // TODO replace with enum
     `${config.public.apiBaseUrl}/api/tag/ARTIST`,
     {server: false}

@@ -58,7 +58,7 @@ const route = useRoute()
 const externalId = route.params.id as string
 
 const config = useRuntimeConfig()
-const {data: item, pending, error} = await useFetch<AttractionDTO>(
+const {data: item, pending, error} = useFetch<AttractionDTO>(
     `${config.public.apiBaseUrl}/api/gastro/${externalId}`,
     {server: false}
 )

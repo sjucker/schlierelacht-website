@@ -82,7 +82,7 @@ const externalId = route.params.id as string
 
 const config = useRuntimeConfig()
 
-const {data: artist, pending, error} = await useFetch<AttractionDTO>(
+const {data: artist, pending, error} = useFetch<AttractionDTO>(
     `${config.public.apiBaseUrl}/api/artist/${externalId}`,
     {server: false}
 )
