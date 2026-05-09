@@ -1,14 +1,10 @@
-﻿<template>
+<template>
   <div class="p-4 md:p-6">
-    <div class="flex items-center justify-between">
-      <h2>Artists</h2>
-      <UButton to="/" icon="i-lucide-home" variant="subtle">Home</UButton>
-    </div>
-
+    <h2 class="text-2xl font-bold text-fest-blue mb-1">Künstler</h2>
     <USeparator color="primary" class="mb-4"/>
 
     <div class="mb-4 flex flex-col sm:flex-row gap-4 items-end">
-      <UInput v-model="search" placeholder="Künstler suchen…" icon="i-lucide-search" class="flex-1"/>
+      <UInput v-model="search" placeholder="Suchen…" icon="i-lucide-search" class="flex-1"/>
       <USelect
           v-model="selectedTag"
           value-key="id"
@@ -29,26 +25,30 @@
           v-if="search || selectedTag || selectedDate"
           variant="ghost"
           icon="i-lucide-x"
-          @click="resetFilters"/>
+          @click="resetFilters"
+      />
     </div>
 
-    <div v-if="pending" class="text-sm text-gray-500">Lade Künstler…</div>
-    <div v-else-if="error" class="text-sm text-red-600">Fehler beim Laden der Künstler.</div>
+    <div v-if="pending" class="text-sm text-neutral-500">Lade Künstler…</div>
+    <div v-else-if="error" class="text-sm text-red-600">Fehler beim Laden.</div>
+    <div v-else-if="filtered.length === 0" class="text-sm text-neutral-500">Keine Künstler gefunden.</div>
 
-    <div v-else-if="artists.length === 0" class="text-sm text-gray-500">Keine Künstler gefunden.</div>
-
-    <div v-else class="grid md:grid-cols-2 gap-4">
+    <div v-else>
       <UPageList divide>
         <UPageCard
-            v-for="(artist, index) in artists"
-            :key="index"
+            v-for="artist in filtered"
+            :key="artist.externalId"
             variant="ghost"
-            :to="`/artists/${artist.externalId}`">
+            :to="`/artists/${artist.externalId}`"
+        >
           <template #body>
-            <UUser
-                :name="artist.name"
-                :description="getArtistDescription(artist)"
-                size="xl"/>
+            <div class="font-semibold text-fest-blue">{{ artist.name }}</div>
+            <div class="text-sm text-black">{{ getArtistDescription(artist) }}</div>
+            <div class="flex flex-wrap gap-1 not-prose">
+              <UBadge v-for="tag in artist.tags" :key="tag.id" size="sm" color="primary" variant="outline">
+                {{ tag.name }}
+              </UBadge>
+            </div>
           </template>
         </UPageCard>
       </UPageList>
@@ -57,9 +57,14 @@
 </template>
 
 <script setup lang="ts">
-import type {AttractionDTO, TagDTO} from "~/../shared/types/rest";
-import getArtistDescription from "~/utils/get-artist-description";
-import formatDate from "~/utils/format-date";
+import type {AttractionDTO} from '~~/shared/types/rest'
+import formatDate from '~/utils/format-date'
+
+const config = useRuntimeConfig()
+const {data, pending, error} = useFetch<AttractionDTO[]>(
+    `${config.public.apiBaseUrl}/api/artist`,
+    {server: false}
+)
 
 const search = ref<string | undefined>(undefined)
 const selectedTag = ref<number | undefined>(undefined)
@@ -71,68 +76,39 @@ const resetFilters = () => {
   selectedDate.value = undefined
 }
 
-const config = useRuntimeConfig()
-
-const {data, pending, error} = useFetch<AttractionDTO[]>(
-    `${config.public.apiBaseUrl}/api/artist`,
-    {server: false}
-)
-
-const {data: tags} = useFetch<TagDTO[]>(
-    // TODO replace with enum
-    `${config.public.apiBaseUrl}/api/tag/ARTIST`,
-    {server: false}
-)
-
 const tagOptions = computed(() => {
-  return [...tags.value ?? []]
+  const map = new Map<number, string>()
+  data.value?.forEach(a => a.tags?.forEach(t => map.set(t.id, t.name)))
+  return Array.from(map.entries())
+      .map(([id, name]) => ({id, name}))
+      .sort((a, b) => a.name.localeCompare(b.name))
 })
 
 const dateOptions = computed(() => {
   const dates = new Set<string>()
-  data.value?.forEach(artist => {
-    artist.programm?.forEach(p => {
-      if (p.fromDate) {
-        dates.add(p.fromDate)
-      }
-    })
-  })
-
-  const sortedDates = Array.from(dates).sort()
-
-  return sortedDates.map(date => ({
-    id: date,
-    name: formatDate(date)
+  data.value?.forEach(a => a.programm?.forEach(p => {
+    if (p.fromDate) dates.add(p.fromDate)
   }))
+  return Array.from(dates).sort().map(date => ({id: date, name: formatDate(date)}))
 })
 
-const artists = computed(() => {
-  let filteredArtists = data.value ?? []
-
+const filtered = computed(() => {
+  let result = [...(data.value ?? [])].sort((a, b) => a.name.localeCompare(b.name))
   if (search.value) {
-    const searchTerm = search.value.toLowerCase()
-    filteredArtists = filteredArtists.filter(artist =>
-        artist.name.toLowerCase().includes(searchTerm)
-    )
+    const q = search.value.toLowerCase()
+    result = result.filter(a => a.name.toLowerCase().includes(q))
   }
-
   if (selectedTag.value) {
-    filteredArtists = filteredArtists.filter(artist =>
-        artist.tags?.some(tag => tag.id === selectedTag.value)
-    )
+    result = result.filter(a => a.tags?.some(t => t.id === selectedTag.value))
   }
-
   if (selectedDate.value) {
-    filteredArtists = filteredArtists.filter(artist =>
-        artist.programm?.some(p => p.fromDate === selectedDate.value)
-    )
+    result = result.filter(a => a.programm?.some(p => p.fromDate === selectedDate.value))
   }
-
-  return filteredArtists
+  return result
 })
 
 useSeoMeta({
-  title: 'Artists – Schliere lacht',
+  title: 'Künstler · Schliere lacht',
   description: 'Künstlerinnen und Künstler am Schlierefäscht.',
 })
 </script>
