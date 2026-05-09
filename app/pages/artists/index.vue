@@ -29,8 +29,7 @@
           v-if="search || selectedTag || selectedDate"
           variant="ghost"
           icon="i-lucide-x"
-          @click="resetFilters">
-      </UButton>
+          @click="resetFilters"/>
     </div>
 
     <div v-if="pending" class="text-sm text-gray-500">Lade Künstler…</div>
@@ -58,7 +57,7 @@
 </template>
 
 <script setup lang="ts">
-import type {ArtistDTO, TagDTO} from "~/../shared/types/rest";
+import type {AttractionDTO, TagDTO} from "~/../shared/types/rest";
 import getArtistDescription from "~/utils/get-artist-description";
 import formatDate from "~/utils/format-date";
 
@@ -74,7 +73,7 @@ const resetFilters = () => {
 
 const config = useRuntimeConfig()
 
-const {data, pending, error} = await useFetch<ArtistDTO[]>(
+const {data, pending, error} = await useFetch<AttractionDTO[]>(
     `${config.public.apiBaseUrl}/api/artist`,
     {server: false}
 )

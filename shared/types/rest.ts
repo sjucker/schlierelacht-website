@@ -1,6 +1,6 @@
-/* eslint-disable */
 
-export interface ArtistDTO {
+
+export interface AttractionDTO {
     externalId: string;
     name: string;
     description: string;

@@ -72,7 +72,7 @@
 </template>
 
 <script setup lang="ts">
-import {type ArtistDTO, ImageType} from "~/../shared/types/rest";
+import {type AttractionDTO, ImageType} from "~/../shared/types/rest";
 import cloudflareUrl from "~/utils/cloudflare-url";
 import formatDate from "~/utils/format-date";
 import formatTime from "~/utils/format-time";
@@ -82,7 +82,7 @@ const externalId = route.params.id as string
 
 const config = useRuntimeConfig()
 
-const {data: artist, pending, error} = await useFetch<ArtistDTO>(
+const {data: artist, pending, error} = await useFetch<AttractionDTO>(
     `${config.public.apiBaseUrl}/api/artist/${externalId}`,
     {server: false}
 )
