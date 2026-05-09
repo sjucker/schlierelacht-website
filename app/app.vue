@@ -2,6 +2,70 @@
   <UApp>
     <div class="flex flex-col md:h-screen">
 
+      <!-- MOBILE TOP NAV (non-home pages only) -->
+      <div v-if="!isHome" class="md:hidden flex-shrink-0 border-b border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900">
+        <!-- Header bar: logo + hamburger -->
+        <div class="flex items-center justify-between px-4 py-3 bg-fest-blue-light">
+          <NuxtLink to="/" class="text-white font-bold text-lg tracking-tight">
+            Schlierefäscht
+          </NuxtLink>
+          <button
+              class="p-2 text-white"
+              :aria-label="mobileNavOpen ? 'Navigation schliessen' : 'Navigation öffnen'"
+              @click="mobileNavOpen = !mobileNavOpen"
+          >
+            <UIcon :name="mobileNavOpen ? 'i-lucide-x' : 'i-lucide-menu'" class="w-6 h-6"/>
+          </button>
+        </div>
+        <!-- Collapsible nav links -->
+        <Transition
+            enter-active-class="transition-all duration-200 ease-out"
+            enter-from-class="opacity-0 -translate-y-1"
+            enter-to-class="opacity-100 translate-y-0"
+            leave-active-class="transition-all duration-150 ease-in"
+            leave-from-class="opacity-100 translate-y-0"
+            leave-to-class="opacity-0 -translate-y-1"
+        >
+          <nav v-if="mobileNavOpen" class="px-4 pb-4 not-prose border-t border-neutral-100 dark:border-neutral-800">
+            <ul class="list-none p-0 m-0 flex flex-col gap-1 pt-2">
+              <li>
+                <UButton to="/" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">Home</UButton>
+              </li>
+              <li>
+                <UButton to="/news" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">News</UButton>
+              </li>
+              <li>
+                <UButton to="/programm" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">Programm</UButton>
+              </li>
+              <li>
+                <UButton to="/jahrgangstreffen" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">Jahrgangstreffen</UButton>
+              </li>
+              <li>
+                <UButton to="/festplan" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">Festplan</UButton>
+              </li>
+              <li>
+                <UButton to="/gastro" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">Gastro</UButton>
+              </li>
+              <li>
+                <UButton to="/wirtschaft" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">Wirtschaft & Gewerbe</UButton>
+              </li>
+              <li>
+                <UButton to="/sponsoren" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">Sponsoren</UButton>
+              </li>
+              <li>
+                <UButton to="/artists" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">Künstler</UButton>
+              </li>
+              <li>
+                <UButton to="/galerien" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">Galerien</UButton>
+              </li>
+              <li>
+                <UButton to="/info" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">Über uns</UButton>
+              </li>
+            </ul>
+          </nav>
+        </Transition>
+      </div>
+
       <!-- Row: sidebar + page content -->
       <div class="flex-1 flex flex-col md:flex-row md:overflow-hidden">
 
@@ -52,12 +116,9 @@
 
       </div>
 
-      <!-- MOBILE NAV (after page content, before footer) -->
-      <nav class="md:hidden border-t border-neutral-200 dark:border-neutral-800 p-4 not-prose">
+      <!-- MOBILE BOTTOM NAV (home page only, after hero) -->
+      <nav v-if="isHome" class="md:hidden border-t border-neutral-200 dark:border-neutral-800 p-4 not-prose">
         <ul class="list-none p-0 m-0 flex flex-col gap-1">
-          <li>
-            <UButton to="/" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">Home</UButton>
-          </li>
           <li>
             <UButton to="/news" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">News</UButton>
           </li>
@@ -167,6 +228,14 @@
 </template>
 
 <script setup lang="ts">
+const route = useRoute()
+const isHome = computed(() => route.path === '/')
+const mobileNavOpen = ref(false)
+
+watch(() => route.path, () => {
+  mobileNavOpen.value = false
+})
+
 useSeoMeta({
   description: 'Das nächste Schlierefäscht findet vom 3. bis 12. September 2027 statt.',
 })
