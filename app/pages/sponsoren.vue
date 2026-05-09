@@ -7,7 +7,7 @@
       <p class="text-lg font-semibold text-fest-blue m-0">Herzlichen Dank</p>
       <p class="m-0">Allen unseren Sponsoren danken wir herzlich für ihr grosszügiges Engagement.</p>
       <p class="m-0">Auch beim Schlierefäscht 2027 soll wieder fast die Hälfte der Einnahmen durch Sponsoren erbracht werden. Unsere Sponsoring-Verantwortlicher Albert Schweizer hat attraktive
-        Sponsoring-Pakete geschnürt und steht Interessenten gerne für ein Gespräch zur Verfügung (+41 44 738 15 06, <a href="mailto:" class="text-fest-blue underline">E-Mail</a>).</p>
+        Sponsoring-Pakete geschnürt und steht Interessenten gerne für ein Gespräch zur Verfügung (+41 44 738 15 06, <a href="mailto:albert.schweizer@schlieren.ch" class="text-fest-blue underline">E-Mail</a>).</p>
     </div>
 
     <div v-if="pending" class="text-sm text-neutral-400">Sponsoren werden geladen…</div>
@@ -16,7 +16,7 @@
       <div v-for="typeEntry in sponsorTypes" :key="typeEntry.type" class="mb-20">
         <template v-if="sponsorsByType[typeEntry.type]?.length">
           <h3 class="text-lg font-semibold uppercase tracking-widest text-fest-blue mb-4">{{ typeEntry.description }}</h3>
-          <div class="flex flex-wrap items-center gap-6">
+          <div class="flex flex-wrap items-center gap-x-12 gap-y-4">
             <component
                 :is="sponsor.url ? 'a' : 'span'"
                 v-for="sponsor in sponsorsByType[typeEntry.type]"
@@ -26,7 +26,7 @@
                 :rel="sponsor.url ? 'noopener noreferrer' : undefined"
                 :title="sponsor.name"
             >
-              <div class="w-[180px] h-[100px] flex items-center justify-center">
+              <div class="w-[180px] h-[100px] flex items-center justify-center transition-transform duration-200 scale-90 hover:scale-100">
                 <NuxtImg
                     v-if="sponsor.cloudflareId"
                     provider="cloudflare"
