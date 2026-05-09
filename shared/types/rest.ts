@@ -38,6 +38,18 @@ export interface ProgrammEntryDTO {
     toTime?: DateAsString;
 }
 
+export interface SponsoringDTO {
+    type: SponsoringType;
+    name: string;
+    cloudflareId?: string;
+    url?: string;
+}
+
+export interface SponsoringTypeDTO {
+    type: SponsoringType;
+    description: string;
+}
+
 export interface TagDTO {
     id: number;
     name: string;
@@ -56,4 +68,15 @@ export enum LocationType {
     BAR = "BAR",
     TENT = "TENT",
     ATTRACTION = "ATTRACTION",
+}
+
+export enum SponsoringType {
+    HAUPTSPONSOREN = "HAUPTSPONSOREN",
+    ORGANISATION = "ORGANISATION",
+    GASTREGION = "GASTREGION",
+    GOLD = "GOLD",
+    SILBER = "SILBER",
+    BRONZE = "BRONZE",
+    GOENNER = "GOENNER",
+    PARTNER = "PARTNER",
 }
