@@ -29,9 +29,6 @@
           <nav v-if="mobileNavOpen" class="px-4 pb-4 not-prose border-t border-neutral-100 dark:border-neutral-800">
             <ul class="list-none p-0 m-0 flex flex-col gap-1 pt-2">
               <li>
-                <UButton to="/" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">Home</UButton>
-              </li>
-              <li>
                 <UButton to="/news" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">News</UButton>
               </li>
               <li>
