@@ -41,7 +41,7 @@
           class="mb-4"
       />
 
-      <UForm :state="form" :validate="validate" @submit="onSubmit" class="space-y-4">
+      <UForm :state="form" :validate="validate" class="space-y-4" @submit="onSubmit">
         <div class="grid sm:grid-cols-2 gap-4">
           <UFormField label="Vorname" name="firstname" required>
             <UInput v-model="form.firstname" placeholder="Max" class="w-full"/>
