@@ -39,7 +39,7 @@ export default defineNuxtConfig({
     runtimeConfig: {
         public: {
             version: pkg.version,
-            apiBaseUrl: 'https://api.schlierelacht.ch'
+            apiBaseUrl: 'https://schlierelacht-api.ch'
         }
     },
     vite: {
