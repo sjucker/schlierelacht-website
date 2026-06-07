@@ -1,4 +1,4 @@
-/* eslint-disable */
+
 
 export interface AttractionDTO {
     externalId: string;
@@ -28,6 +28,15 @@ export interface LocationDTO {
     googleMapsUrl: string;
     cloudflareId?: string;
     mapId?: string;
+}
+
+export interface NewsDTO {
+    id: number;
+    date: DateAsString;
+    title: string;
+    introText: string;
+    fullText: string;
+    cloudflareId?: string;
 }
 
 export interface ProgrammEntryDTO {
