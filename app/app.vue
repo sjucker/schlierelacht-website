@@ -73,6 +73,7 @@
 
       <!-- FOOTER -->
       <footer
+          v-if="!isSponsoren"
           class="flex-shrink-0 border-t border-neutral-200 dark:border-neutral-800
                      bg-white dark:bg-neutral-900 px-6 py-4">
 
@@ -162,6 +163,7 @@ const navItems = [
 
 const route = useRoute()
 const isHome = computed(() => route.path === '/')
+const isSponsoren = computed(() => route.path === '/sponsoren')
 const mobileNavOpen = ref(false)
 
 watch(() => route.path, () => {
