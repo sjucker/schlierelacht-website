@@ -1,17 +1,18 @@
 <template>
   <div class="h-dvh md:h-full relative overflow-hidden">
 
-    <!-- Background image: cycles through all 6 with crossfade -->
-    <div class="absolute inset-0 opacity-40 md:opacity-90">
-      <Transition name="bg-fade">
-        <div
-            :key="bgIndex"
-            class="absolute inset-0 bg-cover bg-top bg-no-repeat"
-            :style="`background-image: url('/background/${bgPad(bgIndex)}')`"
-            data-allow-mismatch="style"
-        />
-      </Transition>
-    </div>
+    <!-- Background image: cycles through all 6 with crossfade, client-only for random start -->
+    <ClientOnly>
+      <div class="absolute inset-0 opacity-40 md:opacity-90">
+        <Transition name="bg-fade">
+          <div
+              :key="bgIndex"
+              class="absolute inset-0 bg-cover bg-top bg-no-repeat"
+              :style="`background-image: url('/background/${bgPad(bgIndex)}')`"
+          />
+        </Transition>
+      </div>
+    </ClientOnly>
 
     <!-- Mobile: logo centered + weiter button at bottom -->
     <div class="md:hidden absolute inset-0 flex flex-col items-center justify-center p-8 pointer-events-none">
@@ -117,7 +118,7 @@
 
 <script setup lang="ts">
 const TOTAL_BG = 6
-const bgIndex = ref(import.meta.client ? Math.floor(Math.random() * TOTAL_BG) : 0)
+const bgIndex = ref(Math.floor(Math.random() * TOTAL_BG))
 const bgPad = (i: number) => `${String(i + 1).padStart(2, '0')}.jpg`
 
 const TARGET = new Date('2027-09-03T17:00:00')
