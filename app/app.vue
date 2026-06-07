@@ -3,7 +3,7 @@
     <div class="flex flex-col md:h-screen">
 
       <!-- MOBILE TOP NAV (non-home pages only) -->
-      <div v-if="!isHome" class="md:hidden flex-shrink-0 border-b border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900">
+      <div v-if="!isHome" class="md:hidden shrink-0 border-b border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900">
         <!-- Header bar: logo + hamburger -->
         <div class="flex items-center justify-between px-4 py-3 bg-fest-blue-light">
           <NuxtLink to="/" class="text-white font-bold text-lg tracking-tight">
@@ -41,7 +41,7 @@
 
         <!-- LEFT SIDEBAR (desktop only) -->
         <aside
-            class="hidden md:flex md:flex-col md:w-64 md:flex-shrink-0
+            class="hidden md:flex md:flex-col md:w-64 md:shrink-0
                        md:overflow-y-auto border-r border-neutral-200 dark:border-neutral-800">
           <NuxtLink to="/" class="block p-4 pt-6">
             <img src="/logo.svg" alt="Schlierefäscht Logo" class="w-full">
@@ -74,7 +74,7 @@
       <!-- FOOTER -->
       <footer
           v-if="!isSponsoren"
-          class="flex-shrink-0 border-t border-neutral-200 dark:border-neutral-800
+          class="shrink-0 border-t border-neutral-200 dark:border-neutral-800
                      bg-white dark:bg-neutral-900 px-6 py-4">
 
         <!-- Sponsor groups: horizontal on desktop, stacked on mobile -->

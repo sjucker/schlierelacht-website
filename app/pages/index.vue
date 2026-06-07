@@ -1,11 +1,17 @@
 <template>
-  <div class="h-[100dvh] md:h-full relative overflow-hidden">
+  <div class="h-dvh md:h-full relative overflow-hidden">
 
-    <!-- Background image (opacity-60 per design) -->
-    <div
-        class="absolute inset-0 bg-cover bg-top bg-no-repeat opacity-30 md:opacity-60"
-        style="background-image: url('/background.jpg')"
-    />
+    <!-- Background image: cycles through all 6 with crossfade -->
+    <div class="absolute inset-0 opacity-40 md:opacity-90">
+      <Transition name="bg-fade">
+        <div
+            :key="bgIndex"
+            class="absolute inset-0 bg-cover bg-top bg-no-repeat"
+            :style="`background-image: url('/background/${bgPad(bgIndex)}')`"
+            data-allow-mismatch="style"
+        />
+      </Transition>
+    </div>
 
     <!-- Mobile: logo centered + weiter button at bottom -->
     <div class="md:hidden absolute inset-0 flex flex-col items-center justify-center p-8 pointer-events-none">
@@ -110,6 +116,10 @@
 </template>
 
 <script setup lang="ts">
+const TOTAL_BG = 6
+const bgIndex = ref(import.meta.client ? Math.floor(Math.random() * TOTAL_BG) : 0)
+const bgPad = (i: number) => `${String(i + 1).padStart(2, '0')}.jpg`
+
 const TARGET = new Date('2027-09-03T17:00:00')
 const now = ref(new Date())
 
@@ -129,13 +139,41 @@ function scrollToNav() {
 }
 
 onMounted(() => {
-  const interval = setInterval(() => {
+  const bgInterval = setInterval(() => {
+    bgIndex.value = (bgIndex.value + 1) % TOTAL_BG
+  }, 10000)
+
+  const clockInterval = setInterval(() => {
     now.value = new Date()
   }, 1000)
-  onUnmounted(() => clearInterval(interval))
+
+  onUnmounted(() => {
+    clearInterval(bgInterval)
+    clearInterval(clockInterval)
+  })
 })
 
 useSeoMeta({
   description: 'Das nächste Schlierefäscht findet vom 3. bis 12. September 2027 statt.',
 })
 </script>
+
+<style scoped>
+.bg-fade-enter-active {
+  transition: opacity 1.5s ease;
+}
+
+.bg-fade-leave-active {
+  transition: opacity 1.5s ease;
+  position: absolute;
+  inset: 0;
+}
+
+.bg-fade-enter-from {
+  opacity: 0;
+}
+
+.bg-fade-leave-to {
+  opacity: 0;
+}
+</style>
