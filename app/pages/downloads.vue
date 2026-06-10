@@ -5,7 +5,7 @@
 
     <Transition enter-active-class="transition-opacity duration-500" enter-from-class="opacity-0" enter-to-class="opacity-100">
       <div v-if="!pending && data?.length">
-        <div v-for="category in orderedCategories" :key="category" class="prose md:prose-xl mb-8">
+        <div v-for="category in orderedCategories" :key="category" class="prose md:prose-lg mb-8">
           <template v-if="byCategory[category]?.length">
             <h3>{{ categoryLabel(category) }}</h3>
             <div class="flex flex-col md:flex-row gap-2 md:gap-4">
