@@ -155,7 +155,7 @@ const navItems = [
   {label: 'Jahrgangstreffen', to: '/jahrgangstreffen'},
   {label: 'Festplan', to: '/festplan'},
   {label: 'Gastro', to: '/gastro'},
-  {label: 'Wirtschaft & Gewerbe', to: '/wirtschaft'},
+  {label: 'Wirtschaft/Gewerbe', to: '/wirtschaft'},
   {label: 'Sponsoren', to: '/sponsoren'},
   {label: 'Downloads', to: '/downloads'},
   {label: 'Galerie', to: '/galerien'},

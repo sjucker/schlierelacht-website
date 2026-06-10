@@ -154,6 +154,14 @@ onMounted(() => {
   })
 })
 
+useHead({
+  link: Array.from({length: TOTAL_BG}, (_, i) => ({
+    rel: 'preload',
+    as: 'image',
+    href: `/background/${bgPad(i)}`,
+  })),
+})
+
 useSeoMeta({
   description: 'Das nächste Schlierefäscht findet vom 3. bis 12. September 2027 statt.',
 })
