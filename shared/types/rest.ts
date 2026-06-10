@@ -1,4 +1,4 @@
-
+/* eslint-disable */
 
 export interface AttractionDTO {
     externalId: string;
@@ -11,6 +11,16 @@ export interface AttractionDTO {
     images: ImageDTO[];
     tags: TagDTO[];
     programm: ProgrammEntryDTO[];
+}
+
+export interface DownloadDTO {
+    id: number;
+    filename: string;
+    filetype: string;
+    description: string;
+    filesize: number;
+    category: DownloadCategory;
+    uploadedAt: DateAsString;
 }
 
 export interface ImageDTO {
@@ -71,6 +81,13 @@ export interface TagDTO {
 }
 
 export type DateAsString = string;
+
+export enum DownloadCategory {
+    LOGOS = "LOGOS",
+    SPONSORING = "SPONSORING",
+    GASTRONOMIE = "GASTRONOMIE",
+    PROGRAMM = "PROGRAMM",
+}
 
 export enum ImageType {
     MAIN = "MAIN",

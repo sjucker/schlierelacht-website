@@ -157,7 +157,8 @@ const navItems = [
   {label: 'Gastro', to: '/gastro'},
   {label: 'Wirtschaft & Gewerbe', to: '/wirtschaft'},
   {label: 'Sponsoren', to: '/sponsoren'},
-  {label: 'Galerien', to: '/galerien'},
+  {label: 'Downloads', to: '/downloads'},
+  {label: 'Galerie', to: '/galerien'},
   {label: 'Über uns', to: '/info'},
 ]
 
