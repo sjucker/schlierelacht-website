@@ -8,26 +8,26 @@
     <h2 class="text-2xl font-bold text-fest-blue mb-1">Teilnehmerliste</h2>
     <USeparator color="primary" class="mb-6"/>
 
-    <div v-if="pending" class="text-sm text-neutral-500">Lade Teilnehmerliste…</div>
-    <div v-else-if="error" class="text-sm text-red-600">Fehler beim Laden der Teilnehmerliste.</div>
-    <div v-else-if="!data?.length" class="text-sm text-neutral-500">Noch keine Anmeldungen vorhanden.</div>
+    <div v-if="error" class="text-sm text-red-600">Fehler beim Laden der Teilnehmerliste.</div>
 
-    <div v-else class="space-y-8">
-      <div v-for="group in groups" :key="group.label">
-        <h3 class="text-xs font-semibold uppercase tracking-widest text-fest-blue mb-3">
-          {{ group.label }}
-        </h3>
-        <ul class="space-y-1">
-          <li
-              v-for="entry in group.entries"
-              :key="`${entry.lastname}-${entry.firstname}-${entry.yearOfBirth}`"
-              class="text-sm text-neutral-700 dark:text-neutral-300"
-          >
-            {{ entry.lastname }}, {{ entry.firstname }} <span class="text-neutral-400">({{ entry.yearOfBirth }})</span>
-          </li>
-        </ul>
+    <Transition enter-active-class="transition-opacity duration-300" enter-from-class="opacity-0" enter-to-class="opacity-100">
+      <div v-if="!pending && data?.length" class="space-y-8">
+        <div v-for="group in groups" :key="group.value">
+          <h3 class="text-xs font-semibold uppercase tracking-widest text-fest-blue mb-3">
+            {{ group.label }}
+          </h3>
+          <ul class="space-y-1">
+            <li
+                v-for="entry in group.entries"
+                :key="`${entry.lastname}-${entry.firstname}`"
+                class="text-sm text-neutral-700 dark:text-neutral-300"
+            >
+              {{ entry.lastname }}, {{ entry.firstname }}
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
+    </Transition>
   </div>
 </template>
 
@@ -41,22 +41,22 @@ const {data, pending, error} = useFetch<MeetupEntryDTO[]>(
 )
 
 const groups = computed(() => {
-  const entries = [...(data.value ?? [])].sort((a, b) =>
-      a.yearOfBirth - b.yearOfBirth || a.lastname.localeCompare(b.lastname) || a.firstname.localeCompare(b.firstname)
-  )
-
-  const buckets = new Map<number, MeetupEntryDTO[]>()
+  const entries = data.value ?? []
+  const byJahrgang = new Map<string, MeetupEntryDTO[]>()
   for (const entry of entries) {
-    const bucket = Math.floor(entry.yearOfBirth / 5) * 5
-    if (!buckets.has(bucket)) buckets.set(bucket, [])
-    buckets.get(bucket)!.push(entry)
+    const key = entry.jahrgang
+    if (!byJahrgang.has(key)) byJahrgang.set(key, [])
+    byJahrgang.get(key)!.push(entry)
   }
 
-  return Array.from(buckets.entries())
-      .sort(([a], [b]) => a - b)
-      .map(([start, entries]) => ({
-        label: `Jahrgang ${start}–${start + 4}`,
-        entries,
+  return MEETUP_JAHRGANG_OPTIONS
+      .filter(opt => byJahrgang.has(opt.value))
+      .map(opt => ({
+        value: opt.value,
+        label: opt.label,
+        entries: [...byJahrgang.get(opt.value)!].sort(
+            (a, b) => a.lastname.localeCompare(b.lastname) || a.firstname.localeCompare(b.firstname)
+        ),
       }))
 })
 

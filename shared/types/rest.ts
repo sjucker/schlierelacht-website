@@ -40,6 +40,20 @@ export interface LocationDTO {
     mapId?: string;
 }
 
+export interface MeetupEntryDTO {
+    firstname: string;
+    lastname: string;
+    jahrgang: MeetupJahrgang;
+}
+
+export interface MeetupRegistrationDTO {
+    firstname: string;
+    lastname: string;
+    email: string;
+    jahrgang: MeetupJahrgang;
+    showOnList: boolean;
+}
+
 export interface NewsDTO {
     id: number;
     date: DateAsString;
@@ -69,12 +83,6 @@ export interface SponsoringTypeDTO {
     description: string;
 }
 
-export interface MeetupEntryDTO {
-    firstname: string;
-    lastname: string;
-    yearOfBirth: number;
-}
-
 export interface TagDTO {
     id: number;
     name: string;
@@ -102,6 +110,20 @@ export enum LocationType {
     ATTRACTION = "ATTRACTION",
     SANITARY = "SANITARY",
     INFO = "INFO",
+}
+
+export enum MeetupJahrgang {
+    BEFORE_1954 = "BEFORE_1954",
+    BORN_1954_1958 = "BORN_1954_1958",
+    BORN_1959_1963 = "BORN_1959_1963",
+    BORN_1965_1968 = "BORN_1965_1968",
+    BORN_1969_1973 = "BORN_1969_1973",
+    BORN_1974_1978 = "BORN_1974_1978",
+    BORN_1979_1983 = "BORN_1979_1983",
+    BORN_1984_1988 = "BORN_1984_1988",
+    BORN_1989_1993 = "BORN_1989_1993",
+    BORN_1994_1998 = "BORN_1994_1998",
+    AFTER_1998 = "AFTER_1998",
 }
 
 export enum SponsoringType {

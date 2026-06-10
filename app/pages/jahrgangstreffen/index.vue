@@ -5,7 +5,8 @@
 
     <!-- Intro text -->
     <div class="mb-6 space-y-3 text-neutral-700 dark:text-neutral-300">
-      <p>Das Schlierefäscht bietet den perfekten Rahmen für ein Wiedersehen mit alten Schulkameraden und Freunden. Beim Jahrgangstreffen kommen alle Jahrgänge zusammen – für einen unvergesslichen Abend voller Erinnerungen.</p>
+      <p>Das Schlierefäscht bietet den perfekten Rahmen für ein Wiedersehen mit alten Schulkameraden und Freunden. Beim Jahrgangstreffen kommen alle Jahrgänge zusammen – für einen unvergesslichen
+        Abend voller Erinnerungen.</p>
       <p>Melde dich an und sei dabei!</p>
     </div>
 
@@ -55,12 +56,15 @@
           <UInput v-model="form.email" type="email" placeholder="max.muster@example.com" class="w-full"/>
         </UFormField>
 
-        <UFormField label="Telefon / Mobile" name="phone" hint="Optional">
-          <UInput v-model="form.phone" type="tel" placeholder="+41 79 000 00 00" class="w-full"/>
-        </UFormField>
-
-        <UFormField label="Jahrgang" name="yearOfBirth" required>
-          <UInput v-model.number="form.yearOfBirth" type="number" placeholder="1990" :min="1900" :max="new Date().getFullYear()" class="w-full"/>
+        <UFormField label="Jahrgang" name="jahrgang" required>
+          <USelect
+              v-model="form.jahrgang"
+              :items="MEETUP_JAHRGANG_OPTIONS"
+              value-key="value"
+              label-key="label"
+              placeholder="Bitte wählen…"
+              class="w-full"
+          />
         </UFormField>
 
         <UFormField name="showOnList">
@@ -82,6 +86,7 @@
 
 <script setup lang="ts">
 import type {FormError} from '@nuxt/ui'
+import type {MeetupJahrgang, MeetupRegistrationDTO} from '~~/shared/types/rest'
 
 const config = useRuntimeConfig()
 
@@ -89,9 +94,8 @@ const form = reactive({
   firstname: '',
   lastname: '',
   email: '',
-  phone: '',
-  yearOfBirth: undefined as number | undefined,
-  showOnList: false,
+  jahrgang: undefined as MeetupJahrgang | undefined,
+  showOnList: true,
 })
 
 const submitting = ref(false)
@@ -104,7 +108,7 @@ const validate = (state: typeof form): FormError[] => {
   if (!state.lastname.trim()) errors.push({name: 'lastname', message: 'Nachname ist erforderlich'})
   if (!state.email.trim()) errors.push({name: 'email', message: 'E-Mail ist erforderlich'})
   else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(state.email)) errors.push({name: 'email', message: 'Ungültige E-Mail-Adresse'})
-  if (!state.yearOfBirth) errors.push({name: 'yearOfBirth', message: 'Jahrgang ist erforderlich'})
+  if (!state.jahrgang) errors.push({name: 'jahrgang', message: 'Jahrgang ist erforderlich'})
   return errors
 }
 
@@ -112,16 +116,16 @@ async function onSubmit() {
   submitting.value = true
   submitError.value = undefined
   try {
+    const body: MeetupRegistrationDTO = {
+      firstname: form.firstname.trim(),
+      lastname: form.lastname.trim(),
+      email: form.email.trim(),
+      jahrgang: form.jahrgang as MeetupJahrgang,
+      showOnList: form.showOnList,
+    }
     await $fetch(`${config.public.apiBaseUrl}/api/meetup`, {
       method: 'POST',
-      body: {
-        firstname: form.firstname.trim(),
-        lastname: form.lastname.trim(),
-        email: form.email.trim(),
-        phone: form.phone.trim() || undefined,
-        yearOfBirth: form.yearOfBirth,
-        showOnList: form.showOnList,
-      },
+      body,
     })
     submitted.value = true
   } catch {
