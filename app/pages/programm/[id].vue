@@ -36,15 +36,6 @@
           </div>
         </template>
 
-        <template v-if="artist.tags?.length" #footer>
-          <div class="mb-2 not-prose">
-            <div class="flex flex-wrap gap-2">
-              <UBadge v-for="tag in artist.tags" :key="tag.id" size="lg" color="primary" variant="outline">
-                <NuxtLink :to="`/programm/tag/${tag.id}`">{{ tag.name }}</NuxtLink>
-              </UBadge>
-            </div>
-          </div>
-        </template>
       </UCard>
 
       <div v-if="artist.programm?.length" class="prose max-w-none">
