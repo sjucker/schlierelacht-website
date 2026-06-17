@@ -18,15 +18,19 @@
     </div>
 
     <!-- Success state -->
-    <UAlert
-        v-if="submitted"
-        color="success"
-        variant="subtle"
-        icon="i-lucide-check-circle"
-        title="Anmeldung erfolgreich!"
-        description="Vielen Dank für deine Anmeldung. Wir freuen uns auf dich!"
-        class="mb-6"
-    />
+    <template v-if="submitted">
+      <UAlert
+          color="success"
+          variant="subtle"
+          icon="i-lucide-check-circle"
+          title="Anmeldung erfolgreich!"
+          description="Vielen Dank für deine Anmeldung. Wir freuen uns auf dich!"
+          class="mb-6"
+      />
+      <UButton variant="subtle" color="primary" icon="i-lucide-plus" @click="resetForm">
+        Weitere Anmeldung vornehmen
+      </UButton>
+    </template>
 
     <!-- Form -->
     <template v-else>
@@ -75,7 +79,7 @@
         </UFormField>
 
         <div class="pt-2">
-          <UButton type="submit" color="primary" :loading="submitting">
+          <UButton type="submit" color="primary" :loading="submitting" :disabled="!isFormValid">
             Anmelden
           </UButton>
         </div>
@@ -110,6 +114,17 @@ const validate = (state: typeof form): FormError[] => {
   else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(state.email)) errors.push({name: 'email', message: 'Ungültige E-Mail-Adresse'})
   if (!state.jahrgang) errors.push({name: 'jahrgang', message: 'Jahrgang ist erforderlich'})
   return errors
+}
+
+const isFormValid = computed(() => validate(form).length === 0)
+
+function resetForm() {
+  form.firstname = ''
+  form.lastname = ''
+  form.email = ''
+  form.jahrgang = undefined
+  form.showOnList = true
+  submitted.value = false
 }
 
 async function onSubmit() {
