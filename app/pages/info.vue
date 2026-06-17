@@ -1,14 +1,9 @@
 <template>
-  <div class="prose md:prose-lg max-w-none p-4 md:p-6">
-    <h2>Willkommen am Schlierefäscht 2027</h2>
+  <div class="prose p-4 md:p-6 max-w-5xl">
+    <h2 class="text-2xl font-bold text-fest-blue mb-1">Über uns</h2>
+    <USeparator color="primary" class="mb-6"/>
 
-    <NuxtImg src="/front.jpg" alt="Foto: Daniel Santschi, Schlieren" densities="x1 x2" class="w-full rounded-lg prose:mb-0"/>
-    <p>Hier wird am 3. September 2026 die detaillierte Webseite schlierelacht.ch aufgeschaltet. Nachstehend Kontakte und Downloads für Interessierte.<br>Foto: Daniel Santschi</p>
-
-    <USeparator color="primary"/>
-
-    <h3>Kontakt</h3>
-    <h4>Geschäftsstelle/Sekretariat</h4>
+    <h3>Geschäftsstelle/Sekretariat</h3>
     <UCard variant="outline" class="prose-md">
       <template #default>
         Erika und Charly Mettier, <a href="tel:+41 79 456 79 69">079 456 79 69</a><br>
@@ -30,58 +25,6 @@
       <PersonCard image-src="jan-reiss.jpg" name="Jan Reiss" ressort="Gastronomie" mail="jan.reiss@schlierelacht.ch"/>
       <PersonCard image-src="daniel-gysling.jpg" name="Daniel Gysling" ressort="Sicherheit" mail="daniel.gysling@schlierelacht.ch"/>
       <PersonCard image-src="flavio-impusino.jpg" name="Flavio Impusino" ressort="Sicherheit" mail="flavio.impusino@schlierelacht.ch"/>
-    </div>
-
-    <USeparator color="primary"/>
-
-    <h3>Downloads</h3>
-    <h4>Logos</h4>
-    <div class="flex flex-col md:flex-row gap-2 md:gap-4 not-prose">
-      <UButton to="/downloads/logo/logo-sf2027.eps" target="_blank" icon="i-lucide-file" size="md" color="primary" variant="subtle">Festlogo (EPS)</UButton>
-      <UButton to="/downloads/logo/logo-sf2027.jpg" target="_blank" icon="i-lucide-file" size="md" color="primary" variant="subtle">Festlogo (JPG)</UButton>
-      <UButton to="/downloads/logo/logo-sf2027.pdf" target="_blank" icon="i-lucide-file" size="md" color="primary" variant="subtle">Festlogo (PDF)</UButton>
-      <UButton to="/downloads/logo/logo-sf2027.png" target="_blank" icon="i-lucide-file" size="md" color="primary" variant="subtle">Festlogo (PNG)</UButton>
-    </div>
-    <h4>Sponsoring</h4>
-    <div class="flex flex-col md:flex-row gap-2 md:gap-4 not-prose">
-      <UButton to="/downloads/sponsoring/formular.pdf" target="_blank" icon="i-lucide-file" size="md" color="primary" variant="subtle">Anmeldeformular (PDF)</UButton>
-      <UButton to="/downloads/sponsoring/prospekt.pdf" target="_blank" icon="i-lucide-file" size="md" color="primary" variant="subtle">Sponsorenprospekt (PDF)</UButton>
-      <UButton to="/downloads/sponsoring/sponsorenbrief.pdf" target="_blank" icon="i-lucide-file" size="md" color="primary" variant="subtle">Sponsorenbrief (PDF)</UButton>
-    </div>
-    <h4>Gastronomie</h4>
-    <div class="flex flex-col md:flex-row gap-2 md:gap-4 not-prose">
-      <UButton to="/downloads/gastronomie/absichtserklaerung.pdf" target="_blank" icon="i-lucide-file" size="md" color="primary" variant="subtle">Absichtserklärung (PDF)</UButton>
-    </div>
-    <h4>Programm</h4>
-    <div class="flex flex-col md:flex-row gap-2 md:gap-4 pb-12 not-prose">
-      <UButton to="/downloads/programm/absichtserklaerung.pdf" target="_blank" icon="i-lucide-file" size="md" color="primary" variant="subtle">Absichtserklärung (PDF)</UButton>
-    </div>
-
-    <USeparator color="primary"/>
-
-    <h3>Impressionen</h3>
-
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 not-prose">
-      <div class="flex flex-col justify-between gap-4">
-        <NuxtImg loading="lazy" src="/impressionen/1.jpg" alt="Impression: Schliere lacht 2023" densities="x1 x2" class="h-auto max-w-full rounded-lg"/>
-        <NuxtImg loading="lazy" src="/impressionen/2.jpg" alt="Impression: Schliere lacht 2023" densities="x1 x2" class="h-auto max-w-full rounded-lg"/>
-        <NuxtImg loading="lazy" src="/impressionen/3.jpg" alt="Impression: Schliere lacht 2023" densities="x1 x2" class="h-auto max-w-full rounded-lg"/>
-      </div>
-      <div class="flex flex-col justify-between gap-4">
-        <NuxtImg loading="lazy" src="/impressionen/4.jpg" alt="Impression: Schliere lacht 2023" densities="x1 x2" class="h-auto max-w-full rounded-lg"/>
-        <NuxtImg loading="lazy" src="/impressionen/6.jpg" alt="Impression: Schliere lacht 2023" densities="x1 x2" class="h-auto max-w-full rounded-lg"/>
-        <NuxtImg loading="lazy" src="/impressionen/5.jpg" alt="Impression: Schliere lacht 2023" densities="x1 x2" class="h-auto max-w-full rounded-lg"/>
-      </div>
-      <div class="flex flex-col justify-between gap-4">
-        <NuxtImg loading="lazy" src="/impressionen/8.jpg" alt="Impression: Schliere lacht 2023" densities="x1 x2" class="h-auto max-w-full rounded-lg"/>
-        <NuxtImg loading="lazy" src="/impressionen/9.jpg" alt="Impression: Schliere lacht 2023" densities="x1 x2" class="h-auto max-w-full rounded-lg"/>
-        <NuxtImg loading="lazy" src="/impressionen/7.jpg" alt="Impression: Schliere lacht 2023" densities="x1 x2" class="h-auto max-w-full rounded-lg"/>
-      </div>
-      <div class="flex flex-col justify-between gap-4">
-        <NuxtImg loading="lazy" src="/impressionen/10.jpg" alt="Impression: Schliere lacht 2023" densities="x1 x2" class="h-auto max-w-full rounded-lg"/>
-        <NuxtImg loading="lazy" src="/impressionen/12.jpg" alt="Impression: Schliere lacht 2023" densities="x1 x2" class="h-auto max-w-full rounded-lg"/>
-        <NuxtImg loading="lazy" src="/impressionen/11.jpg" alt="Impression: Schliere lacht 2023" densities="x1 x2" class="h-auto max-w-full rounded-lg"/>
-      </div>
     </div>
   </div>
 </template>
