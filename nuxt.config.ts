@@ -30,5 +30,13 @@ export default defineNuxtConfig({
         public: {
             version: pkg.version
         }
+    },
+    vite: {
+        optimizeDeps: {
+            include: [
+                '@vue/devtools-core',
+                '@vue/devtools-kit',
+            ]
+        }
     }
 })
