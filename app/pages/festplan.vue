@@ -14,10 +14,9 @@
     </div>
 
     <div class="flex-1 min-h-[500px] px-4 md:px-6 pb-4 md:pb-6">
-      <div v-if="pending" class="text-sm text-neutral-500">Lade Standorte…</div>
-      <div v-else-if="error" class="text-sm text-red-600">Fehler beim Laden.</div>
+      <div v-if="error" class="text-sm text-red-600">Fehler beim Laden.</div>
       <MapboxMap
-          v-else
+          v-else-if="!pending"
           map-id="festplan"
           style="width: 100%; height: 100%;"
           :options="{
@@ -138,7 +137,7 @@ useMapbox('festplan', (map) => {
   map.on('click', 'location-circles', (e) => {
     const feature = e.features?.[0]
     if (!feature) return
-    const {name, googleMapsUrl} = feature.properties as {name: string; googleMapsUrl?: string}
+    const {name, googleMapsUrl} = feature.properties as { name: string; googleMapsUrl?: string }
     const html = googleMapsUrl
         ? `<strong>${name}</strong><br><a href="${googleMapsUrl}" target="_blank" rel="noopener noreferrer" style="font-size:12px">Google Maps öffnen</a>`
         : `<strong>${name}</strong>`

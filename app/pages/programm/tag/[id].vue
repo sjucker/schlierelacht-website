@@ -9,27 +9,29 @@
     <div class="font-bold">{{ tagName?.name }}</div>
 
 
-    <div v-if="pending" class="text-sm text-gray-500">Lade Künstler…</div>
-    <div v-else-if="error" class="text-sm text-red-600">Fehler beim Laden der Künstler für diesen Tag.</div>
+    <div v-if="error" class="text-sm text-red-600">Fehler beim Laden der Künstler für diesen Tag.</div>
+    <Transition enter-active-class="transition-opacity duration-300" enter-from-class="opacity-0" enter-to-class="opacity-100">
+      <div v-if="!pending && !error">
+        <div v-if="artists?.length === 0" class="text-sm text-gray-500">Keine Künstler mit diesem Tag gefunden.</div>
 
-    <div v-else-if="artists?.length === 0" class="text-sm text-gray-500">Keine Künstler mit diesem Tag gefunden.</div>
-
-    <div v-else class="grid md:grid-cols-2 gap-4">
-      <UPageList divide>
-        <UPageCard
-            v-for="(artist, index) in artists"
-            :key="index"
-            variant="ghost"
-            :to="`/programm/${artist.externalId}`">
-          <template #body>
-            <UUser
-                :name="artist.name"
-                :description="getArtistDescription(artist)"
-                size="xl"/>
-          </template>
-        </UPageCard>
-      </UPageList>
-    </div>
+        <div v-else class="grid md:grid-cols-2 gap-4">
+          <UPageList divide>
+            <UPageCard
+                v-for="(artist, index) in artists"
+                :key="index"
+                variant="ghost"
+                :to="`/programm/${artist.externalId}`">
+              <template #body>
+                <UUser
+                    :name="artist.name"
+                    :description="getArtistDescription(artist)"
+                    size="xl"/>
+              </template>
+            </UPageCard>
+          </UPageList>
+        </div>
+      </div>
+    </Transition>
   </div>
 </template>
 

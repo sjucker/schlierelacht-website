@@ -5,30 +5,32 @@
       <span class="text-sm text-neutral-400">News</span>
     </div>
 
-    <div v-if="pending" class="text-sm text-neutral-400">Wird geladen…</div>
+    <Transition enter-active-class="transition-opacity duration-300" enter-from-class="opacity-0" enter-to-class="opacity-100">
+      <div v-if="!pending">
+        <div v-if="news">
+          <!-- Image -->
+          <div class="h-64 rounded-xl overflow-hidden bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center mb-6">
+            <NuxtImg
+                v-if="news.cloudflareId"
+                provider="cloudflare"
+                :src="cloudflareUrl(news.cloudflareId)"
+                :alt="news.title"
+                class="w-full h-full object-cover"
+            />
+            <UIcon v-else name="i-lucide-image" class="w-16 h-16 text-neutral-300 dark:text-neutral-600"/>
+          </div>
 
-    <div v-else-if="news">
-      <!-- Image -->
-      <div class="h-64 rounded-xl overflow-hidden bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center mb-6">
-        <NuxtImg
-            v-if="news.cloudflareId"
-            provider="cloudflare"
-            :src="cloudflareUrl(news.cloudflareId)"
-            :alt="news.title"
-            class="w-full h-full object-cover"
-        />
-        <UIcon v-else name="i-lucide-image" class="w-16 h-16 text-neutral-300 dark:text-neutral-600"/>
+          <p class="text-xs text-neutral-400 m-0 mb-2">{{ formatDate(news.date) }}</p>
+          <h2 class="text-2xl font-bold text-fest-blue m-0 mb-4 leading-snug">{{ news.title }}</h2>
+          <USeparator color="primary" class="mb-4"/>
+          <div class="prose dark:prose-invert max-w-none">
+            <MDC :value="news.fullText"/>
+          </div>
+        </div>
+
+        <div v-else class="text-sm text-neutral-500">Artikel nicht gefunden.</div>
       </div>
-
-      <p class="text-xs text-neutral-400 m-0 mb-2">{{ formatDate(news.date) }}</p>
-      <h2 class="text-2xl font-bold text-fest-blue m-0 mb-4 leading-snug">{{ news.title }}</h2>
-      <USeparator color="primary" class="mb-4"/>
-      <div class="prose dark:prose-invert max-w-none">
-        <MDC :value="news.fullText"/>
-      </div>
-    </div>
-
-    <div v-else class="text-sm text-neutral-500">Artikel nicht gefunden.</div>
+    </Transition>
   </div>
 </template>
 

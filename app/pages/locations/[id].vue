@@ -7,45 +7,45 @@
       </div>
     </div>
 
-    <div v-if="pending" class="text-sm text-gray-500">Lade Details…</div>
-    <div v-else-if="error" class="text-sm text-red-600">Fehler beim Laden der Details.</div>
-    <div v-else-if="location" class="flex flex-col gap-6">
-      <div v-if="location.cloudflareId" class="not-prose">
-        <NuxtImg
-            provider="cloudflare"
-            loading="lazy"
-            :src="cloudflareUrl(location.cloudflareId)"
-            class="w-full h-[250px] object-cover rounded-lg"/>
-      </div>
+    <div v-if="error" class="text-sm text-red-600">Fehler beim Laden der Details.</div>
+    <Transition enter-active-class="transition-opacity duration-300" enter-from-class="opacity-0" enter-to-class="opacity-100">
+      <div v-if="!pending && location" class="flex flex-col gap-6">
+        <div v-if="location.cloudflareId" class="not-prose">
+          <NuxtImg
+              provider="cloudflare"
+              loading="lazy"
+              :src="cloudflareUrl(location.cloudflareId)"
+              class="w-full h-[250px] object-cover rounded-lg"/>
+        </div>
 
-      <UCard variant="outline">
-        <template #header>
-          <div class="flex items-center justify-between">
-            <div class="font-bold">{{ location.name }}</div>
-            <div v-if="location.googleMapsUrl" class="not-prose">
-              <UButton :to="location.googleMapsUrl" target="_blank" size="sm" color="primary" variant="ghost" icon="i-lucide-map-pin" label="Google Maps"/>
+        <UCard variant="outline">
+          <template #header>
+            <div class="flex items-center justify-between">
+              <div class="font-bold">{{ location.name }}</div>
+              <div v-if="location.googleMapsUrl" class="not-prose">
+                <UButton :to="location.googleMapsUrl" target="_blank" size="sm" color="primary" variant="ghost" icon="i-lucide-map-pin" label="Google Maps"/>
+              </div>
             </div>
-          </div>
-        </template>
-        <template #default>
-          <MapboxMap
-              map-id="map"
-              style="width: 100%; height: 500px;"
-              :options="{
+          </template>
+          <template #default>
+            <MapboxMap
+                map-id="map"
+                style="width: 100%; height: 500px;"
+                :options="{
                 style: 'mapbox://styles/mapbox/standard',
               center: center,
               zoom: 18
               }">
 
-            <MapboxSource
-                source-id="source"
-                :source="{
+              <MapboxSource
+                  source-id="source"
+                  :source="{
           type: 'geojson',
           data: geojson
         }"
-            />
-            <MapboxLayer
-                :layer="{
+              />
+              <MapboxLayer
+                  :layer="{
           source: 'source',
           id: 'geojson-layer',
           type: 'circle',
@@ -56,13 +56,14 @@
             'circle-stroke-color': '#ffffff'
           }
             }"
-            />
+              />
 
-            <MapboxGeolocateControl position="top-left"/>
-          </MapboxMap>
-        </template>
-      </UCard>
-    </div>
+              <MapboxGeolocateControl position="top-left"/>
+            </MapboxMap>
+          </template>
+        </UCard>
+      </div>
+    </Transition>
   </div>
 </template>
 

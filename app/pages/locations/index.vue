@@ -11,27 +11,29 @@
       <UInput v-model="search" placeholder="Ort suchen…" icon="i-lucide-search" block/>
     </div>
 
-    <div v-if="pending" class="text-sm text-gray-500">Lade Orte…</div>
-    <div v-else-if="error" class="text-sm text-red-600">Fehler beim Laden der Orte.</div>
+    <div v-if="error" class="text-sm text-red-600">Fehler beim Laden der Orte.</div>
+    <Transition enter-active-class="transition-opacity duration-300" enter-from-class="opacity-0" enter-to-class="opacity-100">
+      <div v-if="!pending && !error">
+        <div v-if="locations.length === 0" class="text-sm text-gray-500">Keine Orte gefunden.</div>
 
-    <div v-else-if="locations.length === 0" class="text-sm text-gray-500">Keine Orte gefunden.</div>
-
-    <div v-else class="grid md:grid-cols-2 gap-4">
-      <UPageList divide>
-        <UPageCard
-            v-for="(location, index) in locations"
-            :key="index"
-            variant="ghost"
-            :to="`/locations/${location.externalId}`">
-          <template #body>
-            <UUser
-                :name="location.name"
-                :description="location.type"
-                size="xl"/>
-          </template>
-        </UPageCard>
-      </UPageList>
-    </div>
+        <div v-else class="grid md:grid-cols-2 gap-4">
+          <UPageList divide>
+            <UPageCard
+                v-for="(location, index) in locations"
+                :key="index"
+                variant="ghost"
+                :to="`/locations/${location.externalId}`">
+              <template #body>
+                <UUser
+                    :name="location.name"
+                    :description="location.type"
+                    size="xl"/>
+              </template>
+            </UPageCard>
+          </UPageList>
+        </div>
+      </div>
+    </Transition>
   </div>
 </template>
 

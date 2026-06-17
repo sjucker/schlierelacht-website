@@ -21,32 +21,35 @@
       />
     </div>
 
-    <div v-if="pending" class="text-sm text-neutral-500">Lade Gastro…</div>
-    <div v-else-if="error" class="text-sm text-red-600">Fehler beim Laden.</div>
-    <div v-else-if="filtered.length === 0" class="text-sm text-neutral-500">Keine Einträge gefunden.</div>
+    <div v-if="error" class="text-sm text-red-600">Fehler beim Laden.</div>
+    <Transition enter-active-class="transition-opacity duration-300" enter-from-class="opacity-0" enter-to-class="opacity-100">
+      <div v-if="!pending && !error">
+        <div v-if="filtered.length === 0" class="text-sm text-neutral-500">Keine Einträge gefunden.</div>
 
-    <div v-else>
-      <UPageList divide>
-        <UPageCard
-            v-for="item in filtered"
-            :key="item.externalId"
-            variant="ghost"
-            :to="`/gastro/${item.externalId}`"
-        >
-          <template #body>
-            <div class="flex items-center gap-2 mb-1">
-              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full text-white text-xs font-bold shrink-0" style="background-color: #7ca6d8">{{ item.externalId }}</span>
-              <span class="font-semibold text-fest-blue">{{ item.name }}</span>
-            </div>
-            <div class="flex flex-wrap gap-1 not-prose">
-              <UBadge v-for="tag in item.tags" :key="tag.id" size="sm" color="primary" variant="outline">
-                {{ tag.name }}
-              </UBadge>
-            </div>
-          </template>
-        </UPageCard>
-      </UPageList>
-    </div>
+        <div v-else>
+          <UPageList divide>
+            <UPageCard
+                v-for="item in filtered"
+                :key="item.externalId"
+                variant="ghost"
+                :to="`/gastro/${item.externalId}`"
+            >
+              <template #body>
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="inline-flex items-center justify-center w-8 h-8 rounded-full text-white text-xs font-bold shrink-0" style="background-color: #7ca6d8">{{ item.externalId }}</span>
+                  <span class="font-semibold text-fest-blue">{{ item.name }}</span>
+                </div>
+                <div class="flex flex-wrap gap-1 not-prose">
+                  <UBadge v-for="tag in item.tags" :key="tag.id" size="sm" color="primary" variant="outline">
+                    {{ tag.name }}
+                  </UBadge>
+                </div>
+              </template>
+            </UPageCard>
+          </UPageList>
+        </div>
+      </div>
+    </Transition>
   </div>
 </template>
 
