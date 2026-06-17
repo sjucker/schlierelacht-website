@@ -4,10 +4,17 @@
     <USeparator color="primary" class="mb-6"/>
 
     <!-- Intro text -->
-    <div class="mb-6 space-y-3 text-neutral-700 dark:text-neutral-300">
-      <p>Das Schlierefäscht bietet den perfekten Rahmen für ein Wiedersehen mit alten Schulkameraden und Freunden. Beim Jahrgangstreffen kommen alle Jahrgänge zusammen – für einen unvergesslichen
-        Abend voller Erinnerungen.</p>
-      <p>Melde dich an und sei dabei!</p>
+    <div class="mb-6 flex flex-col sm:flex-row sm:items-center gap-6">
+      <NuxtImg
+          src="/logo-widerluege.png"
+          alt="widerluege"
+          class="w-40 sm:w-44 mx-auto sm:mx-0 shrink-0"
+      />
+      <div class="space-y-3 text-neutral-700 dark:text-neutral-300">
+        <p>Das Schlierefäscht bietet den perfekten Rahmen für ein Wiedersehen mit alten Schulkameraden und Freunden. Beim Jahrgangstreffen kommen alle Jahrgänge zusammen – für einen unvergesslichen
+          Abend voller Erinnerungen.</p>
+        <p>Melde dich an und sei dabei!</p>
+      </div>
     </div>
 
     <!-- Link to overview -->
