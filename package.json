@@ -19,7 +19,7 @@
     "@nuxt/eslint": "1.17.0",
     "@nuxt/image": "2.1.0",
     "@nuxt/ui": "4.11.0",
-    "@nuxtjs/mdc": "0.20.1",
+    "@nuxtjs/mdc": "0.22.0",
     "eslint": "10.9.0",
     "nuxt": "4.5.2",
     "nuxt-mapbox": "1.6.4",
@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "0.5.20",
-    "mapbox-gl": "3.19.0",
+    "mapbox-gl": "3.25.0",
     "release-it": "21.0.2"
   }
 }
