@@ -29,7 +29,9 @@
           <nav v-if="mobileNavOpen" class="px-4 pb-4 not-prose border-t border-neutral-100 dark:border-neutral-800">
             <ul class="list-none p-0 m-0 flex flex-col gap-1 pt-2">
               <li v-for="item in navItems" :key="item.to">
-                <UButton :to="item.to" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">{{ item.label }}</UButton>
+                <UButton :to="item.to" size="xl" :variant="isActive(item.to) ? 'subtle' : 'ghost'" :color="isActive(item.to) ? 'primary' : 'neutral'" class="w-full justify-start font-semibold"
+                         :class="{'text-fest-blue': !isActive(item.to)}">{{ item.label }}
+                </UButton>
               </li>
             </ul>
           </nav>
@@ -49,7 +51,9 @@
           <nav class="flex-1 px-3 py-2 not-prose">
             <ul class="list-none p-0 m-0 flex flex-col gap-1">
               <li v-for="item in navItems" :key="item.to">
-                <UButton :to="item.to" size="xl" variant="ghost" color="neutral" class="w-full justify-start text-fest-blue font-semibold">{{ item.label }}</UButton>
+                <UButton :to="item.to" size="xl" :variant="isActive(item.to) ? 'subtle' : 'ghost'" :color="isActive(item.to) ? 'primary' : 'neutral'" class="w-full justify-start font-semibold"
+                         :class="{'text-fest-blue': !isActive(item.to)}">{{ item.label }}
+                </UButton>
               </li>
             </ul>
           </nav>
@@ -166,6 +170,7 @@ const navItems = [
 const route = useRoute()
 const isHome = computed(() => route.path === '/')
 const isSponsoren = computed(() => route.path === '/sponsoren')
+const isActive = (path: string) => route.path === path || route.path.startsWith(path + '/')
 const mobileNavOpen = ref(false)
 
 watch(() => route.path, () => {
