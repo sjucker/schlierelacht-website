@@ -160,6 +160,7 @@ const navItems = [
   {label: 'Downloads', to: '/downloads'},
   {label: 'Galerie', to: '/galerien'},
   {label: 'Über uns', to: '/info'},
+  {label: 'Impressum', to: '/impressum'},
 ]
 
 const route = useRoute()
