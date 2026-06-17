@@ -13,7 +13,7 @@
 
     <Transition enter-active-class="transition-opacity duration-300" enter-from-class="opacity-0" enter-to-class="opacity-100">
       <div v-if="!pending">
-        <div v-for="typeEntry in sponsorTypes" :key="typeEntry.type" class="mb-20">
+        <div v-for="typeEntry in sortedSponsorTypes" :key="typeEntry.type" class="mb-20">
           <template v-if="sponsorsByType[typeEntry.type]?.length">
             <h3 class="text-lg font-semibold uppercase tracking-widest text-fest-blue mb-4">{{ typeEntry.description }}</h3>
             <div class="flex flex-wrap items-center gap-x-12 gap-y-4">
@@ -47,8 +47,20 @@
 </template>
 
 <script setup lang="ts">
-import type {SponsoringDTO, SponsoringType, SponsoringTypeDTO} from '~~/shared/types/rest';
+import type {SponsoringDTO, SponsoringTypeDTO} from '~~/shared/types/rest';
+import {SponsoringType} from '~~/shared/types/rest';
 import cloudflareUrl from "~/utils/cloudflare-url";
+
+const TYPE_ORDER: SponsoringType[] = [
+  SponsoringType.ORGANISATION,
+  SponsoringType.HAUPTSPONSOREN,
+  SponsoringType.PARTNER,
+  SponsoringType.GASTREGION,
+  SponsoringType.GOLD,
+  SponsoringType.SILBER,
+  SponsoringType.BRONZE,
+  SponsoringType.GOENNER,
+]
 
 const config = useRuntimeConfig()
 const {data: sponsors, pending} = useFetch<SponsoringDTO[]>(
@@ -58,6 +70,10 @@ const {data: sponsors, pending} = useFetch<SponsoringDTO[]>(
 const {data: sponsorTypes} = useFetch<SponsoringTypeDTO[]>(
     `${config.public.apiBaseUrl}/api/sponsoring/type`,
     {server: false}
+)
+
+const sortedSponsorTypes = computed(() =>
+    [...(sponsorTypes.value ?? [])].sort((a, b) => TYPE_ORDER.indexOf(a.type) - TYPE_ORDER.indexOf(b.type))
 )
 
 const sponsorsByType: ComputedRef<Record<SponsoringType, SponsoringDTO[]>> = computed(() => {
