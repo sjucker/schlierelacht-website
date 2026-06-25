@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 export interface AttractionDTO {
     externalId: string;
     name: string;
@@ -63,6 +61,23 @@ export interface NewsDTO {
     cloudflareId?: string;
 }
 
+export interface OkDTO {
+    members: OkMemberDTO[];
+    teamMembers: OkTeamMemberDTO[];
+}
+
+export interface OkMemberDTO {
+    name: string;
+    role: string;
+    email?: string;
+    cloudflareId?: string;
+}
+
+export interface OkTeamMemberDTO {
+    name: string;
+    team: OkTeam;
+}
+
 export interface ProgrammEntryDTO {
     location: LocationDTO;
     fromDate: DateAsString;
@@ -124,6 +139,15 @@ export enum MeetupJahrgang {
     BORN_1989_1993 = "BORN_1989_1993",
     BORN_1994_1998 = "BORN_1994_1998",
     AFTER_1998 = "AFTER_1998",
+}
+
+export enum OkTeam {
+    PRAESIDIALES_STADT_KOMMUNIKATION_FINANZEN = "PRAESIDIALES_STADT_KOMMUNIKATION_FINANZEN",
+    BAU_INFRASTRUKTUR = "BAU_INFRASTRUKTUR",
+    GASTRONOMIE = "GASTRONOMIE",
+    PROGRAMM_AKTIVITAETEN = "PROGRAMM_AKTIVITAETEN",
+    SICHERHEIT = "SICHERHEIT",
+    SPONSORING = "SPONSORING",
 }
 
 export enum SponsoringType {

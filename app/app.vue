@@ -29,8 +29,9 @@
           <nav v-if="mobileNavOpen" class="px-4 pb-4 not-prose border-t border-neutral-100 dark:border-neutral-800">
             <ul class="list-none p-0 m-0 flex flex-col gap-1 pt-2">
               <li v-for="item in navItems" :key="item.to">
-                <UButton :to="item.to" size="xl" :variant="isActive(item.to) ? 'subtle' : 'ghost'" :color="isActive(item.to) ? 'primary' : 'neutral'" class="w-full justify-start font-semibold"
-                         :class="{'text-fest-blue': !isActive(item.to)}">{{ item.label }}
+                <UButton
+                    :to="item.to" size="xl" :variant="isActive(item.to) ? 'subtle' : 'ghost'" :color="isActive(item.to) ? 'primary' : 'neutral'" class="w-full justify-start font-semibold"
+                    :class="{'text-fest-blue': !isActive(item.to)}">{{ item.label }}
                 </UButton>
               </li>
             </ul>
@@ -51,8 +52,9 @@
           <nav class="flex-1 px-3 py-2 not-prose">
             <ul class="list-none p-0 m-0 flex flex-col gap-1">
               <li v-for="item in navItems" :key="item.to">
-                <UButton :to="item.to" size="xl" :variant="isActive(item.to) ? 'subtle' : 'ghost'" :color="isActive(item.to) ? 'primary' : 'neutral'" class="w-full justify-start font-semibold"
-                         :class="{'text-fest-blue': !isActive(item.to)}">{{ item.label }}
+                <UButton
+                    :to="item.to" size="xl" :variant="isActive(item.to) ? 'subtle' : 'ghost'" :color="isActive(item.to) ? 'primary' : 'neutral'" class="w-full justify-start font-semibold"
+                    :class="{'text-fest-blue': !isActive(item.to)}">{{ item.label }}
                 </UButton>
               </li>
             </ul>

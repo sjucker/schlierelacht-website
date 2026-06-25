@@ -12,25 +12,70 @@
         , <a href="mailto:erika.mettier@schlierelacht.ch">erika.mettier@schlierelacht.ch</a>
       </template>
     </UCard>
+
     <h4>Organisations-Komitee</h4>
-    <div class="grid lg:grid-cols-2 gap-2 pb-12 not-prose">
-      <PersonCard image-src="manuela-stiefel.jpg" name="Manuela Stiefel" ressort="Co-Präsidentin/Kommunikation" mail="manuela.stiefel@schlierelacht.ch"/>
-      <PersonCard image-src="rolf-wild.jpg" name="Rolf Wild" ressort="Co-Präsident/Kommunikation" mail="rolf.wild@schlierelacht.ch"/>
-      <PersonCard image-src="markus-baertschiger.jpg" name="Markus Bärtschiger" ressort="Stadt Schlieren/Stadtpräsident" mail="markus.baertschiger@schlierelacht.ch"/>
-      <PersonCard image-src="albert-schweizer.jpg" name="Albert Schweizer" ressort="Sponsoring" mail="albert.schweizer@schlierelacht.ch"/>
-      <PersonCard image-src="sabrina-berri.jpg" name="Sabrina Berri" ressort="Finanzen" mail="sabrina.berri@schlierelacht.ch"/>
-      <PersonCard image-src="marco-lucchinetti.jpg" name="Marco Lucchinetti" ressort="Projekte" mail="marco.lucchinetti@schlierelacht.ch"/>
-      <PersonCard image-src="fabian-flueckiger.jpg" name="Fabian Flückiger" ressort="Bau" mail="fabian.flueckiger@schlierelacht.ch"/>
-      <PersonCard image-src="barbara-gysling.jpg" name="Barbara Gysling" ressort="Aktivitäten/Programm" mail="event@schlierelacht.ch"/>
-      <PersonCard image-src="jan-reiss.jpg" name="Jan Reiss" ressort="Gastronomie" mail="jan.reiss@schlierelacht.ch"/>
-      <PersonCard image-src="daniel-gysling.jpg" name="Daniel Gysling" ressort="Sicherheit" mail="daniel.gysling@schlierelacht.ch"/>
-      <PersonCard image-src="flavio-impusino.jpg" name="Flavio Impusino" ressort="Sicherheit" mail="flavio.impusino@schlierelacht.ch"/>
+    <div v-if="ok" class="not-prose">
+      <div class="grid lg:grid-cols-2 gap-2 pb-8">
+        <PersonCard
+            v-for="member in ok.members"
+            :key="member.name"
+            :cloudflare-id="member.cloudflareId"
+            :name="member.name"
+            :ressort="member.role"
+            :mail="member.email"
+        />
+      </div>
+
+      <div v-for="team in teamsWithMembers" :key="team.name" class="mb-6">
+        <h5 class="text-base font-semibold text-fest-blue mt-4 mb-2">{{ team.name }}</h5>
+        <ul class="list-none pl-0 space-y-0.5">
+          <li v-for="member in team.members" :key="member.name" class="text-sm text-neutral-700">
+            {{ member.name }}
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import type {OkDTO} from '~~/shared/types/rest'
+import {OkTeam} from '~~/shared/types/rest'
 import PersonCard from '~/components/PersonCard.vue'
+
+const TEAM_LABELS: Record<OkTeam, string> = {
+  [OkTeam.PRAESIDIALES_STADT_KOMMUNIKATION_FINANZEN]: 'Präsidiales/Stadt/Kommunikation/Finanzen',
+  [OkTeam.BAU_INFRASTRUKTUR]: 'Bau/Infrastruktur',
+  [OkTeam.GASTRONOMIE]: 'Gastronomie',
+  [OkTeam.PROGRAMM_AKTIVITAETEN]: 'Programm/Aktivitäten',
+  [OkTeam.SICHERHEIT]: 'Sicherheit',
+  [OkTeam.SPONSORING]: 'Sponsoring',
+}
+
+const TEAM_ORDER: OkTeam[] = [
+  OkTeam.PRAESIDIALES_STADT_KOMMUNIKATION_FINANZEN,
+  OkTeam.BAU_INFRASTRUKTUR,
+  OkTeam.GASTRONOMIE,
+  OkTeam.PROGRAMM_AKTIVITAETEN,
+  OkTeam.SICHERHEIT,
+  OkTeam.SPONSORING,
+]
+
+const config = useRuntimeConfig()
+const {data: ok} = useFetch<OkDTO>(`${config.public.apiBaseUrl}/api/ok`, {server: false})
+
+const teamsWithMembers = computed(() => {
+  if (!ok.value) return []
+  const membersByTeam = ok.value.teamMembers.reduce((acc, m) => {
+    if (!acc[m.team]) acc[m.team] = []
+    acc[m.team].push(m)
+    return acc
+  }, {} as Record<OkTeam, typeof ok.value.teamMembers>)
+
+  return TEAM_ORDER
+      .filter(team => membersByTeam[team]?.length)
+      .map(team => ({name: TEAM_LABELS[team], members: membersByTeam[team]}))
+})
 
 useSeoMeta({
   title: 'Info · Schliere lacht',

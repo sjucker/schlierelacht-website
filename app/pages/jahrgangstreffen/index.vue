@@ -34,7 +34,7 @@
           description="Vielen Dank für deine Anmeldung. Wir freuen uns auf dich!"
           class="mb-6"
       />
-      <UButton variant="subtle" color="primary" icon="i-lucide-plus" @click="resetForm" class="cursor-pointer">
+      <UButton variant="subtle" color="primary" icon="i-lucide-plus" class="cursor-pointer" @click="resetForm">
         Weitere Anmeldung vornehmen
       </UButton>
     </template>
