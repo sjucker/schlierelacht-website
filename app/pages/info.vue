@@ -30,8 +30,12 @@
         <h5 class="text-base font-semibold text-fest-blue mt-4 mb-2">{{ team.name }}</h5>
         <ul class="list-none pl-0 space-y-0.5">
           <li v-for="member in team.members" :key="member.name" class="text-sm text-neutral-700">
-            {{ member.name }}
-            <a v-if="member.email" :href="'mailto:' + member.email" class="text-fest-blue">{{ member.email }}</a>
+            <span>{{ member.name }}</span>
+            <a
+                v-if="member.email"
+                :href="'mailto:' + member.email"
+                class="block text-xs text-neutral-500 hover:text-fest-blue"
+            >{{ member.email }}</a>
           </li>
         </ul>
       </div>
