@@ -31,11 +31,10 @@
         <ul class="list-none pl-0 space-y-0.5">
           <li v-for="member in team.members" :key="member.name" class="text-sm text-neutral-700">
             <span>{{ member.name }}</span>
-            <a
-                v-if="member.email"
+            <template v-if="member.email">, <a
                 :href="'mailto:' + member.email"
-                class="block text-xs text-neutral-500 hover:text-fest-blue"
-            >{{ member.email }}</a>
+                class="text-neutral-500 hover:text-fest-blue"
+            >{{ member.email }}</a></template>
           </li>
         </ul>
       </div>
