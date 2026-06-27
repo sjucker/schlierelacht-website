@@ -39,7 +39,9 @@ export default defineNuxtConfig({
     runtimeConfig: {
         public: {
             version: pkg.version,
-            apiBaseUrl: 'https://schlierelacht-api.ch'
+            // API_BASE_URL from .env takes priority (e.g. http://localhost:8080 for local dev);
+            // otherwise fall back to the deployed production API
+            apiBaseUrl: process.env.API_BASE_URL || 'https://schlierelacht-api.ch'
         }
     },
     vite: {
