@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 export interface AttractionDTO {
     externalId: string;
     name: string;
@@ -76,6 +78,7 @@ export interface OkMemberDTO {
 export interface OkTeamMemberDTO {
     name: string;
     team: OkTeam;
+    email?: string;
 }
 
 export interface ProgrammEntryDTO {
