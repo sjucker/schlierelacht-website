@@ -2,8 +2,8 @@
   <div class="p-4 md:p-6">
     <div class="flex items-center justify-between mb-4">
       <div class="flex items-center align-middle gap-2">
-        <UButton to="/locations" icon="i-lucide-chevron-left" variant="ghost" color="neutral"/>
-        <div class="text-sm">Alle Orte</div>
+        <UButton icon="i-lucide-chevron-left" variant="ghost" color="neutral" @click="goBack"/>
+        <div class="text-sm">zurück</div>
       </div>
     </div>
 
@@ -73,7 +73,15 @@ import type {LocationDTO} from "~/../shared/types/rest";
 import cloudflareUrl from "~/utils/cloudflare-url";
 
 const route = useRoute()
+const router = useRouter()
 const externalId = route.params.id as string
+
+// Go back to wherever the user came from (e.g. an attraction detail page or the
+// locations list); fall back to the list when there is no in-app history.
+const goBack = () => {
+  if (window.history.length > 1) router.back()
+  else router.push('/locations')
+}
 
 const config = useRuntimeConfig()
 

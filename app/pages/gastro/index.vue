@@ -3,8 +3,8 @@
     <h2 class="text-2xl font-bold text-fest-blue mb-1">Gastro</h2>
     <USeparator color="primary" class="mb-4"/>
 
-    <div class="mb-4 flex flex-col sm:flex-row gap-4 items-end">
-      <UInput v-model="search" placeholder="Suchen…" icon="i-lucide-search" class="flex-1"/>
+    <div class="mb-4 flex flex-col sm:flex-row gap-4 items-end lg:max-w-3xl">
+      <UInput v-model="search" placeholder="Suchen…" icon="i-lucide-search" class="w-full sm:flex-1"/>
       <USelect
           v-model="selectedTag"
           value-key="id"
@@ -26,7 +26,7 @@
     <Transition
 enter-active-class="transition-opacity duration-300" enter-from-class="opacity-0"
                 enter-to-class="opacity-100">
-      <div v-if="status === 'success'">
+      <div v-if="status === 'success'" class="lg:max-w-3xl">
         <div v-if="filtered.length === 0" class="text-sm text-neutral-500">Keine Einträge gefunden.</div>
 
         <div v-else>
