@@ -6,8 +6,10 @@
     </div>
 
     <div v-if="error" class="text-sm text-red-600">Fehler beim Laden der Details.</div>
-    <Transition enter-active-class="transition-opacity duration-300" enter-from-class="opacity-0"
-                enter-to-class="opacity-100">
+    <LoadingSpinner v-else-if="status === 'pending' || status === 'idle'"/>
+    <Transition
+        enter-active-class="transition-opacity duration-300" enter-from-class="opacity-0"
+        enter-to-class="opacity-100">
       <div v-if="status !== 'pending' && status !== 'idle' && item" class="flex flex-col gap-6">
         <div v-if="mainImage" class="not-prose">
           <NuxtImg
@@ -24,14 +26,18 @@
             <div class="flex items-center justify-between">
               <div class="font-bold text-fest-blue">{{ item.name }}</div>
               <div class="flex gap-2 not-prose">
-                <UButton v-if="item.website" :to="item.website" target="_blank" size="sm" color="primary"
-                         variant="ghost" icon="i-lucide-globe" aria-label="Website"/>
-                <UButton v-if="item.instagram" :to="item.instagram" target="_blank" size="sm" color="primary"
-                         variant="ghost" icon="i-simple-icons-instagram" aria-label="Instagram"/>
-                <UButton v-if="item.facebook" :to="item.facebook" target="_blank" size="sm" color="primary"
-                         variant="ghost" icon="i-simple-icons-facebook" aria-label="Facebook"/>
-                <UButton v-if="item.youtube" :to="item.youtube" target="_blank" size="sm" color="primary"
-                         variant="ghost" icon="i-simple-icons-youtube" aria-label="YouTube"/>
+                <UButton
+                    v-if="item.website" :to="item.website" target="_blank" size="sm" color="primary"
+                    variant="ghost" icon="i-lucide-globe" aria-label="Website"/>
+                <UButton
+                    v-if="item.instagram" :to="item.instagram" target="_blank" size="sm" color="primary"
+                    variant="ghost" icon="i-simple-icons-instagram" aria-label="Instagram"/>
+                <UButton
+                    v-if="item.facebook" :to="item.facebook" target="_blank" size="sm" color="primary"
+                    variant="ghost" icon="i-simple-icons-facebook" aria-label="Facebook"/>
+                <UButton
+                    v-if="item.youtube" :to="item.youtube" target="_blank" size="sm" color="primary"
+                    variant="ghost" icon="i-simple-icons-youtube" aria-label="YouTube"/>
               </div>
             </div>
           </template>

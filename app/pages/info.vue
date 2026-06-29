@@ -14,7 +14,8 @@
     </UCard>
 
     <h4>Organisations-Komitee</h4>
-    <div v-if="ok" class="not-prose">
+    <LoadingSpinner v-if="status === 'pending' || status === 'idle'"/>
+    <div v-else-if="ok" class="not-prose">
       <div class="grid lg:grid-cols-2 gap-2 pb-8">
         <PersonCard
             v-for="member in ok.members"
@@ -66,7 +67,7 @@ const TEAM_ORDER: OkTeam[] = [
 ]
 
 const config = useRuntimeConfig()
-const {data: ok} = useFetch<OkDTO>(`${config.public.apiBaseUrl}/api/ok`, {server: false})
+const {data: ok, status} = useFetch<OkDTO>(`${config.public.apiBaseUrl}/api/ok`, {server: false})
 
 const teamsWithMembers = computed(() => {
   if (!ok.value) return []

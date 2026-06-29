@@ -12,8 +12,9 @@
     </div>
 
     <div v-if="error" class="text-sm text-red-600">Fehler beim Laden der Orte.</div>
+    <LoadingSpinner v-else-if="status === 'pending' || status === 'idle'"/>
     <Transition enter-active-class="transition-opacity duration-300" enter-from-class="opacity-0" enter-to-class="opacity-100">
-      <div v-if="!pending && !error">
+      <div v-if="status === 'success'">
         <div v-if="locations.length === 0" class="text-sm text-gray-500">Keine Orte gefunden.</div>
 
         <div v-else class="grid md:grid-cols-2 gap-4">
@@ -44,7 +45,7 @@ const search = ref('')
 
 const config = useRuntimeConfig()
 
-const {data, pending, error} = useFetch<LocationDTO[]>(
+const {data, status, error} = useFetch<LocationDTO[]>(
     `${config.public.apiBaseUrl}/api/location`,
     {server: false}
 )

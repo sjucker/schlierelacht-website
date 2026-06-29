@@ -11,8 +11,10 @@
       </p>
     </div>
 
+    <LoadingSpinner v-if="loading"/>
+
     <Transition enter-active-class="transition-opacity duration-300" enter-from-class="opacity-0" enter-to-class="opacity-100">
-      <div v-if="!pending">
+      <div v-if="!loading">
         <div v-for="typeEntry in sortedSponsorTypes" :key="typeEntry.type" class="mb-20">
           <template v-if="sponsorsByType[typeEntry.type]?.length">
             <h3 class="text-lg font-semibold uppercase tracking-widest text-fest-blue mb-4">{{ typeEntry.description }}</h3>
@@ -63,13 +65,18 @@ const TYPE_ORDER: SponsoringType[] = [
 ]
 
 const config = useRuntimeConfig()
-const {data: sponsors, pending} = useFetch<SponsoringDTO[]>(
+const {data: sponsors, status: sponsorsStatus} = useFetch<SponsoringDTO[]>(
     `${config.public.apiBaseUrl}/api/sponsoring`,
     {server: false}
 )
-const {data: sponsorTypes} = useFetch<SponsoringTypeDTO[]>(
+const {data: sponsorTypes, status: typesStatus} = useFetch<SponsoringTypeDTO[]>(
     `${config.public.apiBaseUrl}/api/sponsoring/type`,
     {server: false}
+)
+
+// Both endpoints feed the grouped layout, so wait for both before rendering.
+const loading = computed(() =>
+    [sponsorsStatus.value, typesStatus.value].some(s => s === 'pending' || s === 'idle')
 )
 
 const sortedSponsorTypes = computed(() =>

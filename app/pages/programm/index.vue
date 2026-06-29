@@ -29,12 +29,14 @@
     </div>
 
     <div v-if="error" class="text-sm text-red-600">Fehler beim Laden der Daten.</div>
-    <div v-else-if="!pending && rows.length === 0" class="text-sm text-neutral-500">Keine Einträge gefunden.</div>
+    <div v-else-if="status === 'success' && rows.length === 0" class="text-sm text-neutral-500">Keine Einträge gefunden.</div>
+
+    <LoadingSpinner v-if="status === 'pending' || status === 'idle'"/>
 
     <Transition enter-active-class="transition-opacity duration-300" enter-from-class="opacity-0" enter-to-class="opacity-100">
-      <div v-if="!pending && rows.length > 0">
-        <!-- Header row -->
-        <div :class="rowGrid" class="px-2 py-2 text-xs font-semibold uppercase tracking-wide text-neutral-500 border-b border-neutral-300">
+      <div v-if="!pending && rows.length > 0" class="lg:max-w-3xl">
+        <!-- Header row (desktop only) -->
+        <div :class="rowGrid" class="hidden md:grid px-2 py-2 text-xs font-semibold uppercase tracking-wide text-neutral-500 border-b border-neutral-300">
           <div class="truncate">Titel</div>
           <div>Tag</div>
           <div>Datum</div>
@@ -47,14 +49,29 @@
             v-for="row in rows"
             :key="row.key"
             :to="`/programm/${row.attraction.externalId}`"
-            :class="rowGrid"
-            class="px-2 py-2 text-sm items-center border-b border-neutral-100 hover:bg-neutral-50 transition-colors"
+            class="block px-2 py-2 text-sm border-b border-neutral-100 hover:bg-neutral-50 transition-colors"
         >
-          <div class="font-semibold text-fest-blue truncate">{{ row.attraction.name }}</div>
-          <div class="text-neutral-600 whitespace-nowrap">{{ weekday(row.entry.fromDate) }}</div>
-          <div class="text-neutral-600 whitespace-nowrap">{{ dateOnly(row.entry.fromDate) }}</div>
-          <div class="text-neutral-600 whitespace-nowrap">{{ row.entry.fromTime ? formatTime(row.entry.fromTime) : '' }}</div>
-          <div class="text-neutral-600 truncate">{{ row.entry.location.name }}</div>
+          <!-- Mobile layout: Tag · Datum · Zeit, then Titel (bold) · Bühne -->
+          <div class="md:hidden">
+            <div class="flex flex-wrap gap-x-2 text-neutral-600 whitespace-nowrap">
+              <span>{{ weekday(row.entry.fromDate) }}</span>
+              <span>{{ dateOnly(row.entry.fromDate) }}</span>
+              <span v-if="row.entry.fromTime">{{ formatTime(row.entry.fromTime) }}</span>
+            </div>
+            <div class="flex flex-wrap items-baseline gap-x-2">
+              <span class="font-semibold text-fest-blue">{{ row.attraction.name }}</span>
+              <span class="text-neutral-600">{{ row.entry.location.name }}</span>
+            </div>
+          </div>
+
+          <!-- Desktop layout: aligned grid columns -->
+          <div :class="rowGrid" class="hidden md:grid items-center">
+            <div class="font-semibold text-fest-blue truncate">{{ row.attraction.name }}</div>
+            <div class="text-neutral-600 whitespace-nowrap">{{ weekday(row.entry.fromDate) }}</div>
+            <div class="text-neutral-600 whitespace-nowrap">{{ dateOnly(row.entry.fromDate) }}</div>
+            <div class="text-neutral-600 whitespace-nowrap">{{ row.entry.fromTime ? formatTime(row.entry.fromTime) : '' }}</div>
+            <div class="text-neutral-600 truncate">{{ row.entry.location.name }}</div>
+          </div>
         </NuxtLink>
       </div>
     </Transition>
@@ -67,12 +84,13 @@ import formatDate from '~/utils/format-date'
 import formatTime from '~/utils/format-time'
 
 // Shared column template so the header and every row align (Titel · Tag · Datum · Zeit · Bühne).
-const rowGrid = 'grid grid-cols-[2fr_1fr_1fr_auto_1.5fr] gap-x-3 sm:gap-x-4'
+// Every column is left-aligned (grid items default to start), including Zeit.
+const rowGrid = 'grid grid-cols-[2fr_1fr_1fr_1fr_1.5fr] gap-x-3 sm:gap-x-4'
 
 const config = useRuntimeConfig()
 // The backend pre-joins and chronologically sorts every programm point (date, then
 // start time, then attraction name), so we only filter here — no client-side assembly.
-const {data, pending, error} = useFetch<ProgrammPointDTO[]>(
+const {data, pending, status, error} = useFetch<ProgrammPointDTO[]>(
     `${config.public.apiBaseUrl}/api/programm`,
     {server: false}
 )

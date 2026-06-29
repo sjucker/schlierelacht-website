@@ -36,7 +36,8 @@
             </li>
           </ul>
         </template>
-        <p v-else-if="!pending" class="text-sm text-neutral-400">
+        <LoadingSpinner v-else-if="status === 'pending' || status === 'idle'"/>
+        <p v-else-if="status === 'success'" class="text-sm text-neutral-400">
           Noch keine Anmeldungen für diese Gruppe.
         </p>
       </div>
@@ -48,7 +49,7 @@
 import type {MeetupEntryDTO, MeetupJahrgang} from '~~/shared/types/rest'
 
 const config = useRuntimeConfig()
-const {data, pending, error} = useFetch<MeetupEntryDTO[]>(
+const {data, pending, status, error} = useFetch<MeetupEntryDTO[]>(
     `${config.public.apiBaseUrl}/api/meetup`,
     {server: false}
 )

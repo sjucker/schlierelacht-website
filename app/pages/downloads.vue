@@ -3,8 +3,10 @@
     <h2 class="text-2xl font-bold text-fest-blue mb-1">Downloads</h2>
     <USeparator color="primary" class="mb-6"/>
 
+    <LoadingSpinner v-if="status === 'pending' || status === 'idle'"/>
+
     <Transition enter-active-class="transition-opacity duration-500" enter-from-class="opacity-0" enter-to-class="opacity-100">
-      <div v-if="!pending && data?.length">
+      <div v-if="status === 'success' && data?.length">
         <div v-for="category in orderedCategories" :key="category" class="prose md:prose-lg mb-8">
           <template v-if="byCategory[category]?.length">
             <h3>{{ categoryLabel(category) }}</h3>
@@ -32,7 +34,7 @@ import type {DownloadDTO} from '~~/shared/types/rest';
 import {DownloadCategory} from '~~/shared/types/rest';
 
 const config = useRuntimeConfig()
-const {data, pending} = useFetch<DownloadDTO[]>(
+const {data, status} = useFetch<DownloadDTO[]>(
     `${config.public.apiBaseUrl}/api/downloads`,
     {server: false}
 )

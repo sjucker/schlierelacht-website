@@ -8,6 +8,7 @@
     </div>
 
     <div v-if="error" class="text-sm text-red-600">Fehler beim Laden der Details.</div>
+    <LoadingSpinner v-else-if="status === 'pending' || status === 'idle'"/>
     <Transition enter-active-class="transition-opacity duration-300" enter-from-class="opacity-0" enter-to-class="opacity-100">
       <div v-if="status !== 'pending' && status !== 'idle' && location" class="flex flex-col gap-6">
         <div v-if="location.cloudflareId" class="not-prose">

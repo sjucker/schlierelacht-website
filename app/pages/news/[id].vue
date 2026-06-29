@@ -5,8 +5,11 @@
       <span class="text-sm text-neutral-400">News</span>
     </div>
 
-    <Transition enter-active-class="transition-opacity duration-300" enter-from-class="opacity-0"
-                enter-to-class="opacity-100">
+    <LoadingSpinner v-if="status === 'pending' || status === 'idle'"/>
+
+    <Transition
+        enter-active-class="transition-opacity duration-300" enter-from-class="opacity-0"
+        enter-to-class="opacity-100">
       <div v-if="status !== 'pending' && status !== 'idle'">
         <div v-if="news" class="flex flex-col md:flex-row md:items-start gap-6">
           <!-- Image: on top for mobile, to the right of the text on desktop -->

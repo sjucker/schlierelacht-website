@@ -3,9 +3,12 @@
     <h2 class="text-2xl font-bold text-fest-blue mb-1">News</h2>
     <USeparator color="primary" class="mb-6"/>
 
-    <Transition enter-active-class="transition-opacity duration-300" enter-from-class="opacity-0"
+    <LoadingSpinner v-if="status === 'pending' || status === 'idle'"/>
+
+    <Transition
+enter-active-class="transition-opacity duration-300" enter-from-class="opacity-0"
                 enter-to-class="opacity-100">
-      <div v-if="!pending">
+      <div v-if="status === 'success'">
         <div v-if="!news?.length" class="text-sm text-neutral-500">Aktuell sind keine News vorhanden.</div>
 
         <div v-else class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -62,7 +65,7 @@ import type {NewsDTO} from '~~/shared/types/rest'
 import cloudflareUrl from '~/utils/cloudflare-url'
 
 const config = useRuntimeConfig()
-const {data: news, pending} = useFetch<NewsDTO[]>(
+const {data: news, status} = useFetch<NewsDTO[]>(
     `${config.public.apiBaseUrl}/api/news`,
     {server: false}
 )

@@ -22,14 +22,17 @@
     </div>
 
     <div v-if="error" class="text-sm text-red-600">Fehler beim Laden der Daten.</div>
-    <Transition enter-active-class="transition-opacity duration-300" enter-from-class="opacity-0"
+    <LoadingSpinner v-else-if="status === 'pending' || status === 'idle'"/>
+    <Transition
+enter-active-class="transition-opacity duration-300" enter-from-class="opacity-0"
                 enter-to-class="opacity-100">
-      <div v-if="!pending && !error">
+      <div v-if="status === 'success'">
         <div v-if="filtered.length === 0" class="text-sm text-neutral-500">Keine Einträge gefunden.</div>
 
         <div v-else>
           <!-- Header row -->
-          <div :class="rowGrid"
+          <div
+:class="rowGrid"
                class="px-2 py-2 text-xs font-semibold uppercase tracking-wide text-neutral-500 border-b border-neutral-300">
             <div>Nr.</div>
             <div class="truncate">Name</div>
@@ -59,7 +62,7 @@ import type {AttractionDTO} from '~~/shared/types/rest'
 const rowGrid = 'grid grid-cols-[3rem_1fr] gap-x-3 sm:gap-x-4'
 
 const config = useRuntimeConfig()
-const {data, pending, error} = useFetch<AttractionDTO[]>(
+const {data, status, error} = useFetch<AttractionDTO[]>(
     `${config.public.apiBaseUrl}/api/attraction?type=FOOD`,
     {server: false}
 )

@@ -15,8 +15,9 @@
 
     <div class="flex-1 min-h-[500px] px-4 md:px-6 pb-4 md:pb-6">
       <div v-if="error" class="text-sm text-red-600">Fehler beim Laden der Daten.</div>
+      <LoadingSpinner v-else-if="status === 'pending' || status === 'idle'"/>
       <MapboxMap
-          v-else-if="!pending"
+          v-else
           map-id="festplan"
           style="width: 100%; height: 100%;"
           :options="{
@@ -96,7 +97,7 @@ const TYPE_LABELS: Record<LocationType, string> = {
 }
 
 const config = useRuntimeConfig()
-const {data, pending, error} = useFetch<LocationDTO[]>(
+const {data, status, error} = useFetch<LocationDTO[]>(
     `${config.public.apiBaseUrl}/api/location`,
     {server: false}
 )
