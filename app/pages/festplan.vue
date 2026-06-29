@@ -14,7 +14,7 @@
     </div>
 
     <div class="flex-1 min-h-[500px] px-4 md:px-6 pb-4 md:pb-6">
-      <div v-if="error" class="text-sm text-red-600">Fehler beim Laden.</div>
+      <div v-if="error" class="text-sm text-red-600">Fehler beim Laden der Daten.</div>
       <MapboxMap
           v-else-if="!pending"
           map-id="festplan"

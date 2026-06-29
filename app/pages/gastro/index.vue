@@ -21,7 +21,7 @@
       />
     </div>
 
-    <div v-if="error" class="text-sm text-red-600">Fehler beim Laden.</div>
+    <div v-if="error" class="text-sm text-red-600">Fehler beim Laden der Daten.</div>
     <Transition enter-active-class="transition-opacity duration-300" enter-from-class="opacity-0"
                 enter-to-class="opacity-100">
       <div v-if="!pending && !error">
@@ -60,7 +60,7 @@ const rowGrid = 'grid grid-cols-[3rem_1fr] gap-x-3 sm:gap-x-4'
 
 const config = useRuntimeConfig()
 const {data, pending, error} = useFetch<AttractionDTO[]>(
-    `${config.public.apiBaseUrl}/api/gastro`,
+    `${config.public.apiBaseUrl}/api/attraction?type=FOOD`,
     {server: false}
 )
 

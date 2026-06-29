@@ -64,7 +64,7 @@ const externalId = route.params.id as string
 
 const config = useRuntimeConfig()
 const {data: item, status, error} = useFetch<AttractionDTO>(
-    `${config.public.apiBaseUrl}/api/gastro/${externalId}`,
+    `${config.public.apiBaseUrl}/api/attraction/${externalId}`,
     {server: false}
 )
 

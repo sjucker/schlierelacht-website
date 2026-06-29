@@ -45,7 +45,7 @@ const tagId = Number.parseInt(route.params.id as string)
 const config = useRuntimeConfig()
 
 const {data: artists, status, error} = useFetch<AttractionDTO[]>(
-    `${config.public.apiBaseUrl}/api/artist/tag/${tagId}`,
+    `${config.public.apiBaseUrl}/api/attraction?type=ARTIST&tagId=${tagId}`,
     {server: false}
 )
 

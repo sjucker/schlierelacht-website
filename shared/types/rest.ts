@@ -13,6 +13,11 @@ export interface AttractionDTO {
     programm: ProgrammEntryDTO[];
 }
 
+export interface AttractionRefDTO {
+    externalId: string;
+    name: string;
+}
+
 export interface DownloadDTO {
     id: number;
     filename: string;
@@ -87,6 +92,11 @@ export interface ProgrammEntryDTO {
     fromTime?: DateAsString;
     toDate?: DateAsString;
     toTime?: DateAsString;
+}
+
+export interface ProgrammPointDTO {
+    attraction: AttractionRefDTO;
+    entry: ProgrammEntryDTO;
 }
 
 export interface SponsoringDTO {

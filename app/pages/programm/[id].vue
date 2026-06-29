@@ -75,7 +75,7 @@ const externalId = route.params.id as string
 const config = useRuntimeConfig()
 
 const {data: artist, status, error} = useFetch<AttractionDTO>(
-    `${config.public.apiBaseUrl}/api/artist/${externalId}`,
+    `${config.public.apiBaseUrl}/api/attraction/${externalId}`,
     {server: false}
 )
 

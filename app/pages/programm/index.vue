@@ -28,7 +28,7 @@
       />
     </div>
 
-    <div v-if="error" class="text-sm text-red-600">Fehler beim Laden.</div>
+    <div v-if="error" class="text-sm text-red-600">Fehler beim Laden der Daten.</div>
     <div v-else-if="!pending && rows.length === 0" class="text-sm text-neutral-500">Keine Einträge gefunden.</div>
 
     <Transition enter-active-class="transition-opacity duration-300" enter-from-class="opacity-0" enter-to-class="opacity-100">
@@ -46,11 +46,11 @@
         <NuxtLink
             v-for="row in rows"
             :key="row.key"
-            :to="`/programm/${row.artist.externalId}`"
+            :to="`/programm/${row.attraction.externalId}`"
             :class="rowGrid"
             class="px-2 py-2 text-sm items-center border-b border-neutral-100 hover:bg-neutral-50 transition-colors"
         >
-          <div class="font-semibold text-fest-blue truncate">{{ row.artist.name }}</div>
+          <div class="font-semibold text-fest-blue truncate">{{ row.attraction.name }}</div>
           <div class="text-neutral-600 whitespace-nowrap">{{ weekday(row.entry.fromDate) }}</div>
           <div class="text-neutral-600 whitespace-nowrap">{{ dateOnly(row.entry.fromDate) }}</div>
           <div class="text-neutral-600 whitespace-nowrap">{{ row.entry.fromTime ? formatTime(row.entry.fromTime) : '' }}</div>
@@ -62,7 +62,7 @@
 </template>
 
 <script setup lang="ts">
-import type {AttractionDTO, ProgrammEntryDTO} from '~~/shared/types/rest'
+import type {AttractionRefDTO, ProgrammEntryDTO, ProgrammPointDTO} from '~~/shared/types/rest'
 import formatDate from '~/utils/format-date'
 import formatTime from '~/utils/format-time'
 
@@ -70,8 +70,10 @@ import formatTime from '~/utils/format-time'
 const rowGrid = 'grid grid-cols-[2fr_1fr_1fr_auto_1.5fr] gap-x-3 sm:gap-x-4'
 
 const config = useRuntimeConfig()
-const {data, pending, error} = useFetch<AttractionDTO[]>(
-    `${config.public.apiBaseUrl}/api/artist`,
+// The backend pre-joins and chronologically sorts every programm point (date, then
+// start time, then attraction name), so we only filter here — no client-side assembly.
+const {data, pending, error} = useFetch<ProgrammPointDTO[]>(
+    `${config.public.apiBaseUrl}/api/programm`,
     {server: false}
 )
 
@@ -85,17 +87,17 @@ const resetFilters = () => {
 
 const dateOptions = computed(() => {
   const dates = new Set<string>()
-  data.value?.forEach(a => a.programm?.forEach(p => {
-    if (p.fromDate) dates.add(p.fromDate)
-  }))
+  data.value?.forEach(p => {
+    if (p.entry.fromDate) dates.add(p.entry.fromDate)
+  })
   return Array.from(dates).sort().map(date => ({id: date, name: formatDate(date)}))
 })
 
 const stageOptions = computed(() => {
   const map = new Map<string, string>()
-  data.value?.forEach(a => a.programm?.forEach(p => {
-    if (p.location) map.set(p.location.externalId, p.location.name)
-  }))
+  data.value?.forEach(p => {
+    if (p.entry.location) map.set(p.entry.location.externalId, p.entry.location.name)
+  })
   return Array.from(map.entries())
       .map(([id, name]) => ({id, name}))
       .sort((a, b) => a.name.localeCompare(b.name))
@@ -103,30 +105,23 @@ const stageOptions = computed(() => {
 
 interface ProgrammRow {
   key: string
-  artist: AttractionDTO
+  attraction: AttractionRefDTO
   entry: ProgrammEntryDTO
 }
 
-// Flatten every artist's programm entries into one chronologically sorted list of
-// performance rows, honouring the active date/stage filters.
+// Apply the active date/stage filters to the already-sorted programm points.
 const rows = computed<ProgrammRow[]>(() => {
   const result: ProgrammRow[] = []
-  for (const artist of data.value ?? []) {
-    for (const entry of artist.programm ?? []) {
-      if (selectedDate.value && entry.fromDate !== selectedDate.value) continue
-      if (selectedStage.value && entry.location?.externalId !== selectedStage.value) continue
-      result.push({
-        key: `${artist.externalId}|${entry.fromDate}|${entry.fromTime ?? ''}|${entry.location.externalId}`,
-        artist,
-        entry,
-      })
-    }
+  for (const point of data.value ?? []) {
+    const entry = point.entry
+    if (selectedDate.value && entry.fromDate !== selectedDate.value) continue
+    if (selectedStage.value && entry.location?.externalId !== selectedStage.value) continue
+    result.push({
+      key: `${point.attraction.externalId}|${entry.fromDate}|${entry.fromTime ?? ''}|${entry.location.externalId}`,
+      attraction: point.attraction,
+      entry,
+    })
   }
-  result.sort((a, b) =>
-      a.entry.fromDate.localeCompare(b.entry.fromDate) ||
-      (a.entry.fromTime ?? '').localeCompare(b.entry.fromTime ?? '') ||
-      a.artist.name.localeCompare(b.artist.name)
-  )
   return result
 })
 
