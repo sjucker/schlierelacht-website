@@ -9,7 +9,7 @@
 
     <div v-if="error" class="text-sm text-red-600">Fehler beim Laden der Details.</div>
     <Transition enter-active-class="transition-opacity duration-300" enter-from-class="opacity-0" enter-to-class="opacity-100">
-      <div v-if="!pending && artist" class="flex flex-col gap-6">
+      <div v-if="status !== 'pending' && status !== 'idle' && artist" class="flex flex-col gap-6">
         <div v-if="mainImage" class="not-prose">
           <NuxtImg
               provider="cloudflare"
@@ -74,7 +74,7 @@ const externalId = route.params.id as string
 
 const config = useRuntimeConfig()
 
-const {data: artist, pending, error} = useFetch<AttractionDTO>(
+const {data: artist, status, error} = useFetch<AttractionDTO>(
     `${config.public.apiBaseUrl}/api/artist/${externalId}`,
     {server: false}
 )

@@ -9,7 +9,7 @@
 
     <div v-if="error" class="text-sm text-red-600">Fehler beim Laden der Details.</div>
     <Transition enter-active-class="transition-opacity duration-300" enter-from-class="opacity-0" enter-to-class="opacity-100">
-      <div v-if="!pending && location" class="flex flex-col gap-6">
+      <div v-if="status !== 'pending' && status !== 'idle' && location" class="flex flex-col gap-6">
         <div v-if="location.cloudflareId" class="not-prose">
           <NuxtImg
               provider="cloudflare"
@@ -76,7 +76,7 @@ const externalId = route.params.id as string
 
 const config = useRuntimeConfig()
 
-const {data: location, pending, error} = useFetch<LocationDTO>(
+const {data: location, status, error} = useFetch<LocationDTO>(
     `${config.public.apiBaseUrl}/api/location/${externalId}`,
     {server: false}
 )

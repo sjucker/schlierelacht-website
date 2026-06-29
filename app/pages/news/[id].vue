@@ -7,7 +7,7 @@
 
     <Transition enter-active-class="transition-opacity duration-300" enter-from-class="opacity-0"
                 enter-to-class="opacity-100">
-      <div v-if="!pending">
+      <div v-if="status !== 'pending' && status !== 'idle'">
         <div v-if="news" class="flex flex-col md:flex-row md:items-start gap-6">
           <!-- Image: on top for mobile, to the right of the text on desktop -->
           <div
@@ -56,7 +56,7 @@ import cloudflareUrl from '~/utils/cloudflare-url'
 const route = useRoute()
 const config = useRuntimeConfig()
 
-const {data: news, pending} = useFetch<NewsDTO>(
+const {data: news, status} = useFetch<NewsDTO>(
     `${config.public.apiBaseUrl}/api/news/${route.params.id}`,
     {server: false}
 )
