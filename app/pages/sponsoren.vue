@@ -1,5 +1,5 @@
 ﻿<template>
-  <div class="p-4 md:p-6 max-w-6xl">
+  <div class="p-4 md:p-6">
     <h2 class="text-2xl font-bold text-fest-blue mb-1">Sponsoren</h2>
     <USeparator color="primary" class="mb-6"/>
 
