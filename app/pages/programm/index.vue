@@ -1,6 +1,6 @@
 <template>
   <div class="p-4 md:p-6">
-    <h2 class="text-2xl font-bold text-fest-blue mb-1">Künstler</h2>
+    <h2 class="text-2xl font-bold text-fest-blue mb-1">Programm</h2>
     <USeparator color="primary" class="mb-4"/>
 
     <div class="mb-4 flex flex-col sm:flex-row gap-3 items-end">
