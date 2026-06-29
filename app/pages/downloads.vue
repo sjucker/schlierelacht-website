@@ -32,6 +32,7 @@
 <script setup lang="ts">
 import type {DownloadDTO} from '~~/shared/types/rest';
 import {DownloadCategory} from '~~/shared/types/rest';
+import fileExtension from '~/utils/file-extension';
 
 const config = useRuntimeConfig()
 const {data, status} = useFetch<DownloadDTO[]>(
@@ -64,11 +65,6 @@ const byCategory = computed<Record<DownloadCategory, DownloadDTO[]>>(() => {
 
 function categoryLabel(category: DownloadCategory): string {
   return categoryLabels[category] ?? category
-}
-
-function fileExtension(filename: string): string {
-  const ext = filename.split('.').pop()
-  return ext ? ext.toUpperCase() : ''
 }
 
 useSeoMeta({

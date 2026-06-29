@@ -56,6 +56,8 @@
             </div>
           </template>
         </UCard>
+
+        <AttractionFiles :external-id="item.externalId" :files="item.files"/>
       </div>
     </Transition>
   </div>

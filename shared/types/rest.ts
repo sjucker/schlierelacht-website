@@ -11,6 +11,15 @@ export interface AttractionDTO {
     images: ImageDTO[];
     tags: TagDTO[];
     programm: ProgrammEntryDTO[];
+    files: AttractionFileDTO[];
+}
+
+export interface AttractionFileDTO {
+    id: number;
+    filename: string;
+    filetype: string;
+    description: string;
+    filesize: number;
 }
 
 export interface AttractionRefDTO {

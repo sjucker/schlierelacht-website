@@ -59,6 +59,8 @@
             </UCard>
           </div>
         </div>
+
+        <AttractionFiles :external-id="artist.externalId" :files="artist.files"/>
       </div>
     </Transition>
   </div>
