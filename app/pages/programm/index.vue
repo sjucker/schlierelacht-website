@@ -35,44 +35,37 @@
 
     <Transition enter-active-class="transition-opacity duration-300" enter-from-class="opacity-0" enter-to-class="opacity-100">
       <div v-if="!pending && rows.length > 0" class="lg:max-w-3xl">
-        <!-- Header row (desktop only) -->
-        <div :class="rowGrid" class="hidden md:grid px-2 py-2 text-xs font-semibold uppercase tracking-wide text-neutral-500 border-b border-neutral-300">
-          <div class="truncate">Titel</div>
-          <div>Tag</div>
-          <div>Datum</div>
-          <div>Zeit</div>
-          <div class="truncate">Bühne</div>
-        </div>
-
-        <!-- Performance rows -->
-        <NuxtLink
-            v-for="row in rows"
-            :key="row.key"
-            :to="`/programm/${row.attraction.externalId}`"
-            class="block px-2 py-2 text-sm border-b border-neutral-100 hover:bg-neutral-50 transition-colors"
-        >
-          <!-- Mobile layout: Tag · Datum · Zeit, then Titel (bold) · Bühne -->
-          <div class="md:hidden">
-            <div class="flex flex-wrap gap-x-2 text-neutral-600 whitespace-nowrap">
-              <span>{{ weekday(row.entry.fromDate) }}</span>
-              <span>{{ dateOnly(row.entry.fromDate) }}</span>
-              <span v-if="row.entry.fromTime">{{ formatTime(row.entry.fromTime) }}</span>
-            </div>
-            <div class="flex flex-wrap items-baseline gap-x-2">
-              <span class="font-semibold text-fest-blue">{{ row.attraction.name }}</span>
-              <span class="text-neutral-600">{{ row.entry.location.name }}</span>
-            </div>
+        <!-- Upcoming entries: chronological, so the next one in the future sits on top.
+             Hidden entirely (incl. the column header) when nothing is upcoming. -->
+        <template v-if="upcomingRows.length">
+          <!-- Header row (desktop only) -->
+          <div :class="rowGrid" class="hidden md:grid px-2 py-2 text-xs font-semibold uppercase tracking-wide text-neutral-500 border-b border-neutral-300">
+            <div class="truncate">Titel</div>
+            <div>Tag</div>
+            <div>Datum</div>
+            <div>Zeit</div>
+            <div class="truncate">Bühne</div>
           </div>
 
-          <!-- Desktop layout: aligned grid columns -->
-          <div :class="rowGrid" class="hidden md:grid items-center">
-            <div class="font-semibold text-fest-blue truncate">{{ row.attraction.name }}</div>
-            <div class="text-neutral-600 whitespace-nowrap">{{ weekday(row.entry.fromDate) }}</div>
-            <div class="text-neutral-600 whitespace-nowrap">{{ dateOnly(row.entry.fromDate) }}</div>
-            <div class="text-neutral-600 whitespace-nowrap">{{ row.entry.fromTime ? formatTime(row.entry.fromTime) : '' }}</div>
-            <div class="text-neutral-600 truncate">{{ row.entry.location.name }}</div>
-          </div>
-        </NuxtLink>
+          <ProgrammEntryRow
+              v-for="row in upcomingRows"
+              :key="row.key"
+              :row="row"
+              :grid-class="rowGrid"
+          />
+        </template>
+
+        <!-- Past entries, grouped separately and shown most-recent first. -->
+        <template v-if="pastRows.length">
+          <h3 class="mt-8 mb-2 text-sm font-semibold uppercase tracking-wide text-neutral-400">Vergangene</h3>
+          <ProgrammEntryRow
+              v-for="row in pastRows"
+              :key="row.key"
+              :row="row"
+              :grid-class="rowGrid"
+              past
+          />
+        </template>
       </div>
     </Transition>
   </div>
@@ -81,7 +74,6 @@
 <script setup lang="ts">
 import type {AttractionRefDTO, ProgrammEntryDTO, ProgrammPointDTO} from '~~/shared/types/rest'
 import formatDate from '~/utils/format-date'
-import formatTime from '~/utils/format-time'
 
 // Shared column template so the header and every row align (Titel · Tag · Datum · Zeit · Bühne).
 // Every column is left-aligned (grid items default to start), including Zeit.
@@ -128,6 +120,7 @@ interface ProgrammRow {
 }
 
 // Apply the active date/stage filters to the already-sorted programm points.
+// Each entry is tagged past/upcoming by the backend (ProgrammEntryDTO.past).
 const rows = computed<ProgrammRow[]>(() => {
   const result: ProgrammRow[] = []
   for (const point of data.value ?? []) {
@@ -143,22 +136,10 @@ const rows = computed<ProgrammRow[]>(() => {
   return result
 })
 
-// "Tag" column: weekday name, e.g. "Mittwoch".
-function weekday(date: string): string {
-  if (!date) return ''
-  const [year, month, day] = date.split('-')
-  if (!year || !month || !day) return ''
-  const d = new Date(parseInt(year), parseInt(month) - 1, parseInt(day))
-  return new Intl.DateTimeFormat('de-CH', {weekday: 'long'}).format(d)
-}
-
-// "Datum" column: just the date, e.g. "03.09.2027".
-function dateOnly(date: string): string {
-  if (!date) return ''
-  const [year, month, day] = date.split('-')
-  if (!year || !month || !day) return date
-  return `${day}.${month}.${year}`
-}
+// Upcoming stays in the backend's ascending order (next one first); past is reversed
+// so the most recently finished entry sits at the top of its group.
+const upcomingRows = computed(() => rows.value.filter(r => !r.entry.past))
+const pastRows = computed(() => rows.value.filter(r => r.entry.past).reverse())
 
 useSeoMeta({
   title: 'Programm · Schliere lacht',

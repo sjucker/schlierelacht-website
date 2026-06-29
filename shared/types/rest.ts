@@ -92,6 +92,7 @@ export interface ProgrammEntryDTO {
     fromTime?: DateAsString;
     toDate?: DateAsString;
     toTime?: DateAsString;
+    past: boolean;
 }
 
 export interface ProgrammPointDTO {
