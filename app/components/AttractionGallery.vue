@@ -13,19 +13,23 @@
             loading="lazy"
             :src="cloudflareUrl(image.cloudflareId)"
             :alt="image.description"
-            class="h-24 w-24 object-cover"
+            class="h-40 w-40 sm:h-48 sm:w-48 object-cover"
         />
       </button>
     </div>
 
-    <UModal v-model:open="isOpen" :title="activeImage?.description || 'Bild'">
+    <UModal
+        v-model:open="isOpen"
+        :title="activeImage?.description || 'Bild'"
+        :ui="{ content: 'sm:max-w-5xl' }"
+    >
       <template #content>
         <NuxtImg
             v-if="activeImage"
             provider="cloudflare"
             :src="cloudflareUrl(activeImage.cloudflareId)"
             :alt="activeImage.description"
-            class="w-full max-h-[85vh] object-contain rounded-lg"
+            class="w-full max-h-[90vh] object-contain rounded-lg"
         />
       </template>
     </UModal>
