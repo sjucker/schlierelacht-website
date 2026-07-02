@@ -1,13 +1,13 @@
 <template>
-  <div class="p-4 md:p-6">
+  <div class="p-4 md:p-6 max-w-5xl">
     <h2 class="text-2xl font-bold text-fest-blue mb-1">News</h2>
     <USeparator color="primary" class="mb-6"/>
 
     <LoadingSpinner v-if="status === 'pending' || status === 'idle'"/>
 
     <Transition
-enter-active-class="transition-opacity duration-300" enter-from-class="opacity-0"
-                enter-to-class="opacity-100">
+        enter-active-class="transition-opacity duration-300" enter-from-class="opacity-0"
+        enter-to-class="opacity-100">
       <div v-if="status === 'success'">
         <div v-if="!news?.length" class="text-sm text-neutral-500">Aktuell sind keine News vorhanden.</div>
 
