@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4 md:p-6">
+  <div class="p-4 md:p-6 max-w-4xl">
     <h2 class="text-2xl font-bold text-fest-blue mb-1">Downloads</h2>
     <USeparator color="primary" class="mb-6"/>
 

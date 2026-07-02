@@ -3,11 +3,12 @@
     <h2 class="text-2xl font-bold text-fest-blue mb-1">Sponsoren</h2>
     <USeparator color="primary" class="mb-6"/>
 
-    <div class="mb-10 space-y-3 text-neutral-700 dark:text-neutral-300">
+    <div class="mb-10 space-y-3 text-neutral-700 dark:text-neutral-300 max-w-5xl">
       <p class="text-lg font-semibold text-fest-blue m-0">Herzlichen Dank</p>
       <p class="m-0">Allen unseren Sponsoren danken wir herzlich für ihr grosszügiges Engagement.</p>
       <p class="m-0">Auch beim Schlierefäscht 2027 soll wieder fast die Hälfte der Einnahmen durch Sponsoren erbracht werden. Unsere Sponsoring-Verantwortlicher Albert Schweizer hat attraktive
-        Sponsoring-Pakete geschnürt und steht Interessenten gerne für ein Gespräch zur Verfügung (+41 44 738 15 06, <a href="mailto:albert.schweizer@schlieren.ch" class="text-fest-blue underline">E-Mail</a>).
+        Sponsoring-Pakete geschnürt und steht Interessenten gerne für ein Gespräch zur Verfügung (<a href="tel:+41447381506" class="text-fest-blue underline">+41 44 738 15 06</a>, <a
+            href="mailto:albert.schweizer@schlieren.ch" class="text-fest-blue underline">E-Mail</a>).
       </p>
     </div>
 

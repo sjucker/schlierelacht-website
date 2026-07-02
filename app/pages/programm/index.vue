@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4 md:p-6">
+  <div class="p-4 md:p-6 max-w-5xl">
     <h2 class="text-2xl font-bold text-fest-blue mb-1">Programm</h2>
     <USeparator color="primary" class="mb-4"/>
 
@@ -34,7 +34,7 @@
     <LoadingSpinner v-if="status === 'pending' || status === 'idle'"/>
 
     <Transition enter-active-class="transition-opacity duration-300" enter-from-class="opacity-0" enter-to-class="opacity-100">
-      <div v-if="!pending && rows.length > 0" class="lg:max-w-5xl">
+      <div v-if="!pending && rows.length > 0">
         <!-- Upcoming entries: chronological, so the next one in the future sits on top.
              Hidden entirely (incl. the column header) when nothing is upcoming. -->
         <template v-if="upcomingRows.length">
