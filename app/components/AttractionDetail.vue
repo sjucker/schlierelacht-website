@@ -37,7 +37,7 @@
             <UCard v-for="(entry, index) in futureProgramm" :key="index" variant="subtle" size="sm">
               <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-2">
                 <div class="text-sm font-medium">
-                  {{ formatDate(entry.fromDate) }}<span v-if="entry.fromTime">, ab {{ formatTime(entry.fromTime) }}</span>
+                  {{ formatWhen(entry) }}
                 </div>
                 <UButton
                     :to="`/locations/${entry.location.externalId}`"
@@ -66,10 +66,32 @@
 </template>
 
 <script setup lang="ts">
-import {type AttractionDTO, ImageType} from '~~/shared/types/rest'
+import {type AttractionDTO, ImageType, type ProgrammEntryDTO} from '~~/shared/types/rest'
 import cloudflareUrl from '~/utils/cloudflare-url'
 import formatDate from '~/utils/format-date'
 import formatTime from '~/utils/format-time'
+
+// Builds the "when" line, e.g.
+//   "Mittwoch, 27.06.2026"                              (date only)
+//   "Mittwoch, 27.06.2026, 18:00"                       (with fromTime)
+//   "Mittwoch, 27.06.2026, 18:00 – 20:00"               (with toTime, same day)
+//   "Mittwoch, 27.06.2026, 18:00 – Freitag, 29.06.2026, 20:00" (spanning days)
+function formatWhen(entry: ProgrammEntryDTO): string {
+  const fromTime = formatTime(entry.fromTime ?? '')
+  const toTime = formatTime(entry.toTime ?? '')
+  const showToDate = !!entry.toDate && entry.toDate !== entry.fromDate
+
+  let to = ''
+  if (showToDate) {
+    to = formatDate(entry.toDate!)
+    if (toTime) to = `${to}, ${toTime}`
+  } else if (toTime) {
+    to = toTime
+  }
+
+  const from = fromTime ? `${formatDate(entry.fromDate)}, ${fromTime}` : formatDate(entry.fromDate)
+  return to ? `${from} – ${to}` : from
+}
 
 const props = defineProps<{
   externalId: string
