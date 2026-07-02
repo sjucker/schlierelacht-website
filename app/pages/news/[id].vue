@@ -14,25 +14,18 @@
         <div v-if="news" class="flex flex-col md:flex-row md:items-start gap-6">
           <!-- Image: on top for mobile, to the right of the text on desktop -->
           <div
-              class="relative w-full md:w-2/5 md:shrink-0 md:order-last h-48 sm:h-56 md:h-auto rounded-xl overflow-hidden bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center">
-            <template v-if="news.cloudflareId">
-              <!-- blurred backdrop fills the box so portrait images have no empty bands -->
-              <NuxtImg
-                  provider="cloudflare"
-                  :src="cloudflareUrl(news.cloudflareId)"
-                  alt=""
-                  aria-hidden="true"
-                  class="absolute inset-0 w-full h-full object-cover scale-110 blur-xl"
-              />
-              <!-- full image: fills the fixed-height box on mobile, natural ratio on desktop -->
-              <NuxtImg
-                  provider="cloudflare"
-                  :src="cloudflareUrl(news.cloudflareId)"
-                  :alt="news.title"
-                  class="relative w-full h-full md:h-auto object-contain"
-              />
-            </template>
-            <UIcon v-else name="i-lucide-image" class="w-16 h-16 text-neutral-300 dark:text-neutral-600"/>
+              class="relative w-full md:w-2/5 md:shrink-0 md:order-last rounded-xl overflow-hidden">
+            <!-- full image at natural ratio, full width -->
+            <NuxtImg
+                v-if="news.cloudflareId"
+                provider="cloudflare"
+                :src="cloudflareUrl(news.cloudflareId)"
+                :alt="news.title"
+                class="w-full h-auto object-contain"
+            />
+            <div v-else class="h-48 sm:h-56 flex items-center justify-center bg-neutral-100 dark:bg-neutral-800">
+              <UIcon name="i-lucide-image" class="w-16 h-16 text-neutral-300 dark:text-neutral-600"/>
+            </div>
           </div>
 
           <!-- Text -->

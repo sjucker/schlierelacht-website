@@ -5,7 +5,7 @@
           v-for="image in images"
           :key="image.cloudflareId"
           type="button"
-          class="block overflow-hidden rounded cursor-pointer transition-opacity hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          class="group block overflow-hidden rounded-lg border border-neutral-200 dark:border-neutral-700 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           @click="open(image)"
       >
         <NuxtImg
@@ -13,7 +13,7 @@
             loading="lazy"
             :src="cloudflareUrl(image.cloudflareId)"
             :alt="image.description"
-            class="h-40 w-40 sm:h-48 sm:w-48 object-cover"
+            class="h-40 w-40 sm:h-48 sm:w-48 object-cover transition-transform duration-200 group-hover:scale-105"
         />
       </button>
     </div>
@@ -21,16 +21,17 @@
     <UModal
         v-model:open="isOpen"
         :title="activeImage?.description || 'Bild'"
-        :ui="{ content: 'sm:max-w-5xl' }"
+        :ui="{ content: 'w-fit max-w-[95vw]' }"
     >
       <template #content>
-        <NuxtImg
+        <!-- plain <img> loads the full-resolution `public` variant (NuxtImg would downscale it);
+             CSS caps it at the viewport so it fills as much space as its natural size allows -->
+        <img
             v-if="activeImage"
-            provider="cloudflare"
             :src="cloudflareUrl(activeImage.cloudflareId)"
             :alt="activeImage.description"
-            class="w-full max-h-[90vh] object-contain rounded-lg"
-        />
+            class="w-auto h-auto max-w-[95vw] max-h-[90vh] object-contain rounded-lg mx-auto"
+        >
       </template>
     </UModal>
   </div>

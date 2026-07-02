@@ -10,13 +10,24 @@
     <Transition enter-active-class="transition-opacity duration-300" enter-from-class="opacity-0" enter-to-class="opacity-100">
       <div v-if="status === 'success' && attraction" class="flex flex-col gap-6">
         <!-- Main image header -->
-        <div v-if="mainImage" class="not-prose">
+        <div
+            v-if="mainImage"
+            class="not-prose relative w-full rounded-lg overflow-hidden md:h-[250px] lg:h-[320px] md:bg-neutral-100 md:dark:bg-neutral-800 md:flex md:items-center md:justify-center">
+          <!-- blurred backdrop fills the fixed-height desktop box so portrait/square images have no empty bands -->
+          <NuxtImg
+              provider="cloudflare"
+              loading="lazy"
+              :src="cloudflareUrl(mainImage.cloudflareId)"
+              alt=""
+              aria-hidden="true"
+              class="hidden md:block absolute inset-0 w-full h-full object-cover scale-110 blur-xl"/>
+          <!-- mobile: full width at natural ratio; desktop: fits inside the fixed-height box -->
           <NuxtImg
               provider="cloudflare"
               loading="lazy"
               :src="cloudflareUrl(mainImage.cloudflareId)"
               :alt="attraction.name"
-              class="w-full h-[250px] object-cover rounded-lg"/>
+              class="relative w-full h-auto md:h-full object-contain"/>
         </div>
 
         <!-- Title + social links -->
