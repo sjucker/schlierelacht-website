@@ -21,7 +21,7 @@
           map-id="festplan"
           style="width: 100%; height: 100%;"
           :options="{
-            style: 'mapbox://styles/mapbox/standard',
+            style: 'mapbox://styles/schlierelacht/cmr9dkfx0003701r07otc18ui',
             center: mapCenter,
             zoom: 16
           }"

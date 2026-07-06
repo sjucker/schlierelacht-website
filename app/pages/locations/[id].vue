@@ -33,7 +33,7 @@
                 map-id="map"
                 style="width: 100%; height: 500px;"
                 :options="{
-                style: 'mapbox://styles/mapbox/standard',
+                style: 'mapbox://styles/schlierelacht/cmr9dkfx0003701r07otc18ui',
               center: center,
               zoom: 18
               }">
