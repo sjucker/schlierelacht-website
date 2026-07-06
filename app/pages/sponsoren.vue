@@ -18,7 +18,22 @@
         <div v-for="typeEntry in sortedSponsorTypes" :key="typeEntry.type" class="mb-20">
           <template v-if="sponsorsByType[typeEntry.type]?.length">
             <h3 class="text-lg font-semibold uppercase tracking-widest text-fest-blue mb-4">{{ typeEntry.description }}</h3>
-            <div class="flex flex-wrap items-center gap-x-12 gap-y-4">
+
+            <!-- Gönner: simple text list instead of logo tiles -->
+            <ul v-if="typeEntry.type === SponsoringType.GOENNER" class="flex flex-col gap-1 text-neutral-700">
+              <li v-for="sponsor in sponsorsByType[typeEntry.type]" :key="sponsor.name">
+                <a
+                    v-if="sponsor.url"
+                    :href="sponsor.url"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-fest-blue underline"
+                >{{ sponsor.name }}</a>
+                <span v-else>{{ sponsor.name }}</span>
+              </li>
+            </ul>
+
+            <div v-else class="flex flex-wrap items-center gap-x-12 gap-y-4">
               <component
                   :is="sponsor.url ? 'a' : 'span'"
                   v-for="sponsor in sponsorsByType[typeEntry.type]"
