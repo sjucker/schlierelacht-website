@@ -41,6 +41,17 @@
           </div>
         </div>
 
+        <!-- Description -->
+        <div v-if="attraction.description" class="prose max-w-none">
+          <MDC :value="attraction.description"/>
+        </div>
+
+        <!-- Files -->
+        <AttractionFiles :external-id="attraction.externalId" :files="attraction.files"/>
+
+        <!-- Additional images -->
+        <AttractionGallery :images="additionalImages"/>
+
         <!-- Upcoming programm -->
         <div v-if="futureProgramm.length" class="prose max-w-none">
           <h4>Programm</h4>
@@ -60,17 +71,6 @@
             </UCard>
           </div>
         </div>
-
-        <!-- Files -->
-        <AttractionFiles :external-id="attraction.externalId" :files="attraction.files"/>
-
-        <!-- Description -->
-        <div v-if="attraction.description" class="prose max-w-none">
-          <MDC :value="attraction.description"/>
-        </div>
-
-        <!-- Additional images -->
-        <AttractionGallery :images="additionalImages"/>
       </div>
     </Transition>
   </div>

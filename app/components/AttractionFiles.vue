@@ -1,6 +1,6 @@
 <template>
   <div v-if="files.length" class="prose max-w-none">
-    <h4>Dateien</h4>
+    <h4>Downloads</h4>
     <div class="not-prose flex flex-col sm:flex-row sm:flex-wrap gap-2">
       <a
           v-for="file in files"
