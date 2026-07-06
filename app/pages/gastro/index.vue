@@ -5,19 +5,11 @@
 
     <div class="mb-4 flex flex-col sm:flex-row gap-4 items-end">
       <UInput v-model="search" placeholder="Suchen…" icon="i-lucide-search" class="w-full sm:flex-1"/>
-      <USelect
-          v-model="selectedTag"
-          value-key="id"
-          label-key="name"
-          :items="tagOptions"
-          placeholder="Filter nach Kategorie"
-          class="w-full sm:w-48"
-      />
       <UButton
-          v-if="search || selectedTag"
+          v-if="search"
           variant="ghost"
           icon="i-lucide-x"
-          @click="resetFilters"
+          @click="search = undefined"
       />
     </div>
 
@@ -70,29 +62,12 @@ const {data, status, error} = useFetch<AttractionDTO[]>(
 )
 
 const search = ref<string | undefined>(undefined)
-const selectedTag = ref<number | undefined>(undefined)
-
-const resetFilters = () => {
-  search.value = undefined
-  selectedTag.value = undefined
-}
-
-const tagOptions = computed(() => {
-  const map = new Map<number, string>()
-  data.value?.forEach(item => item.tags?.forEach(t => map.set(t.id, t.name)))
-  return Array.from(map.entries())
-      .map(([id, name]) => ({id, name}))
-      .sort((a, b) => a.name.localeCompare(b.name))
-})
 
 const filtered = computed(() => {
   let result = [...(data.value ?? [])].sort((a, b) => a.externalId.localeCompare(b.externalId))
   if (search.value) {
     const q = search.value.toLowerCase()
     result = result.filter(item => item.name.toLowerCase().includes(q))
-  }
-  if (selectedTag.value) {
-    result = result.filter(item => item.tags?.some(t => t.id === selectedTag.value))
   }
   return result
 })

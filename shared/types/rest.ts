@@ -10,7 +10,6 @@ export interface AttractionDTO {
     youtube?: string;
     operator?: string;
     images: ImageDTO[];
-    tags: TagDTO[];
     programm: ProgrammEntryDTO[];
     files: AttractionFileDTO[];
 }
@@ -120,11 +119,6 @@ export interface SponsoringDTO {
 export interface SponsoringTypeDTO {
     type: SponsoringType;
     description: string;
-}
-
-export interface TagDTO {
-    id: number;
-    name: string;
 }
 
 export type DateAsString = string;
