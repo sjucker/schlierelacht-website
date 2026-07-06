@@ -8,6 +8,7 @@ export interface AttractionDTO {
     instagram?: string;
     facebook?: string;
     youtube?: string;
+    operator?: string;
     images: ImageDTO[];
     tags: TagDTO[];
     programm: ProgrammEntryDTO[];

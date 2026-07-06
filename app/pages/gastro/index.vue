@@ -36,6 +36,7 @@
               class="px-2 py-2 text-xs font-semibold uppercase tracking-wide text-neutral-500 border-b border-neutral-300">
             <div>Nr.</div>
             <div class="truncate">Name</div>
+            <div class="truncate">Betreiber</div>
           </div>
 
           <!-- Rows -->
@@ -48,6 +49,7 @@
           >
             <div class="text-neutral-600 whitespace-nowrap">{{ item.externalId }}</div>
             <div class="font-semibold text-fest-blue truncate">{{ item.name }}</div>
+            <div class="text-neutral-600 truncate">{{ item.operator }}</div>
           </NuxtLink>
         </div>
       </div>
@@ -58,8 +60,8 @@
 <script setup lang="ts">
 import type {AttractionDTO} from '~~/shared/types/rest'
 
-// Shared column template so the header and every row align (Nr. · Name).
-const rowGrid = 'grid grid-cols-[3rem_1fr] gap-x-3 sm:gap-x-4'
+// Shared column template so the header and every row align (Nr. · Name · Betreiber).
+const rowGrid = 'grid grid-cols-[3rem_1fr_1fr] gap-x-3 sm:gap-x-4'
 
 const config = useRuntimeConfig()
 const {data, status, error} = useFetch<AttractionDTO[]>(
