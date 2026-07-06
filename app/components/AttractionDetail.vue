@@ -42,7 +42,7 @@
         </div>
 
         <!-- Description -->
-        <div v-if="attraction.description" class="prose max-w-none">
+        <div v-if="attraction.description" class="prose max-w-none [&_:is(h1,h2,h3,h4,h5,h6):first-child]:mt-0">
           <MDC :value="attraction.description"/>
         </div>
 
