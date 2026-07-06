@@ -8,14 +8,13 @@
       <template #default>
         Erika und Charly Mettier, <a href="tel:+41 79 456 79 69">079 456 79 69</a><br>
         Kampstrasse 6, 8952 Schlieren<br>
-        <a href="mailto:info@schlierelacht.ch">info@schlierelacht.ch</a>
-        , <a href="mailto:erika.mettier@schlierelacht.ch">erika.mettier@schlierelacht.ch</a>
+        <a href="mailto:info@schlierelacht.ch">info@schlierelacht.ch</a>, <a href="mailto:erika.mettier@schlierelacht.ch">erika.mettier@schlierelacht.ch</a>
       </template>
     </UCard>
 
-    <h4>Organisations-Komitee</h4>
+    <h3>Organisations-Komitee</h3>
     <LoadingSpinner v-if="status === 'pending' || status === 'idle'"/>
-    <div v-else-if="ok" class="not-prose">
+    <div v-else-if="ok">
       <div class="grid lg:grid-cols-2 gap-2 pb-8">
         <PersonCard
             v-for="member in ok.members"
@@ -27,6 +26,7 @@
         />
       </div>
 
+      <h3>OK Team-Mitglieder</h3>
       <div v-for="team in teamsWithMembers" :key="team.name" class="mb-6">
         <h5 class="text-base font-semibold text-fest-blue mt-4 mb-2">{{ team.name }}</h5>
         <ul class="list-none pl-0 space-y-0.5">
