@@ -25,6 +25,22 @@ The project requires environment variables for local development and deployment.
 * [Prod](https://app.netlify.com/projects/schlierelacht/configuration/env#environment-variables)
 * [Staging](https://app.netlify.com/projects/schlierelacht-staging/configuration/env#environment-variables)
 
+### Password protection (staging only)
+
+The free Netlify plan has no built-in password protection, so
+`netlify/edge-functions/password-protect.ts` implements HTTP Basic Auth. It is
+activated purely by environment variables, so the same code is deployed to both
+sites:
+
+* **Staging** — set `SITE_PASSWORD` (required) and optionally `SITE_USERNAME`
+  (defaults to `schliere`) in the staging site's environment variables. Every
+  request is then challenged with Basic Auth.
+* **Prod** — leave `SITE_PASSWORD` unset. The edge function short-circuits and
+  passes all requests through, so prod stays fully open.
+
+To change or lift protection, edit the env vars in the Netlify UI and redeploy —
+no code change needed.
+
 ## Updating
 
 * `npm run upgrade-nuxt`
