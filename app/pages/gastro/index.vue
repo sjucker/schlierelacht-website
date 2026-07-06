@@ -3,23 +3,13 @@
     <h2 class="text-2xl font-bold text-fest-blue mb-1">Gastro</h2>
     <USeparator color="primary" class="mb-4"/>
 
-    <div class="mb-4 flex flex-col sm:flex-row gap-4 items-end">
-      <UInput v-model="search" placeholder="Suchen…" icon="i-lucide-search" class="w-full sm:flex-1"/>
-      <UButton
-          v-if="search"
-          variant="ghost"
-          icon="i-lucide-x"
-          @click="search = undefined"
-      />
-    </div>
-
     <div v-if="error" class="text-sm text-red-600">Fehler beim Laden der Daten.</div>
     <LoadingSpinner v-else-if="status === 'pending' || status === 'idle'"/>
     <Transition
         enter-active-class="transition-opacity duration-300" enter-from-class="opacity-0"
         enter-to-class="opacity-100">
       <div v-if="status === 'success'">
-        <div v-if="filtered.length === 0" class="text-sm text-neutral-500">Keine Einträge gefunden.</div>
+        <div v-if="sorted.length === 0" class="text-sm text-neutral-500">Keine Einträge gefunden.</div>
 
         <div v-else>
           <!-- Header row -->
@@ -33,7 +23,7 @@
 
           <!-- Rows -->
           <NuxtLink
-              v-for="item in filtered"
+              v-for="item in sorted"
               :key="item.externalId"
               :to="`/gastro/${item.externalId}`"
               :class="rowGrid"
@@ -61,16 +51,8 @@ const {data, status, error} = useFetch<AttractionDTO[]>(
     {server: false}
 )
 
-const search = ref<string | undefined>(undefined)
-
-const filtered = computed(() => {
-  let result = [...(data.value ?? [])].sort((a, b) => a.externalId.localeCompare(b.externalId))
-  if (search.value) {
-    const q = search.value.toLowerCase()
-    result = result.filter(item => item.name.toLowerCase().includes(q))
-  }
-  return result
-})
+const sorted = computed(() =>
+    [...(data.value ?? [])].sort((a, b) => a.externalId.localeCompare(b.externalId)))
 
 useSeoMeta({
   title: 'Gastro · Schliere lacht',
