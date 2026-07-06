@@ -108,8 +108,8 @@
 
     <!-- Ribbon: top-right corner (~30°) -->
     <div
-        class="absolute top-7 -right-12 bg-fest-yellow text-black font-bold text-xs md:text-sm
-                px-24 py-2.5 rotate-30 text-center leading-tight tracking-wide z-10">
+        class="absolute top-7 lg:top-12 -right-12 lg:-right-20 bg-fest-yellow text-black font-bold text-xs lg:text-xl
+                px-24 lg:px-44 py-2.5 lg:py-4 rotate-30 text-center leading-tight tracking-wide z-10">
       Freier Eintritt<br>zu allen Konzerten
     </div>
 
