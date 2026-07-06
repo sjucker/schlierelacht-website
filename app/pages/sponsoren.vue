@@ -7,8 +7,7 @@
       <p class="text-lg font-semibold text-fest-blue m-0">Herzlichen Dank</p>
       <p class="m-0">Allen unseren Sponsoren danken wir herzlich für ihr grosszügiges Engagement.</p>
       <p class="m-0">Auch beim Schlierefäscht 2027 soll wieder fast die Hälfte der Einnahmen durch Sponsoren erbracht werden. Unsere Sponsoring-Verantwortlicher Albert Schweizer hat attraktive
-        Sponsoring-Pakete geschnürt und steht Interessenten gerne für ein Gespräch zur Verfügung (<a href="tel:+41447381506" class="text-fest-blue underline">+41 44 738 15 06</a>, <a
-            href="mailto:albert.schweizer@schlieren.ch" class="text-fest-blue underline">E-Mail</a>).
+        Sponsoring-Pakete geschnürt und steht Interessenten gerne für ein Gespräch zur Verfügung: <a href="mailto:albert.schweizer@schlieren.ch" class="text-fest-blue underline">E-Mail</a>
       </p>
     </div>
 
