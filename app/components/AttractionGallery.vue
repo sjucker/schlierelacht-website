@@ -1,39 +1,17 @@
 <template>
-  <div v-if="images.length">
-    <div class="flex flex-wrap gap-2">
-      <button
-          v-for="image in images"
-          :key="image.cloudflareId"
-          type="button"
-          class="group block overflow-hidden rounded-lg border border-neutral-200 dark:border-neutral-700 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-          @click="open(image)"
-      >
-        <NuxtImg
-            provider="cloudflare"
-            loading="lazy"
-            :src="cloudflareUrl(image.cloudflareId)"
-            :alt="image.description"
-            class="h-40 w-40 sm:h-48 sm:w-48 object-cover transition-transform duration-200 group-hover:scale-105"
-        />
-      </button>
+  <div v-if="images.length" class="grid grid-cols-1 md:grid-cols-2 gap-2">
+    <div
+        v-for="image in images"
+        :key="image.cloudflareId"
+        class="relative overflow-hidden rounded-lg border border-neutral-200 md:bg-neutral-100 md:flex md:items-center md:justify-center">
+      <!-- mobile: full width at natural ratio; desktop: fits inside the fixed-height box -->
+      <NuxtImg
+          provider="cloudflare"
+          loading="lazy"
+          :src="cloudflareUrl(image.cloudflareId)"
+          :alt="image.description"
+          class="relative max-w-full h-auto md:w-full md:h-full md:object-contain"/>
     </div>
-
-    <UModal
-        v-model:open="isOpen"
-        :title="activeImage?.description || 'Bild'"
-        :ui="{ content: 'w-fit max-w-[95vw]' }"
-    >
-      <template #content>
-        <!-- plain <img> loads the full-resolution `public` variant (NuxtImg would downscale it);
-             CSS caps it at the viewport so it fills as much space as its natural size allows -->
-        <img
-            v-if="activeImage"
-            :src="cloudflareUrl(activeImage.cloudflareId)"
-            :alt="activeImage.description"
-            class="w-auto h-auto max-w-[95vw] max-h-[90vh] object-contain rounded-lg mx-auto"
-        >
-      </template>
-    </UModal>
   </div>
 </template>
 
@@ -42,12 +20,4 @@ import type {ImageDTO} from '~~/shared/types/rest'
 import cloudflareUrl from '~/utils/cloudflare-url'
 
 defineProps<{ images: ImageDTO[] }>()
-
-const isOpen = ref(false)
-const activeImage = ref<ImageDTO | null>(null)
-
-function open(image: ImageDTO) {
-  activeImage.value = image
-  isOpen.value = true
-}
 </script>

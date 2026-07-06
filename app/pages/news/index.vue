@@ -16,11 +16,11 @@
               v-for="item in news"
               :key="item.id"
               :to="`/news/${item.id}`"
-              class="flex flex-col rounded-xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:shadow-md transition-shadow"
+              class="flex flex-col rounded-xl overflow-hidden border border-neutral-200 bg-white hover:shadow-md transition-shadow"
           >
             <!-- Image -->
             <div
-                class="relative h-48 bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center overflow-hidden">
+                class="relative h-48 bg-neutral-100 flex items-center justify-center overflow-hidden">
               <template v-if="item.cloudflareId">
                 <!-- blurred backdrop fills the box so portrait images have no empty bands -->
                 <NuxtImg
@@ -38,14 +38,14 @@
                     class="relative w-full h-full object-contain"
                 />
               </template>
-              <UIcon v-else name="i-lucide-image" class="w-16 h-16 text-neutral-300 dark:text-neutral-600"/>
+              <UIcon v-else name="i-lucide-image" class="w-16 h-16 text-neutral-300"/>
             </div>
 
             <!-- Body -->
             <div class="flex flex-col gap-3 p-4 flex-1">
               <p class="text-xs text-neutral-400 m-0">{{ formatDate(item.date) }}</p>
               <h3 class="text-base font-bold text-fest-blue m-0 leading-snug">{{ item.title }}</h3>
-              <p class="text-sm text-neutral-600 dark:text-neutral-400 m-0 line-clamp-4 leading-relaxed">
+              <p class="text-sm text-neutral-600 m-0 line-clamp-4 leading-relaxed">
                 {{ item.introText }}</p>
               <div class="mt-auto pt-2">
                 <UButton size="sm" color="primary" variant="subtle" trailing-icon="i-lucide-arrow-right">

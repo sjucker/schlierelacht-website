@@ -3,7 +3,7 @@
     <h2 class="text-2xl font-bold text-fest-blue mb-1">Impressum</h2>
     <USeparator color="primary" class="mb-6"/>
 
-    <div class="prose dark:prose-invert max-w-none">
+    <div class="prose max-w-none">
       <h3>Inhaltliche Verantwortung</h3>
       <p>
         OK Schlierefäscht 2027 „Schliere lacht"<br>

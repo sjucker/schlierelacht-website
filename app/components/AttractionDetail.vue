@@ -12,7 +12,7 @@
         <!-- Main image header -->
         <div
             v-if="mainImage"
-            class="not-prose relative w-full rounded-lg overflow-hidden md:h-[250px] lg:h-[320px] md:bg-neutral-100 md:dark:bg-neutral-800 md:flex md:items-center md:justify-center">
+            class="not-prose relative w-full rounded-lg overflow-hidden md:h-[250px] lg:h-[320px] md:bg-neutral-100 md:flex md:items-center md:justify-center">
           <!-- blurred backdrop fills the fixed-height desktop box so portrait/square images have no empty bands -->
           <NuxtImg
               provider="cloudflare"
@@ -42,7 +42,7 @@
         </div>
 
         <!-- Description -->
-        <div v-if="attraction.description" class="prose max-w-none [&_:is(h1,h2,h3,h4,h5,h6):first-child]:mt-0">
+        <div v-if="attraction.description" class="prose max-w-none [&_:first-child]:mt-0 [&_:last-child]:mb-0">
           <MDC :value="attraction.description"/>
         </div>
 

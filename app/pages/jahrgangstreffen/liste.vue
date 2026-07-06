@@ -30,7 +30,7 @@
             <li
                 v-for="entry in selectedEntries"
                 :key="`${entry.lastname}-${entry.firstname}`"
-                class="text-sm text-neutral-700 dark:text-neutral-300"
+                class="text-sm text-neutral-700"
             >
               {{ entry.lastname }}, {{ entry.firstname }}
             </li>

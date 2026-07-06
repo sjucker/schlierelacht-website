@@ -23,8 +23,8 @@
                 :alt="news.title"
                 class="w-full h-auto object-contain"
             />
-            <div v-else class="h-48 sm:h-56 flex items-center justify-center bg-neutral-100 dark:bg-neutral-800">
-              <UIcon name="i-lucide-image" class="w-16 h-16 text-neutral-300 dark:text-neutral-600"/>
+            <div v-else class="h-48 sm:h-56 flex items-center justify-center bg-neutral-100">
+              <UIcon name="i-lucide-image" class="w-16 h-16 text-neutral-300"/>
             </div>
           </div>
 
@@ -33,7 +33,7 @@
             <p class="text-xs text-neutral-400 m-0 mb-2">{{ formatDate(news.date) }}</p>
             <h2 class="text-2xl font-bold text-fest-blue m-0 mb-4 leading-snug">{{ news.title }}</h2>
             <USeparator color="primary" class="mb-4"/>
-            <div class="prose dark:prose-invert max-w-none">
+            <div class="prose max-w-none">
               <MDC :value="news.fullText"/>
             </div>
           </div>

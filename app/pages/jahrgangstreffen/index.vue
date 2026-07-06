@@ -10,7 +10,7 @@
           alt="widerluege"
           class="w-40 sm:w-44 mx-auto sm:mx-0 shrink-0"
       />
-      <div class="space-y-3 text-neutral-700 dark:text-neutral-300">
+      <div class="space-y-3 text-neutral-700">
         <p>Das Schlierefäscht bietet den perfekten Rahmen für ein Wiedersehen mit alten Schulkameraden und Freunden. Beim Jahrgangstreffen kommen alle Jahrgänge zusammen – für einen unvergesslichen
           Abend voller Erinnerungen.</p>
         <p>Melde dich an und sei dabei!</p>
