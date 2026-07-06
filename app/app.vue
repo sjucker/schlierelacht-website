@@ -79,12 +79,11 @@
 
       <!-- FOOTER -->
       <footer
-          v-if="!isSponsoren"
           class="shrink-0 border-t border-neutral-200 dark:border-neutral-800
                      bg-white dark:bg-neutral-900 px-6 py-4">
 
         <!-- Sponsor groups: horizontal on desktop, stacked on mobile -->
-        <div class="flex flex-col md:flex-row md:items-start md:justify-start gap-8 md:gap-6 lg:gap-16">
+        <div v-if="!isSponsoren" class="flex flex-col md:flex-row md:items-start md:justify-start gap-8 md:gap-6 lg:gap-16">
 
           <!-- Veranstalter -->
           <div class="flex flex-col gap-1.5">
@@ -148,6 +147,13 @@
 
         </div>
 
+        <!-- Legal: small, bottom-right -->
+        <div
+            class="flex justify-end items-center gap-3 text-[10px] text-neutral-400 dark:text-neutral-400"
+            :class="{'mt-1.5': !isSponsoren}">
+          <span>© schlierelacht {{ currentYear }}</span>
+          <NuxtLink to="/impressum" class="hover:text-fest-blue">Impressum</NuxtLink>
+        </div>
       </footer>
 
     </div>
@@ -166,12 +172,12 @@ const navItems = [
   {label: 'Downloads', to: '/downloads'},
   {label: 'Galerie', to: '/galerien'},
   {label: 'Über uns', to: '/info'},
-  {label: 'Impressum', to: '/impressum'},
 ]
 
 const route = useRoute()
 const isHome = computed(() => route.path === '/')
 const isSponsoren = computed(() => route.path === '/sponsoren')
+const currentYear = new Date().getFullYear()
 const isActive = (path: string) => route.path === path || route.path.startsWith(path + '/')
 const mobileNavOpen = ref(false)
 
