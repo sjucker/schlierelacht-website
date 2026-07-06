@@ -3,6 +3,11 @@
     <h2 class="text-2xl font-bold text-fest-blue mb-1">Gastro</h2>
     <USeparator color="primary" class="mb-4"/>
 
+    <p class="prose text-neutral-700 max-w-5xl text-sm leading-relaxed mb-4">
+      Nachstehend werden Sie die Auflistung der Festwirtschaften und Marktstände am
+      Schlierefäscht 2027 finden. Diese Liste wird bis zum Fest ergänzt und komplettiert.
+    </p>
+
     <div v-if="error" class="text-sm text-red-600">Fehler beim Laden der Daten.</div>
     <LoadingSpinner v-else-if="status === 'pending' || status === 'idle'"/>
     <Transition
