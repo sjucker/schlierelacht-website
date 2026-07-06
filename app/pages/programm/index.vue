@@ -3,7 +3,18 @@
     <h2 class="text-2xl font-bold text-fest-blue mb-1">Programm</h2>
     <USeparator color="primary" class="mb-4"/>
 
-    <div class="mb-4 flex flex-col sm:flex-row gap-3 items-end">
+    <p class="prose text-neutral-700 max-w-5xl text-sm leading-relaxed">
+      Das Programm Schlierefäscht 2027 entsteht Schritt um Schritt. Alle definitiv
+      gebuchten Konzerte und Events werden fortlaufend auf unserer Webseite
+      aufgeschaltet. Sehr gerne weisen wir auch an dieser Stelle darauf hin, dass der <strong>Zutritt zu
+      sämtlichen Konzerten kostenlos ist und keine Tickets für den Eintritt benötigt werden</strong>.
+      Das wird ermöglicht durch die grosszügige Unterstützung der Stadt Schlieren und
+      unserer grossen
+      <NuxtLink to="/sponsoren">Sponsorenfamily.</NuxtLink>
+      Ihnen allen gilt unser grosser Dank.
+    </p>
+
+    <div class="my-4 flex flex-col sm:flex-row gap-3 items-end">
       <USelect
           v-model="selectedDate"
           value-key="id"
