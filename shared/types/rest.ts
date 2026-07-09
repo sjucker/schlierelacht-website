@@ -37,6 +37,15 @@ export interface DownloadDTO {
     uploadedAt: DateAsString;
 }
 
+export interface GalleryCategoryDTO {
+    category: string;
+    images: GalleryImageDTO[];
+}
+
+export interface GalleryImageDTO {
+    cloudflareId: string;
+}
+
 export interface ImageDTO {
     cloudflareId: string;
     description: string;
