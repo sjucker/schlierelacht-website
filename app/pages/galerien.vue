@@ -13,19 +13,52 @@
         <section v-for="category in categories" :key="category.category" class="mb-12">
           <h3 class="text-lg font-semibold uppercase tracking-widest text-fest-blue mb-4">{{ category.category }}</h3>
           <div class="columns-2 md:columns-3 lg:columns-4 gap-4">
-            <NuxtImg
+            <button
                 v-for="image in category.images"
                 :key="image.cloudflareId"
-                provider="cloudflare"
-                loading="lazy"
-                :src="cloudflareUrl(image.cloudflareId)"
-                :alt="category.category"
-                class="mb-4 w-full h-auto rounded-lg break-inside-avoid"
-            />
+                type="button"
+                class="mb-4 block w-full break-inside-avoid cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-fest-blue rounded-lg"
+                @click="openLightbox(image.cloudflareId)">
+              <NuxtImg
+                  provider="cloudflare"
+                  loading="lazy"
+                  :src="cloudflareUrl(image.cloudflareId)"
+                  :alt="category.category"
+                  class="w-full h-auto rounded-lg"
+              />
+            </button>
           </div>
         </section>
       </div>
     </Transition>
+
+    <Teleport to="body">
+      <Transition
+          enter-active-class="transition-opacity duration-200" enter-from-class="opacity-0" enter-to-class="opacity-100"
+          leave-active-class="transition-opacity duration-200" leave-from-class="opacity-100" leave-to-class="opacity-0">
+        <div
+            v-if="lightboxId"
+            class="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 cursor-pointer"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Bild in voller Grösse"
+            @click="closeLightbox">
+          <button
+              type="button"
+              class="absolute top-4 right-4 text-white/80 hover:text-white focus:outline-none"
+              aria-label="Schliessen"
+              @click="closeLightbox">
+            <UIcon name="i-lucide-x" class="size-8"/>
+          </button>
+          <NuxtImg
+              provider="cloudflare"
+              :src="cloudflareUrl(lightboxId)"
+              alt=""
+              class="max-w-full max-h-[85vh] w-auto h-auto object-contain rounded-lg md:max-h-none md:h-[90vh] md:max-w-[92vw]"
+              @click.stop/>
+        </div>
+      </Transition>
+    </Teleport>
   </div>
 </template>
 
@@ -41,6 +74,23 @@ const {data, status, error} = useFetch<GalleryCategoryDTO[]>(
 
 // Backend returns categories in the admin-defined order, with images newest-first within each.
 const categories = computed(() => data.value ?? [])
+
+const lightboxId = ref<string | null>(null)
+
+function openLightbox(id: string) {
+  lightboxId.value = id
+}
+
+function closeLightbox() {
+  lightboxId.value = null
+}
+
+function onKeydown(e: KeyboardEvent) {
+  if (e.key === 'Escape') closeLightbox()
+}
+
+onMounted(() => window.addEventListener('keydown', onKeydown))
+onUnmounted(() => window.removeEventListener('keydown', onKeydown))
 
 useSeoMeta({
   title: 'Galerien · Schliere lacht',
