@@ -117,7 +117,7 @@
 </template>
 
 <script setup lang="ts">
-const TOTAL_BG = 6
+const TOTAL_BG = 5
 const bgIndex = ref(Math.floor(Math.random() * TOTAL_BG))
 const bgPad = (i: number) => `${String(i + 1).padStart(2, '0')}.jpg`
 

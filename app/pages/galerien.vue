@@ -4,10 +4,10 @@
     <USeparator color="primary" class="mb-6"/>
 
     <div class="flex flex-row justify-start pb-4">
-      <iframe src="https://www.facebook.com/plugins/video.php?height=715&href=https%3A%2F%2Fwww.facebook.com%2Fschlierelacht%2Fvideos%2F3538727499751138%2F&show_text=false&width=400&t=0"
-              width="400"
-              height="715" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-              allowFullScreen="true"></iframe>
+      <iframe
+          src="https://www.facebook.com/plugins/video.php?height=715&href=https%3A%2F%2Fwww.facebook.com%2Fschlierelacht%2Fvideos%2F3538727499751138%2F&show_text=false&width=400&t=0"
+          width="400"
+          height="715" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"/>
     </div>
 
     <div v-if="error" class="text-sm text-red-600">Fehler beim Laden der Bilder.</div>
