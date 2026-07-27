@@ -67,6 +67,9 @@
           <UInput v-model="form.email" type="email" placeholder="max.muster@example.com" class="w-full"/>
         </UFormField>
 
+        <p class="text-xs text-neutral-500">Die Angabe Deiner Mail-Adresse benötigen wir einzig, um Dich zu informieren, wo Dein Jahrgangstreffen stattfinden wird. Nach diesem Info-Mail werden
+          sämtliche Mail-Adressen bei uns wieder gelöscht.</p>
+
         <UFormField label="Jahrgang" name="jahrgang" required>
           <USelect
               v-model="form.jahrgang"
