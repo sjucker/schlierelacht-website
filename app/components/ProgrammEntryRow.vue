@@ -7,8 +7,8 @@
     <!-- Mobile layout: Tag · Datum · Zeit, then Titel (bold) · Bühne -->
     <div class="md:hidden">
       <div class="flex flex-wrap gap-x-2 text-neutral-600 whitespace-nowrap">
-        <span>{{ weekday(row.entry.fromDate) }}</span>
-        <span>{{ dateOnly(row.entry.fromDate) }}</span>
+        <span>{{ formatWeekday(row.entry.fromDate) }}</span>
+        <span>{{ formatDateShort(row.entry.fromDate) }}</span>
         <span v-if="row.entry.fromTime">{{ formatTime(row.entry.fromTime) }}</span>
       </div>
       <div class="flex flex-wrap items-baseline gap-x-2">
@@ -20,8 +20,8 @@
     <!-- Desktop layout: aligned grid columns -->
     <div :class="gridClass" class="hidden md:grid items-center">
       <div class="font-semibold text-fest-blue truncate">{{ row.attraction.name }}</div>
-      <div class="text-neutral-600 whitespace-nowrap">{{ weekday(row.entry.fromDate) }}</div>
-      <div class="text-neutral-600 whitespace-nowrap">{{ dateOnly(row.entry.fromDate) }}</div>
+      <div class="text-neutral-600 whitespace-nowrap">{{ formatWeekday(row.entry.fromDate) }}</div>
+      <div class="text-neutral-600 whitespace-nowrap">{{ formatDateShort(row.entry.fromDate) }}</div>
       <div class="text-neutral-600 whitespace-nowrap">{{ row.entry.fromTime ? formatTime(row.entry.fromTime) : '' }}</div>
       <div class="text-neutral-600 truncate">{{ row.entry.location.name }}</div>
     </div>
@@ -30,7 +30,9 @@
 
 <script setup lang="ts">
 import type {AttractionRefDTO, ProgrammEntryDTO} from '~~/shared/types/rest'
+import formatDateShort from '~/utils/format-date-short'
 import formatTime from '~/utils/format-time'
+import formatWeekday from '~/utils/format-weekday'
 
 defineProps<{
   row: { attraction: AttractionRefDTO; entry: ProgrammEntryDTO }
@@ -40,20 +42,5 @@ defineProps<{
   past?: boolean
 }>()
 
-// "Tag" column: weekday name, e.g. "Mittwoch".
-function weekday(date: string): string {
-  if (!date) return ''
-  const [year, month, day] = date.split('-')
-  if (!year || !month || !day) return ''
-  const d = new Date(parseInt(year), parseInt(month) - 1, parseInt(day))
-  return new Intl.DateTimeFormat('de-CH', {weekday: 'long'}).format(d)
-}
-
-// "Datum" column: just the date, e.g. "03.09.2027".
-function dateOnly(date: string): string {
-  if (!date) return ''
-  const [year, month, day] = date.split('-')
-  if (!year || !month || !day) return date
-  return `${day}.${month}.${year}`
-}
+// "Tag" column shows formatWeekday (e.g. "Mittwoch"), "Datum" formatDateShort ("03.09.2027").
 </script>

@@ -1,10 +1,10 @@
+import formatDateShort from './format-date-short'
+import formatWeekday from './format-weekday'
+
+// Full date with weekday, e.g. "Freitag, 03.09.2027".
 export default function (date: string) {
-    if (!date) return ''
-    const [year, month, day] = date.split('-')
-    if (!year || !month || !day) return date
+    const weekday = formatWeekday(date)
+    const short = formatDateShort(date)
 
-    const d = new Date(parseInt(year), parseInt(month) - 1, parseInt(day))
-    const weekday = new Intl.DateTimeFormat('de-CH', {weekday: 'long'}).format(d)
-
-    return `${weekday}, ${day}.${month}.${year}`
+    return weekday ? `${weekday}, ${short}` : short
 }
