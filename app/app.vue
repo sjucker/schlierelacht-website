@@ -153,6 +153,7 @@
             :class="{'mt-1.5': !isSponsoren}">
           <span>© schlierelacht {{ currentYear }}</span>
           <NuxtLink to="/impressum" class="hover:text-fest-blue">Impressum</NuxtLink>
+          <NuxtLink to="/datenschutz" class="hover:text-fest-blue">Datenschutz</NuxtLink>
         </div>
       </footer>
 
