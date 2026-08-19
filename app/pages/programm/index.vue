@@ -15,6 +15,12 @@
     </p>
 
     <div class="my-4 flex flex-col sm:flex-row gap-3 items-end">
+      <UInput
+          v-model="search"
+          placeholder="Act suchen…"
+          icon="i-lucide-search"
+          class="w-full sm:w-56"
+      />
       <USelect
           v-model="selectedDate"
           value-key="id"
@@ -32,7 +38,7 @@
           class="w-full sm:w-56"
       />
       <UButton
-          v-if="selectedDate || selectedStage"
+          v-if="search || selectedDate || selectedStage"
           variant="ghost"
           icon="i-lucide-x"
           @click="resetFilters"
@@ -101,10 +107,12 @@ const {data, pending, status, error} = useFetch<ProgrammPointDTO[]>(
     {server: false}
 )
 
+const search = ref('')
 const selectedDate = ref<string | undefined>(undefined)
 const selectedStage = ref<string | undefined>(undefined)
 
 const resetFilters = () => {
+  search.value = ''
   selectedDate.value = undefined
   selectedStage.value = undefined
 }
@@ -145,7 +153,10 @@ function withDayMarkers(list: ProgrammRow[]) {
   })
 }
 
-// Apply the active date/stage filters to the already-sorted programm points.
+const term = computed(() => search.value.trim().toLowerCase())
+
+// Apply the active search/date/stage filters to the already-sorted programm points.
+// The search matches the act name only — stages are covered by their own select.
 // Each entry is tagged past/upcoming by the backend (ProgrammEntryDTO.past).
 const rows = computed<ProgrammRow[]>(() => {
   const result: ProgrammRow[] = []
@@ -153,6 +164,7 @@ const rows = computed<ProgrammRow[]>(() => {
     const entry = point.entry
     if (selectedDate.value && entry.fromDate !== selectedDate.value) continue
     if (selectedStage.value && entry.location?.externalId !== selectedStage.value) continue
+    if (term.value && !point.attraction.name.toLowerCase().includes(term.value)) continue
     result.push({
       key: `${point.attraction.externalId}|${entry.fromDate}|${entry.fromTime ?? ''}|${entry.location.externalId}`,
       attraction: point.attraction,
