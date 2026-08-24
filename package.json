@@ -19,7 +19,7 @@
     "@nuxt/eslint": "1.17.0",
     "@nuxt/image": "2.1.0",
     "@nuxt/ui": "4.11.0",
-    "@nuxtjs/mdc": "0.22.0",
+    "@nuxtjs/mdc": "0.23.1",
     "eslint": "10.9.0",
     "nuxt": "4.5.2",
     "nuxt-mapbox": "1.6.4",
@@ -28,9 +28,9 @@
     "vue-router": "5.2.0"
   },
   "devDependencies": {
-    "@netlify/edge-functions": "3.0.8",
+    "@netlify/edge-functions": "4.0.0",
     "@tailwindcss/typography": "0.5.20",
-    "mapbox-gl": "3.25.0",
+    "mapbox-gl": "3.29.0",
     "release-it": "21.0.2"
   }
 }
