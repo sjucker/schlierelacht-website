@@ -16,17 +16,17 @@
     "release": "release-it"
   },
   "dependencies": {
-    "@nuxt/eslint": "1.16.0",
-    "@nuxt/image": "2.0.0",
-    "@nuxt/ui": "4.9.0",
-    "eslint": "10.6.0",
-    "nuxt": "4.4.8",
+    "@nuxt/eslint": "1.17.0",
+    "@nuxt/image": "2.1.0",
+    "@nuxt/ui": "4.11.0",
+    "eslint": "10.9.0",
+    "nuxt": "4.5.2",
     "typescript": "6.0.3",
-    "vue": "3.5.39",
-    "vue-router": "5.1.0"
+    "vue": "3.5.41",
+    "vue-router": "5.2.0"
   },
   "devDependencies": {
     "@tailwindcss/typography": "0.5.20",
-    "release-it": "20.2.1"
+    "release-it": "21.0.2"
   }
 }
