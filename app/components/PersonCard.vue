@@ -12,14 +12,13 @@
               densities="x1 x2"
               class="not-prose rounded-lg"
           />
-          <NuxtImg
+          <img
               v-else-if="props.imageSrc"
               loading="lazy"
               :src="'/portraits/'+ props.imageSrc"
               :alt="props.name"
-              densities="x1 x2"
               class="not-prose rounded-lg"
-          />
+          >
         </div>
         <div class="flex-5 prose-sm truncate">
           <strong>{{ props.name }}</strong><br>
