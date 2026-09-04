@@ -29,38 +29,41 @@
             </div>
           </template>
           <template #default>
-            <MapboxMap
-                map-id="map"
-                style="width: 100%; height: 500px;"
-                :options="{
-                style: 'mapbox://styles/schlierelacht/cmr9dkfx0003701r07otc18ui',
-              center: center,
-              zoom: 18
-              }">
+            <!-- nuxt-mapbox positions the map container absolutely, so it needs a positioned
+                 parent with an explicit height to stay inside the page layout. -->
+            <div class="relative h-[350px] md:h-[500px]">
+              <MapboxMap
+                  map-id="map"
+                  :options="{
+                  style: 'mapbox://styles/schlierelacht/cmr9dkfx0003701r07otc18ui',
+                center: center,
+                zoom: 18
+                }">
 
-              <MapboxSource
-                  source-id="source"
-                  :source="{
-          type: 'geojson',
-          data: geojson
-        }"
-              />
-              <MapboxLayer
-                  :layer="{
-          source: 'source',
-          id: 'geojson-layer',
-          type: 'circle',
-          paint: {
-            'circle-radius': 14,
-            'circle-color': '#ff0000',
-            'circle-stroke-width': 2,
-            'circle-stroke-color': '#ffffff'
-          }
-            }"
-              />
+                <MapboxSource
+                    source-id="source"
+                    :source="{
+            type: 'geojson',
+            data: geojson
+          }"
+                />
+                <MapboxLayer
+                    :layer="{
+            source: 'source',
+            id: 'geojson-layer',
+            type: 'circle',
+            paint: {
+              'circle-radius': 14,
+              'circle-color': '#ff0000',
+              'circle-stroke-width': 2,
+              'circle-stroke-color': '#ffffff'
+            }
+              }"
+                />
 
-              <MapboxGeolocateControl position="top-left"/>
-            </MapboxMap>
+                <MapboxGeolocateControl position="top-left"/>
+              </MapboxMap>
+            </div>
           </template>
         </UCard>
       </div>

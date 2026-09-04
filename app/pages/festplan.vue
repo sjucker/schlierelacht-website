@@ -13,60 +13,62 @@
       </div>
     </div>
 
-    <div class="flex-1 min-h-[500px] px-4 md:px-6 pb-4 md:pb-6">
+    <div class="flex-1 min-h-0 px-4 md:px-6 pb-4 md:pb-6">
       <div v-if="error" class="text-sm text-red-600">Fehler beim Laden der Daten.</div>
       <LoadingSpinner v-else-if="status === 'pending' || status === 'idle'"/>
-      <MapboxMap
-          v-else
-          map-id="festplan"
-          style="width: 100%; height: 100%;"
-          :options="{
-            style: 'mapbox://styles/schlierelacht/cmr9dkfx0003701r07otc18ui',
-            center: mapCenter,
-            zoom: 16
-          }"
-      >
-        <MapboxSource
-            source-id="locations"
-            :source="{ type: 'geojson', data: geojson }"
-        />
-
-        <MapboxLayer
-            :layer="{
-              id: 'location-circles',
-              source: 'locations',
-              type: 'circle',
-              paint: {
-                'circle-radius': 14,
-                'circle-color': colorExpression,
-                'circle-stroke-width': 2,
-                'circle-stroke-color': '#ffffff'
-              }
+      <!-- nuxt-mapbox positions the map container absolutely, so it needs a positioned
+           parent with an explicit height to stay inside the page layout. -->
+      <div v-else class="relative h-[60vh] md:h-full md:min-h-[320px]">
+        <MapboxMap
+            map-id="festplan"
+            :options="{
+              style: 'mapbox://styles/schlierelacht/cmr9dkfx0003701r07otc18ui',
+              center: mapCenter,
+              zoom: 16
             }"
-        />
+        >
+          <MapboxSource
+              source-id="locations"
+              :source="{ type: 'geojson', data: geojson }"
+          />
 
-        <MapboxLayer
-            :layer="{
-              id: 'location-labels',
-              source: 'locations',
-              type: 'symbol',
-              layout: {
-                'text-field': ['get', 'name'],
-                'text-offset': [0, 1.8],
-                'text-anchor': 'top',
-                'text-size': 12,
-                'text-font': ['Open Sans Regular', 'Arial Unicode MS Regular']
-              },
-              paint: {
-                'text-color': '#1f2937',
-                'text-halo-color': '#ffffff',
-                'text-halo-width': 1.5
-              }
-            }"
-        />
+          <MapboxLayer
+              :layer="{
+                id: 'location-circles',
+                source: 'locations',
+                type: 'circle',
+                paint: {
+                  'circle-radius': 14,
+                  'circle-color': colorExpression,
+                  'circle-stroke-width': 2,
+                  'circle-stroke-color': '#ffffff'
+                }
+              }"
+          />
 
-        <MapboxGeolocateControl position="top-left"/>
-      </MapboxMap>
+          <MapboxLayer
+              :layer="{
+                id: 'location-labels',
+                source: 'locations',
+                type: 'symbol',
+                layout: {
+                  'text-field': ['get', 'name'],
+                  'text-offset': [0, 1.8],
+                  'text-anchor': 'top',
+                  'text-size': 12,
+                  'text-font': ['Open Sans Regular', 'Arial Unicode MS Regular']
+                },
+                paint: {
+                  'text-color': '#1f2937',
+                  'text-halo-color': '#ffffff',
+                  'text-halo-width': 1.5
+                }
+              }"
+          />
+
+          <MapboxGeolocateControl position="top-left"/>
+        </MapboxMap>
+      </div>
     </div>
 
   </div>
