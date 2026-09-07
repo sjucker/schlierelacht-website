@@ -118,6 +118,12 @@ export interface ProgrammPointDTO {
     entry: ProgrammEntryDTO;
 }
 
+export interface PushRegistrationDTO {
+    token: string;
+    platform: string;
+    locale?: string;
+}
+
 export interface SponsoringDTO {
     type: SponsoringType;
     name: string;
@@ -158,7 +164,7 @@ export enum MeetupJahrgang {
     BEFORE_1954 = "BEFORE_1954",
     BORN_1954_1958 = "BORN_1954_1958",
     BORN_1959_1963 = "BORN_1959_1963",
-    BORN_1965_1968 = "BORN_1965_1968",
+    BORN_1964_1968 = "BORN_1964_1968",
     BORN_1969_1973 = "BORN_1969_1973",
     BORN_1974_1978 = "BORN_1974_1978",
     BORN_1979_1983 = "BORN_1979_1983",
