@@ -87,6 +87,7 @@ const TYPE_COLORS: Record<LocationType, string> = {
   [LocationType.ATTRACTION]: '#9333ea',
   [LocationType.SANITARY]: '#86edd1',
   [LocationType.INFO]: '#e19d6c',
+  [LocationType.EVENT_LOCATION]: '#0891b2',
 }
 
 const TYPE_LABELS: Record<LocationType, string> = {
@@ -96,7 +97,8 @@ const TYPE_LABELS: Record<LocationType, string> = {
   [LocationType.TENT]: 'Festzelt',
   [LocationType.ATTRACTION]: 'Attraktion',
   [LocationType.SANITARY]: "Sanitäre Anlagen",
-  [LocationType.INFO]: "Info-Stand"
+  [LocationType.INFO]: "Info-Stand",
+  [LocationType.EVENT_LOCATION]: "Anlass-Ort"
 }
 
 const config = useRuntimeConfig()
@@ -105,8 +107,12 @@ const {data, status, error} = useFetch<LocationDTO[]>(
     {server: false}
 )
 
+// Only locations flagged for the festplan are placed on the map; the shared
+// /api/location endpoint still returns every location for other consumers.
+const locations = computed(() => (data.value ?? []).filter(l => l.showInFestplan))
+
 const mapCenter = computed<[number, number]>(() => {
-  const locs = data.value ?? []
+  const locs = locations.value
   if (!locs.length) return [8.445, 47.397]
   const lng = locs.reduce((s, l) => s + l.longitude, 0) / locs.length
   const lat = locs.reduce((s, l) => s + l.latitude, 0) / locs.length
@@ -115,7 +121,7 @@ const mapCenter = computed<[number, number]>(() => {
 
 const geojson = computed(() => ({
   type: 'FeatureCollection' as const,
-  features: (data.value ?? []).map(loc => ({
+  features: locations.value.map(loc => ({
     type: 'Feature' as const,
     properties: {
       type: loc.type,

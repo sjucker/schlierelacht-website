@@ -8,6 +8,7 @@
 const API_VERSION = {
     attraction: 'v1',
     downloads: 'v1',
+    event: 'v1',
     gallery: 'v1',
     location: 'v1',
     meetup: 'v1',
