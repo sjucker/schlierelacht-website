@@ -61,6 +61,7 @@ export interface LocationDTO {
     googleMapsUrl: string;
     cloudflareId?: string;
     mapId?: string;
+    showInFestplan: boolean;
 }
 
 export interface MeetupEntryDTO {
@@ -158,6 +159,7 @@ export enum LocationType {
     ATTRACTION = "ATTRACTION",
     SANITARY = "SANITARY",
     INFO = "INFO",
+    EVENT_LOCATION = "EVENT_LOCATION",
 }
 
 export enum MeetupJahrgang {

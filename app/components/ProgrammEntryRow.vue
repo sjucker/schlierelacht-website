@@ -1,6 +1,6 @@
 <template>
   <NuxtLink
-      :to="`/programm/${row.attraction.externalId}`"
+      :to="`${basePath}/${row.attraction.externalId}`"
       class="block px-2 py-2 text-sm border-b border-neutral-100 hover:bg-neutral-50 transition-colors"
       :class="{ 'opacity-60': past }"
   >
@@ -34,13 +34,17 @@ import formatDateShort from '~/utils/format-date-short'
 import formatTime from '~/utils/format-time'
 import formatWeekday from '~/utils/format-weekday'
 
-defineProps<{
+withDefaults(defineProps<{
   row: { attraction: AttractionRefDTO; entry: ProgrammEntryDTO }
   // Same grid template as the page header, passed in so columns stay aligned.
   gridClass: string
   // Whether this entry is fully in the past (rendered muted in the "Vergangene Einträge" group).
   past?: boolean
-}>()
+  // Where a row links to; the attraction's externalId is appended. Defaults to the programm detail.
+  basePath?: string
+}>(), {
+  basePath: '/programm',
+})
 
 // "Tag" column shows formatWeekday (e.g. "Mittwoch"), "Datum" formatDateShort ("03.09.2027").
 </script>
