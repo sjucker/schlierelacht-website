@@ -62,11 +62,12 @@
 
 <script setup lang="ts">
 import type {NewsDTO} from '~~/shared/types/rest'
+import apiPath from '~/utils/api-path'
 import cloudflareUrl from '~/utils/cloudflare-url'
 
 const config = useRuntimeConfig()
 const {data: news, status} = useFetch<NewsDTO[]>(
-    `${config.public.apiBaseUrl}/api/news`,
+    `${config.public.apiBaseUrl}${apiPath('news')}`,
     {server: false}
 )
 

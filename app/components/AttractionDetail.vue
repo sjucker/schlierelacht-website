@@ -78,6 +78,7 @@
 
 <script setup lang="ts">
 import {type AttractionDTO, ImageType, type ProgrammEntryDTO} from '~~/shared/types/rest'
+import apiPath from '~/utils/api-path'
 import cloudflareUrl from '~/utils/cloudflare-url'
 import formatDate from '~/utils/format-date'
 import formatTime from '~/utils/format-time'
@@ -114,7 +115,7 @@ const props = defineProps<{
 
 const config = useRuntimeConfig()
 const {data: attraction, status, error} = useFetch<AttractionDTO>(
-    `${config.public.apiBaseUrl}/api/attraction/${props.externalId}`,
+    `${config.public.apiBaseUrl}${apiPath('attraction')}/${props.externalId}`,
     {server: false}
 )
 

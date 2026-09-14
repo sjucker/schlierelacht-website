@@ -101,6 +101,7 @@
 <script setup lang="ts">
 import type {FormError} from '@nuxt/ui'
 import type {MeetupJahrgang, MeetupRegistrationDTO} from '~~/shared/types/rest'
+import apiPath from '~/utils/api-path'
 
 const config = useRuntimeConfig()
 
@@ -148,7 +149,7 @@ async function onSubmit() {
       jahrgang: form.jahrgang as MeetupJahrgang,
       showOnList: form.showOnList,
     }
-    await $fetch(`${config.public.apiBaseUrl}/api/meetup`, {
+    await $fetch(`${config.public.apiBaseUrl}${apiPath('meetup')}`, {
       method: 'POST',
       body,
     })

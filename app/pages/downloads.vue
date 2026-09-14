@@ -14,7 +14,7 @@
               <a
                   v-for="item in byCategory[category]"
                   :key="item.id"
-                  :href="`${config.public.apiBaseUrl}/api/downloads/${item.id}/file`"
+                  :href="`${config.public.apiBaseUrl}${apiPath('downloads')}/${item.id}/file`"
                   :download="item.filename"
                   class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-primary ring ring-inset ring-primary/25 bg-primary/10 hover:bg-primary/15 active:bg-primary/15 disabled:bg-primary/10 aria-disabled:bg-primary/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               >
@@ -32,11 +32,12 @@
 <script setup lang="ts">
 import type {DownloadDTO} from '~~/shared/types/rest';
 import {DownloadCategory} from '~~/shared/types/rest';
+import apiPath from '~/utils/api-path';
 import fileExtension from '~/utils/file-extension';
 
 const config = useRuntimeConfig()
 const {data, status} = useFetch<DownloadDTO[]>(
-    `${config.public.apiBaseUrl}/api/downloads`,
+    `${config.public.apiBaseUrl}${apiPath('downloads')}`,
     {server: false}
 )
 

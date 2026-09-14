@@ -91,6 +91,7 @@
 
 <script setup lang="ts">
 import type {AttractionRefDTO, ProgrammEntryDTO, ProgrammPointDTO} from '~~/shared/types/rest'
+import apiPath from '~/utils/api-path'
 import formatDate from '~/utils/format-date'
 import formatDateShort from '~/utils/format-date-short'
 import formatWeekday from '~/utils/format-weekday'
@@ -103,7 +104,7 @@ const config = useRuntimeConfig()
 // The backend pre-joins and chronologically sorts every programm point (date, then
 // start time, then attraction name), so we only filter here — no client-side assembly.
 const {data, pending, status, error} = useFetch<ProgrammPointDTO[]>(
-    `${config.public.apiBaseUrl}/api/programm`,
+    `${config.public.apiBaseUrl}${apiPath('programm')}`,
     {server: false}
 )
 

@@ -77,6 +77,7 @@
 <script setup lang="ts">
 import mapboxgl from 'mapbox-gl'
 import type {LocationDTO} from '~~/shared/types/rest'
+import apiPath from '~/utils/api-path'
 
 const TYPE_COLORS: Record<LocationType, string> = {
   [LocationType.STAGE]: '#2b3585',
@@ -100,7 +101,7 @@ const TYPE_LABELS: Record<LocationType, string> = {
 
 const config = useRuntimeConfig()
 const {data, status, error} = useFetch<LocationDTO[]>(
-    `${config.public.apiBaseUrl}/api/location`,
+    `${config.public.apiBaseUrl}${apiPath('location')}`,
     {server: false}
 )
 

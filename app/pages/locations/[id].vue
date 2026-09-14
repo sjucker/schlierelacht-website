@@ -73,6 +73,7 @@
 
 <script setup lang="ts">
 import type {LocationDTO} from "~/../shared/types/rest";
+import apiPath from "~/utils/api-path";
 import cloudflareUrl from "~/utils/cloudflare-url";
 
 const route = useRoute()
@@ -89,7 +90,7 @@ const goBack = () => {
 const config = useRuntimeConfig()
 
 const {data: location, status, error} = useFetch<LocationDTO>(
-    `${config.public.apiBaseUrl}/api/location/${externalId}`,
+    `${config.public.apiBaseUrl}${apiPath('location')}/${externalId}`,
     {server: false}
 )
 

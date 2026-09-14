@@ -66,6 +66,7 @@
 <script setup lang="ts">
 import type {SponsoringDTO, SponsoringTypeDTO} from '~~/shared/types/rest';
 import {SponsoringType} from '~~/shared/types/rest';
+import apiPath from '~/utils/api-path';
 import cloudflareUrl from "~/utils/cloudflare-url";
 
 const TYPE_ORDER: SponsoringType[] = [
@@ -81,11 +82,11 @@ const TYPE_ORDER: SponsoringType[] = [
 
 const config = useRuntimeConfig()
 const {data: sponsors, status: sponsorsStatus} = useFetch<SponsoringDTO[]>(
-    `${config.public.apiBaseUrl}/api/sponsoring`,
+    `${config.public.apiBaseUrl}${apiPath('sponsoring')}`,
     {server: false}
 )
 const {data: sponsorTypes, status: typesStatus} = useFetch<SponsoringTypeDTO[]>(
-    `${config.public.apiBaseUrl}/api/sponsoring/type`,
+    `${config.public.apiBaseUrl}${apiPath('sponsoring')}/type`,
     {server: false}
 )
 
