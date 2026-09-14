@@ -9,7 +9,7 @@
       und Begegnungen.
     </p>
     <p class="prose text-neutral-700 max-w-5xl text-sm leading-relaxed mt-2 font-semibold">
-      Sponsoring Team Schlierelacht
+      Sponsoring Team Schlierelacht 2027
     </p>
 
     <div v-if="error" class="mt-6 text-sm text-red-600">Fehler beim Laden der Daten.</div>
