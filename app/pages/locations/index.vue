@@ -40,13 +40,14 @@
 
 <script setup lang="ts">
 import type {LocationDTO} from "~/../shared/types/rest";
+import apiPath from "~/utils/api-path";
 
 const search = ref('')
 
 const config = useRuntimeConfig()
 
 const {data, status, error} = useFetch<LocationDTO[]>(
-    `${config.public.apiBaseUrl}/api/location`,
+    `${config.public.apiBaseUrl}${apiPath('location')}`,
     {server: false}
 )
 

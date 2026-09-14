@@ -71,11 +71,12 @@
 
 <script setup lang="ts">
 import type {GalleryCategoryDTO} from '~~/shared/types/rest'
+import apiPath from '~/utils/api-path'
 import cloudflareUrl from '~/utils/cloudflare-url'
 
 const config = useRuntimeConfig()
 const {data, status, error} = useFetch<GalleryCategoryDTO[]>(
-    `${config.public.apiBaseUrl}/api/gallery`,
+    `${config.public.apiBaseUrl}${apiPath('gallery')}`,
     {server: false}
 )
 

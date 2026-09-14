@@ -47,10 +47,11 @@
 
 <script setup lang="ts">
 import type {MeetupEntryDTO, MeetupJahrgang} from '~~/shared/types/rest'
+import apiPath from '~/utils/api-path'
 
 const config = useRuntimeConfig()
 const {data, pending, status, error} = useFetch<MeetupEntryDTO[]>(
-    `${config.public.apiBaseUrl}/api/meetup`,
+    `${config.public.apiBaseUrl}${apiPath('meetup')}`,
     {server: false}
 )
 

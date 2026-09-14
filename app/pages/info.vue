@@ -47,6 +47,7 @@
 import type {OkDTO} from '~~/shared/types/rest'
 import {OkTeam} from '~~/shared/types/rest'
 import PersonCard from '~/components/PersonCard.vue'
+import apiPath from '~/utils/api-path'
 
 const TEAM_LABELS: Record<OkTeam, string> = {
   [OkTeam.PRAESIDIALES_STADT_KOMMUNIKATION_FINANZEN]: 'Präsidiales/Stadt/Kommunikation/Finanzen',
@@ -67,7 +68,7 @@ const TEAM_ORDER: OkTeam[] = [
 ]
 
 const config = useRuntimeConfig()
-const {data: ok, status} = useFetch<OkDTO>(`${config.public.apiBaseUrl}/api/ok`, {server: false})
+const {data: ok, status} = useFetch<OkDTO>(`${config.public.apiBaseUrl}${apiPath('ok')}`, {server: false})
 
 const teamsWithMembers = computed(() => {
   if (!ok.value) return []

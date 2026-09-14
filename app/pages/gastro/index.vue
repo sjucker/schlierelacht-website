@@ -61,13 +61,14 @@
 
 <script setup lang="ts">
 import type {AttractionDTO} from '~~/shared/types/rest'
+import apiPath from '~/utils/api-path'
 
 // Shared column template so the header and every row align (Nr. · Name · Betreiber).
 const rowGrid = 'grid grid-cols-[3rem_1fr_1fr] gap-x-3 sm:gap-x-4'
 
 const config = useRuntimeConfig()
 const {data, status, error} = useFetch<AttractionDTO[]>(
-    `${config.public.apiBaseUrl}/api/attraction?type=FOOD`,
+    `${config.public.apiBaseUrl}${apiPath('attraction')}?type=FOOD`,
     {server: false}
 )
 

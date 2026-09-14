@@ -5,7 +5,7 @@
       <a
           v-for="file in files"
           :key="file.id"
-          :href="`${config.public.apiBaseUrl}/api/attraction/${externalId}/files/${file.id}`"
+          :href="`${config.public.apiBaseUrl}${apiPath('attraction')}/${externalId}/files/${file.id}`"
           :download="file.filename"
           class="rounded-md font-medium inline-flex items-center transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-primary ring ring-inset ring-primary/25 bg-primary/10 hover:bg-primary/15 active:bg-primary/15 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
       >
@@ -18,6 +18,7 @@
 
 <script setup lang="ts">
 import type {AttractionFileDTO} from '~~/shared/types/rest'
+import apiPath from '~/utils/api-path'
 import fileExtension from '~/utils/file-extension'
 import formatFileSize from '~/utils/format-file-size'
 
