@@ -19,8 +19,9 @@
 
     <LoadingSpinner v-if="status === 'pending' || status === 'idle'"/>
 
-    <Transition enter-active-class="transition-opacity duration-300" enter-from-class="opacity-0"
-                enter-to-class="opacity-100">
+    <Transition
+        enter-active-class="transition-opacity duration-300" enter-from-class="opacity-0"
+        enter-to-class="opacity-100">
       <div v-if="status === 'success' && rows.length > 0">
         <!-- Upcoming events: chronological, next one on top; each day divider labels its group. -->
         <template v-for="row in upcomingRows" :key="row.key">
