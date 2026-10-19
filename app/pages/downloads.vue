@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4 md:p-6 max-w-4xl">
+  <div class="p-4 md:p-6 max-w-5xl">
     <h2 class="text-2xl font-bold text-fest-blue mb-1">Downloads</h2>
     <USeparator color="primary" class="mb-6"/>
 
@@ -7,10 +7,10 @@
 
     <Transition enter-active-class="transition-opacity duration-500" enter-from-class="opacity-0" enter-to-class="opacity-100">
       <div v-if="status === 'success' && data?.length">
-        <div v-for="category in orderedCategories" :key="category" class="prose md:prose-lg mb-8">
+        <div v-for="category in orderedCategories" :key="category" class="prose md:prose-lg md:max-w-none mb-8">
           <template v-if="byCategory[category]?.length">
             <h3>{{ categoryLabel(category) }}</h3>
-            <div class="flex flex-col md:flex-row gap-2 md:gap-4">
+            <div class="flex flex-col md:flex-row md:flex-wrap gap-2 md:gap-4">
               <a
                   v-for="item in byCategory[category]"
                   :key="item.id"
