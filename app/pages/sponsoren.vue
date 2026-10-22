@@ -19,9 +19,9 @@
           <template v-if="sponsorsByType[typeEntry.type]?.length">
             <h3 class="text-lg font-semibold uppercase tracking-widest text-fest-blue mb-4">{{ typeEntry.description }}</h3>
 
-            <!-- Gönner: simple text list instead of logo tiles -->
-            <ul v-if="typeEntry.type === SponsoringType.GOENNER" class="flex flex-col gap-1 text-neutral-700">
-              <li v-for="sponsor in sponsorsByType[typeEntry.type]" :key="sponsor.name">
+            <!-- Gönner: names only, in cells as wide as the logo tiles so both grids line up -->
+            <ul v-if="typeEntry.type === SponsoringType.GOENNER" class="flex flex-wrap gap-x-12 text-sm text-neutral-700">
+              <li v-for="sponsor in sponsorsByType[typeEntry.type]" :key="sponsor.name" class="w-[180px] py-0.5 truncate" :title="sponsor.name">
                 <a
                     v-if="sponsor.url"
                     :href="sponsor.url"
