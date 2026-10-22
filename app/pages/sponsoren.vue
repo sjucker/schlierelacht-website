@@ -19,7 +19,21 @@
           <template v-if="sponsorsByType[typeEntry.type]?.length">
             <h3 class="text-lg font-semibold uppercase tracking-widest text-fest-blue mb-4">{{ typeEntry.description }}</h3>
 
-            <div class="flex flex-wrap items-center gap-x-12 gap-y-4">
+            <!-- Gönner: names only, in cells as wide as the logo tiles so both grids line up -->
+            <ul v-if="typeEntry.type === SponsoringType.GOENNER" class="flex flex-wrap gap-x-12 text-sm text-neutral-700">
+              <li v-for="sponsor in sponsorsByType[typeEntry.type]" :key="sponsor.name" class="w-[180px] py-0.5 truncate" :title="sponsor.name">
+                <a
+                    v-if="sponsor.url"
+                    :href="sponsor.url"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-fest-blue underline"
+                >{{ sponsor.name }}</a>
+                <span v-else>{{ sponsor.name }}</span>
+              </li>
+            </ul>
+
+            <div v-else class="flex flex-wrap items-center gap-x-12 gap-y-4">
               <component
                   :is="sponsor.url ? 'a' : 'span'"
                   v-for="sponsor in sponsorsByType[typeEntry.type]"
@@ -30,9 +44,8 @@
                   :title="sponsor.name"
               >
                 <div class="w-[180px] h-[100px] flex items-center justify-center transition-transform duration-200 scale-90 hover:scale-100">
-                  <!-- Gönner show their name instead of a logo, in the same tile grid -->
                   <NuxtImg
-                      v-if="sponsor.cloudflareId && typeEntry.type !== SponsoringType.GOENNER"
+                      v-if="sponsor.cloudflareId"
                       provider="cloudflare"
                       loading="lazy"
                       :src="cloudflareUrl(sponsor.cloudflareId)"
