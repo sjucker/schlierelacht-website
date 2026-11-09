@@ -1,0 +1,22 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["LUSSD9D9ST.ch.schlierelacht.schlierelachtApp"],
+        "components": [
+          {"/": "/news", "comment": "News list"},
+          {"/": "/news/*", "comment": "News detail"},
+          {"/": "/programm", "comment": "Programm"},
+          {"/": "/programm/*", "comment": "Act detail"},
+          {"/": "/gastro", "comment": "Gastro"},
+          {"/": "/gastro/*", "comment": "Gastro stand detail"},
+          {"/": "/locations/?*", "comment": "Location detail (the app has no locations list)"},
+          {"/": "/festplan*", "comment": "Festplan"},
+          {"/": "/jahrgangstreffen/liste*", "comment": "Participant list only; registration stays on the web"},
+          {"/": "/sponsoren*", "comment": "Sponsoren"},
+          {"/": "/info*", "comment": "Über uns"}
+        ]
+      }
+    ]
+  }
+}

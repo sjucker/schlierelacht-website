@@ -47,6 +47,11 @@ export default defineNuxtConfig({
             apiBaseUrl: process.env.API_BASE_URL || 'https://schlierelacht-api.ch'
         }
     },
+    routeRules: {
+        // Universal Links: iOS expects JSON, but the file has no extension
+        // (see public/.well-known/ — keep its paths in sync with the app).
+        '/.well-known/apple-app-site-association': {headers: {'content-type': 'application/json'}},
+    },
     vite: {
         optimizeDeps: {
             include: [
