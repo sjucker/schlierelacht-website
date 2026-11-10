@@ -78,6 +78,14 @@ export interface MeetupRegistrationDTO {
     showOnList: boolean;
 }
 
+export interface MessageDTO {
+    id: number;
+    priority: MessagePriority;
+    title: string;
+    content: string;
+    createdAt: DateAsString;
+}
+
 export interface NewsDTO {
     id: number;
     date: DateAsString;
@@ -174,6 +182,12 @@ export enum MeetupJahrgang {
     BORN_1989_1993 = "BORN_1989_1993",
     BORN_1994_1998 = "BORN_1994_1998",
     AFTER_1998 = "AFTER_1998",
+}
+
+export enum MessagePriority {
+    HIGH = "HIGH",
+    MEDIUM = "MEDIUM",
+    LOW = "LOW",
 }
 
 export enum OkTeam {
