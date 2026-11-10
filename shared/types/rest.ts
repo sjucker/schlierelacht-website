@@ -84,6 +84,7 @@ export interface MessageDTO {
     title: string;
     content: string;
     createdAt: DateAsString;
+    publishedAt: DateAsString;
 }
 
 export interface NewsDTO {
