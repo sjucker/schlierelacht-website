@@ -125,6 +125,14 @@ export interface OkTeamMemberDTO {
     email?: string;
 }
 
+export interface ProblemReportDTO {
+    name: string;
+    description: string;
+    phone?: string;
+    latitude?: number;
+    longitude?: number;
+}
+
 export interface ProgrammEntryDTO {
     location: LocationDTO;
     fromDate: DateAsString;
