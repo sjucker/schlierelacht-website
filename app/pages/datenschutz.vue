@@ -42,8 +42,8 @@
       </p>
 
       <h3>App «Schlierefäscht»</h3>
-      <p>Unsere App für Android und iOS zeigt dieselben Inhalte wie diese Website (Programm, Festplan, Gastro, News usw.). Sie benötigt kein Benutzerkonto, und wir erheben über die App keine
-        Angaben wie Name, E-Mail-Adresse oder Telefonnummer. Die Inhalte lädt die App von unserem Server; dabei wird, wie beim Besuch einer Website, Ihre IP-Adresse übermittelt. Bilder werden über
+      <p>Unsere App für Android und iOS zeigt dieselben Inhalte wie diese Website (Programm, Festplan, Gastro, News usw.). Sie benötigt kein Benutzerkonto. Angaben wie Ihren Namen oder Ihre
+        Telefonnummer erhalten wir nur, wenn Sie uns über «Problem melden» etwas melden (siehe unten). Die Inhalte lädt die App von unserem Server; dabei wird, wie beim Besuch einer Website, Ihre IP-Adresse übermittelt. Bilder werden über
         Cloudflare, Inc. (USA) ausgeliefert.</p>
 
       <h4>Daten, die nur auf Ihrem Gerät gespeichert werden</h4>
@@ -52,9 +52,16 @@
         gelöscht.</p>
 
       <h4>Standort</h4>
-      <p>Wenn Sie es erlauben, verwendet die App Ihren Standort, um auf dem Festplan Ihre Position und die Entfernung zu einem Ort anzuzeigen. Ihr Standort wird nur auf dem Gerät verwendet und weder an
-        uns übermittelt noch von uns gespeichert. Die Karten stammen auch in der App von MapBox; es gelten die Hinweise oben. Die Berechtigung können Sie jederzeit in den Einstellungen Ihres Geräts
+      <p>Wenn Sie es erlauben, verwendet die App Ihren Standort, um auf dem Festplan Ihre Position und die Entfernung zu einem Ort anzuzeigen. Dafür wird Ihr Standort nur auf dem Gerät verwendet und weder
+        an uns übermittelt noch von uns gespeichert; übermittelt wird er nur, wenn Sie ihn bei einer Problemmeldung ausdrücklich mitsenden. Die Karten stammen auch in der App von MapBox; es gelten die Hinweise oben. Die Berechtigung können Sie jederzeit in den Einstellungen Ihres Geräts
         entziehen.</p>
+
+      <h4>Problem melden</h4>
+      <p>Über «Problem melden» können Sie uns während des Fests Probleme auf dem Festgelände melden. Dabei übermittelt die App Ihren Namen und Ihre Beschreibung, und – nur wenn Sie es angeben
+        bzw. auswählen – Ihre Telefonnummer, ein Foto aus Kamera oder Galerie und Ihren aktuellen Standort. Unser Server speichert die Meldung nicht, sondern leitet sie per E-Mail an das
+        Organisationskomitee weiter, das sie ausschliesslich zur Behebung des Problems und für allfällige Rückfragen verwendet. Bitte fotografieren Sie nach Möglichkeit keine erkennbaren Personen.
+        Wir löschen die Meldungen spätestens nach dem Schlierefäscht 2027. Name und Telefonnummer merkt sich die App auf Ihrem Gerät, damit Sie sie bei einer weiteren Meldung nicht erneut
+        eingeben müssen.</p>
 
       <h4>Push-Mitteilungen</h4>
       <p>Wenn Sie Mitteilungen erlauben, erhält die App von Firebase Cloud Messaging, einem Dienst der Google LLC (USA), eine zufällige Gerätekennung (Token). Diese speichern wir zusammen mit dem
