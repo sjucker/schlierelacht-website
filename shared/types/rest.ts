@@ -37,6 +37,17 @@ export interface DownloadDTO {
     uploadedAt: DateAsString;
 }
 
+export interface FaqEntryDTO {
+    id: number;
+    title: string;
+    content: string;
+}
+
+export interface FaqGroupDTO {
+    name: string;
+    entries: FaqEntryDTO[];
+}
+
 export interface GalleryCategoryDTO {
     category: string;
     images: GalleryImageDTO[];
