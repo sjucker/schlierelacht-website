@@ -99,7 +99,7 @@
             <p class="m-0 text-xs font-semibold uppercase tracking-widest text-fest-blue">Hauptsponsoren</p>
             <div class="flex flex-wrap md:flex-nowrap items-center gap-5">
               <a href="https://www.jfjost.ch/" target="_blank" rel="noopener noreferrer"><img src="/sponsoren/jost.png" alt="Jost" class="h-8 object-contain"></a>
-              <a href="https://www.geistlich-group.com/" target="_blank" rel="noopener noreferrer"><img src="/sponsoren/geistlich.png" alt="Geistlich" class="h-8 object-contain"></a>
+              <a href="https://www.geistlich-group.com/de-ch/" target="_blank" rel="noopener noreferrer"><img src="/sponsoren/geistlich.png" alt="Geistlich" class="h-8 object-contain"></a>
               <a href="https://brem-schwarz.ch/" target="_blank" rel="noopener noreferrer"><img src="/sponsoren/brem-schwarz.png" alt="Brem Schwarz" class="h-8 object-contain"></a>
               <a href="https://www.strabag.ch/" target="_blank" rel="noopener noreferrer"><img src="/sponsoren/strabag.png" alt="Strabag" class="h-8 object-contain"></a>
               <a href="https://www.merbag.ch/" target="_blank" rel="noopener noreferrer"><img src="/sponsoren/merbag.png" alt="Merbag" class="h-8 object-contain"></a>
